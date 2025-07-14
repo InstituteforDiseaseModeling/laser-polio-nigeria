@@ -3,17 +3,18 @@ import sys
 import shutil
 import traceback
 from pathlib import Path
-sys.path.append(str(Path(__file__).resolve().parent.parent))
+from importlib.resources import files
 
-from calib import calib_db
+from laser_polio_nigeria import calib_db
 import click
 import optuna
 import sciris as sc
-from calib.report import plot_likelihoods
-from calib.report import plot_optuna
-from calib.report import plot_targets
-from calib.report import save_study_results
-from calib.worker import run_worker_main
+
+from laser_polio_nigeria.report import plot_likelihoods
+from laser_polio_nigeria.report import plot_optuna
+from laser_polio_nigeria.report import plot_targets
+from laser_polio_nigeria.report import save_study_results
+from laser_polio_nigeria.worker import run_worker_main
 
 import laser_polio as lp
 
@@ -26,6 +27,7 @@ import laser_polio as lp
 study_name = "calib_nigeria_6y_2018_underwt_gravity_zinb_ipv_wts_vxtranszero_20250703"
 model_config = "config_nigeria_6y_2018_underwt_gravity_zinb_ipv_moreseeds_alt_zerovxtrans.yaml"
 calib_config = "r0_ssn_gravkabc_zinb_r0sclrs_siasclrs_initimmunsclrs_dirichlet_wts.yaml"
+
 
 fit_function = "log_likelihood"
 n_trials = 2
@@ -41,32 +43,27 @@ if os.getenv("POLIO_ROOT"):
 
 
 def resolve_paths(study_name, model_config, calib_config, results_path, actual_data_file):
-    """
-    Build composite paths
-    """
-    root = lp.root
+    from importlib.resources import files
 
-    model_config = Path(model_config)
-    if not model_config.is_absolute():
-        model_config = root / "calib/model_configs" / model_config
+    def resolve_file(path_str, resource_pkg):
+        path = Path(path_str)
+        if path.parent == Path('.'):
+            # Bare filename; assume package resource
+            return files(resource_pkg) / path.name
+        else:
+            # Relative or absolute path provided by user
+            return path.resolve()
 
-    calib_config = Path(calib_config)
-    if not calib_config.is_absolute():
-        calib_config = root / "calib/calib_configs" / calib_config
+    model_config = resolve_file(model_config, "laser_polio_nigeria.model_configs")
+    print(f"{model_config=}")
 
-    #print( f"1. {results_path=}" )
-    results_path = Path(results_path) if results_path else root / "results" / study_name
-    #print( f"2. {results_path=}" )
-    #if not results_path.is_absolute():
-    #    results_path = root / "results" / study_name
-    #print( f"3. {results_path=}" )
+    calib_config = resolve_file(calib_config, "laser_polio_nigeria.calib_configs")
+    print(f"{calib_config=}")
 
+    results_path = Path(results_path) if results_path else Path("results") / study_name
     actual_data_file = Path(actual_data_file) if actual_data_file else results_path / "actual_data.csv"
-    #if not actual_data_file.is_absolute():
-        #actual_data_file = results_path / actual_data_file
 
     return model_config, calib_config, results_path, actual_data_file
-
 
 def main(study_name, model_config, calib_config, fit_function, n_replicates, n_trials, results_path, actual_data_file, dry_run):
     print( f"1. {actual_data_file=}" )
@@ -104,9 +101,12 @@ def main(study_name, model_config, calib_config, fit_function, n_replicates, n_t
 
     print("📊 Plotting study results...")
     if not os.getenv("HEADLESS"):
-        plot_optuna(study_name, storage_url, output_dir=results_path)
-        plot_targets(study, output_dir=results_path)
-        plot_likelihoods(study, output_dir=results_path, use_log=True)
+        if len([t for t in study.trials if t.value not in [None, float('inf'), float('nan')]]) == 0:
+            print("[WARN] No successful trials; skipping target plotting.")
+        else:
+            plot_optuna(study_name, storage_url, output_dir=results_path)
+            plot_targets(study, output_dir=results_path)
+            plot_likelihoods(study, output_dir=results_path, use_log=True)
 
     sc.printcyan("✅ Calibration complete. Results saved.")
 
@@ -119,7 +119,7 @@ def main(study_name, model_config, calib_config, fit_function, n_replicates, n_t
 @click.option("--fit-function", default=fit_function, show_default=True)
 @click.option("--n-replicates", default=n_replicates, show_default=True, type=int)
 @click.option("--n-trials", default=n_trials, show_default=True, type=int)
-@click.option("--results-path", default=".", show_default=True)
+@click.option("--results-path", default=None, show_default=True)
 @click.option("--actual-data-file", default=None, show_default=True)
 @click.option("--dry-run", default=False, show_default=True, type=bool)
 def cli(**kwargs):

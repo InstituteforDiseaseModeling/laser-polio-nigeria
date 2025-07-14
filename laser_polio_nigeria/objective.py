@@ -63,13 +63,17 @@ def objective(
             print(f"[ERROR] Simulation failed in replicate {rep}: {e}")
             fit_scores.append(float("inf"))
 
-    # Save per-replicate scores & seeds to Optuna
-    trial.set_user_attr("actual", json_friendly(actual))
-    trial.set_user_attr("predicted", [json_friendly(p) for p in predictions])
-    trial.set_user_attr("likelihoods", json_friendly(scores))
-    trial.set_user_attr("n_reps", n_replicates)
-    trial.set_user_attr("rep_scores", fit_scores)
-    trial.set_user_attr("rand_seed", seeds)
+    # Only record attributes if there's at least one successful replicate
+    if any(np.isfinite(s) for s in fit_scores):
+        # Save per-replicate scores & seeds to Optuna
+        trial.set_user_attr("actual", json_friendly(actual))
+        trial.set_user_attr("predicted", [json_friendly(p) for p in predictions])
+        trial.set_user_attr("likelihoods", json_friendly(scores))
+        trial.set_user_attr("n_reps", n_replicates)
+        trial.set_user_attr("rep_scores", fit_scores)
+        trial.set_user_attr("rand_seed", seeds)
+    else:
+        print("[WARN] No successful replicates; skipping user_attr recording.")
 
     # Return average score
     return np.mean(fit_scores)

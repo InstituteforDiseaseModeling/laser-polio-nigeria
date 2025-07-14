@@ -39,10 +39,10 @@ classifiers = [
 ]
 
 [tool.setuptools]
-packages = ["calib"]
+packages = ["laser_polio_nigeria"]
 
 [tool.setuptools.package-data]
-"calib" = ["*.csv", "*.h5", "*.json", "*.py"]
+laser_polio_nigeria = ["calib_configs/*.yaml", "model_configs/*.yaml"]
 "examples" = ["**/*"]
 
 [project.optional-dependencies]

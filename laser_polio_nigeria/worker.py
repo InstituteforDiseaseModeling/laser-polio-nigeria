@@ -2,19 +2,22 @@ import sys
 import importlib
 from functools import partial
 from pathlib import Path
-#sys.path.append(str(Path(__file__).resolve().parent.parent))
 
-from calib import calib_db
+from laser_polio_nigeria import calib_db
 import optuna
 import sciris as sc
 import yaml
-from calib.objective import objective
+from laser_polio_nigeria.objective import objective
 
 import laser_polio as lp
 
 
 def load_function(module_path: str, function_name: str):
-    module = importlib.import_module(module_path)
+    try:
+        module = importlib.import_module(module_path)
+    except Exception as ex:
+        print( f"Exception calling import_module on {module_path}" )
+        raise ex
     return getattr(module, function_name)
 
 
@@ -74,11 +77,11 @@ def run_worker_main(
         study.set_user_attr(k, v)
     metadata = calib_config_dict.get("metadata", {})
     scoring_fn = load_function(
-        module_path="calib.scoring",
+        module_path="laser_polio_nigeria.scoring",
         function_name=metadata.get("scoring_fn", "compute_fit"),
     )
     target_fn = load_function(
-        module_path="calib.targets",
+        module_path="laser_polio_nigeria.targets",
         function_name=metadata.get("target_fn", "calc_calib_targets"),
     )
 
