@@ -1,0 +1,814 @@
+2025-06-10 08:35:33,261.261 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (29910,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-10 08:35:40,582.582 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/exceptions.py:89 idmtools_error_handler [ERROR] (29910,8490000128) - 
+NoneType: None
+2025-06-10 08:38:30,542.542 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/logging.py:228 setup_logging [DEBUG] (40453,8490000128) - idmtools core version: 2.1.0
+2025-06-10 08:38:30,542.542 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:242 _load_config_file [VERBOSE] (40453,8490000128) - INI File Found: /Users/jonathanbloedow/PLAY/LASER/laser-polio/calib/idmtools.ini
+2025-06-10 08:38:30,918.918 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/functions.py:28 __init__ [DEBUG] (40453,8490000128) - {<module 'idmtools.plugins.item_sequence' from '/Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/plugins/item_sequence.py'>, <module 'idmtools.plugins.git_commit' from '/Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/plugins/git_commit.py'>, <module 'idmtools.plugins.uuid_generator' from '/Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/plugins/uuid_generator.py'>}
+2025-06-10 08:38:31,242.242 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/utils.py:57 load_plugin_map [DEBUG] (40453,8490000128) - Loading <class 'idmtools.entities.experiment.ExperimentSpecification'> as Experiment
+2025-06-10 08:38:31,268.268 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/utils.py:57 load_plugin_map [DEBUG] (40453,8490000128) - Loading <class 'idmtools.entities.command_task.CommandTaskSpecification'> as Command
+2025-06-10 08:38:31,268.268 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/utils.py:57 load_plugin_map [DEBUG] (40453,8490000128) - Loading <class 'idmtools.core.docker_task.DockerTaskSpecification'> as Docker
+2025-06-10 08:38:31,300.300 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/utils.py:57 load_plugin_map [DEBUG] (40453,8490000128) - Loading <class 'idmtools_platform_comps.plugin_info.COMPSPlatformSpecification'> as COMPS
+2025-06-10 08:38:31,301.301 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/plugin_info.py:39 __init__ [DEBUG] (40453,8490000128) - Initializing COMPS Specification
+2025-06-10 08:38:31,301.301 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/utils.py:57 load_plugin_map [DEBUG] (40453,8490000128) - Loading <class 'idmtools_platform_comps.plugin_info.SSMTPlatformSpecification'> as SSMT
+2025-06-10 08:38:31,301.301 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/plugin_info.py:125 __init__ [DEBUG] (40453,8490000128) - Initializing SSMT Specification
+2025-06-10 08:38:31,301.301 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: CALCULON
+2025-06-10 08:38:31,301.301 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: IDMCLOUD
+2025-06-10 08:38:31,301.301 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: NDCLOUD
+2025-06-10 08:38:31,301.301 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: BMGF_IPMCLOUD
+2025-06-10 08:38:31,301.301 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: QSTART
+2025-06-10 08:38:31,301.301 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: NIBBLER
+2025-06-10 08:38:31,302.302 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: SLURMSTAGE
+2025-06-10 08:38:31,302.302 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: CUMULUS
+2025-06-10 08:38:31,302.302 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: SLURM
+2025-06-10 08:38:31,302.302 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: SLURM2
+2025-06-10 08:38:31,302.302 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: BOXY
+2025-06-10 08:38:31,302.302 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: CALCULON_SSMT
+2025-06-10 08:38:31,302.302 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: IDMCLOUD_SSMT
+2025-06-10 08:38:31,302.302 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: NDCLOUD_SSMT
+2025-06-10 08:38:31,302.302 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: BMGF_IPMCLOUD_SSMT
+2025-06-10 08:38:31,302.302 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: QSTART_SSMT
+2025-06-10 08:38:31,302.302 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: NIBBLER_SSMT
+2025-06-10 08:38:31,303.303 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: SLURMSTAGE_SSMT
+2025-06-10 08:38:31,303.303 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: CUMULUS_SSMT
+2025-06-10 08:38:31,303.303 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: SLURM_SSMT
+2025-06-10 08:38:31,303.303 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: SLURM2_SSMT
+2025-06-10 08:38:31,303.303 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: BOXY_SSMT
+2025-06-10 08:38:31,316.316 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/utils.py:57 load_plugin_map [DEBUG] (40453,8490000128) - Loading <class 'idmtools_platform_comps.plugin_info.COMPSPlatformSpecification'> as COMPS
+2025-06-10 08:38:31,316.316 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/plugin_info.py:39 __init__ [DEBUG] (40453,8490000128) - Initializing COMPS Specification
+2025-06-10 08:38:31,316.316 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/utils.py:57 load_plugin_map [DEBUG] (40453,8490000128) - Loading <class 'idmtools_platform_comps.plugin_info.SSMTPlatformSpecification'> as SSMT
+2025-06-10 08:38:31,316.316 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/plugin_info.py:125 __init__ [DEBUG] (40453,8490000128) - Initializing SSMT Specification
+2025-06-10 08:38:31,317.317 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: CALCULON
+2025-06-10 08:38:31,317.317 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: IDMCLOUD
+2025-06-10 08:38:31,317.317 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: NDCLOUD
+2025-06-10 08:38:31,317.317 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: BMGF_IPMCLOUD
+2025-06-10 08:38:31,317.317 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: QSTART
+2025-06-10 08:38:31,317.317 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: NIBBLER
+2025-06-10 08:38:31,317.317 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: SLURMSTAGE
+2025-06-10 08:38:31,317.317 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: CUMULUS
+2025-06-10 08:38:31,317.317 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: SLURM
+2025-06-10 08:38:31,317.317 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: SLURM2
+2025-06-10 08:38:31,317.317 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: BOXY
+2025-06-10 08:38:31,317.317 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: CALCULON_SSMT
+2025-06-10 08:38:31,318.318 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: IDMCLOUD_SSMT
+2025-06-10 08:38:31,318.318 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: NDCLOUD_SSMT
+2025-06-10 08:38:31,318.318 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: BMGF_IPMCLOUD_SSMT
+2025-06-10 08:38:31,318.318 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: QSTART_SSMT
+2025-06-10 08:38:31,318.318 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: NIBBLER_SSMT
+2025-06-10 08:38:31,318.318 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: SLURMSTAGE_SSMT
+2025-06-10 08:38:31,318.318 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: CUMULUS_SSMT
+2025-06-10 08:38:31,318.318 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: SLURM_SSMT
+2025-06-10 08:38:31,318.318 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: SLURM2_SSMT
+2025-06-10 08:38:31,318.318 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (40453,8490000128) - Found Platform Configuration Alias: BOXY_SSMT
+2025-06-10 08:38:31,319.319 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (40453,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-10 08:38:31,319.319 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (40453,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON",
+   "priority": "Highest",
+   "simulation_root": "$COMPS_PATH(USER)\\output",
+   "num_retries": 0,
+   "node_group": "idm_48cores",
+   "num_cores": 1,
+   "exclusive": false
+}
+2025-06-10 08:38:36,861.861 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/cache_enabled.py:50 initialize_cache [DEBUG] (40453,8490000128) - Initializing the cache with 0 shards and none policy.
+2025-06-10 08:38:36,862.862 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/cache_enabled.py:59 initialize_cache [DEBUG] (40453,8490000128) - Cache created in /var/folders/_w/1f_9b16x5_5586f8bjv7g5xr0000gn/T/tmpqlm45_xm
+2025-06-10 08:38:37,020.20 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/services/ipersistance_service.py:83 save [DEBUG] (40453,8490000128) - Saving 38bf83c0-197a-4bdf-b2d2-af682d943a1f to platforms
+2025-06-10 08:38:40,107.107 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:224 get_item [DEBUG] (40453,8490000128) - Retrieve item 0cbb0048-b445-f011-aa22-b88303911bc1 of type Asset Collection
+2025-06-10 08:38:40,365.365 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/exceptions.py:89 idmtools_error_handler [ERROR] (40453,8490000128) - name 'sys' is not defined
+NoneType: None
+2025-06-10 08:42:17,566.566 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/logging.py:228 setup_logging [DEBUG] (42833,8490000128) - idmtools core version: 2.1.0
+2025-06-10 08:42:17,567.567 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:242 _load_config_file [VERBOSE] (42833,8490000128) - INI File Found: /Users/jonathanbloedow/PLAY/LASER/laser-polio/calib/idmtools.ini
+2025-06-10 08:42:17,619.619 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/functions.py:28 __init__ [DEBUG] (42833,8490000128) - {<module 'idmtools.plugins.item_sequence' from '/Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/plugins/item_sequence.py'>, <module 'idmtools.plugins.uuid_generator' from '/Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/plugins/uuid_generator.py'>, <module 'idmtools.plugins.git_commit' from '/Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/plugins/git_commit.py'>}
+2025-06-10 08:42:17,660.660 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/utils.py:57 load_plugin_map [DEBUG] (42833,8490000128) - Loading <class 'idmtools.entities.experiment.ExperimentSpecification'> as Experiment
+2025-06-10 08:42:17,690.690 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/utils.py:57 load_plugin_map [DEBUG] (42833,8490000128) - Loading <class 'idmtools.entities.command_task.CommandTaskSpecification'> as Command
+2025-06-10 08:42:17,690.690 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/utils.py:57 load_plugin_map [DEBUG] (42833,8490000128) - Loading <class 'idmtools.core.docker_task.DockerTaskSpecification'> as Docker
+2025-06-10 08:42:17,697.697 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/utils.py:57 load_plugin_map [DEBUG] (42833,8490000128) - Loading <class 'idmtools_platform_comps.plugin_info.SSMTPlatformSpecification'> as SSMT
+2025-06-10 08:42:17,697.697 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/plugin_info.py:125 __init__ [DEBUG] (42833,8490000128) - Initializing SSMT Specification
+2025-06-10 08:42:17,697.697 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/utils.py:57 load_plugin_map [DEBUG] (42833,8490000128) - Loading <class 'idmtools_platform_comps.plugin_info.COMPSPlatformSpecification'> as COMPS
+2025-06-10 08:42:17,697.697 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/plugin_info.py:39 __init__ [DEBUG] (42833,8490000128) - Initializing COMPS Specification
+2025-06-10 08:42:17,697.697 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: CALCULON_SSMT
+2025-06-10 08:42:17,697.697 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: IDMCLOUD_SSMT
+2025-06-10 08:42:17,697.697 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: NDCLOUD_SSMT
+2025-06-10 08:42:17,697.697 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: BMGF_IPMCLOUD_SSMT
+2025-06-10 08:42:17,697.697 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: QSTART_SSMT
+2025-06-10 08:42:17,697.697 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: NIBBLER_SSMT
+2025-06-10 08:42:17,697.697 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: SLURMSTAGE_SSMT
+2025-06-10 08:42:17,697.697 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: CUMULUS_SSMT
+2025-06-10 08:42:17,697.697 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: SLURM_SSMT
+2025-06-10 08:42:17,697.697 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: SLURM2_SSMT
+2025-06-10 08:42:17,697.697 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: BOXY_SSMT
+2025-06-10 08:42:17,697.697 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: CALCULON
+2025-06-10 08:42:17,697.697 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: IDMCLOUD
+2025-06-10 08:42:17,697.697 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: NDCLOUD
+2025-06-10 08:42:17,697.697 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: BMGF_IPMCLOUD
+2025-06-10 08:42:17,697.697 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: QSTART
+2025-06-10 08:42:17,697.697 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: NIBBLER
+2025-06-10 08:42:17,697.697 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: SLURMSTAGE
+2025-06-10 08:42:17,697.697 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: CUMULUS
+2025-06-10 08:42:17,697.697 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: SLURM
+2025-06-10 08:42:17,697.697 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: SLURM2
+2025-06-10 08:42:17,697.697 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: BOXY
+2025-06-10 08:42:17,699.699 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/utils.py:57 load_plugin_map [DEBUG] (42833,8490000128) - Loading <class 'idmtools_platform_comps.plugin_info.SSMTPlatformSpecification'> as SSMT
+2025-06-10 08:42:17,699.699 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/plugin_info.py:125 __init__ [DEBUG] (42833,8490000128) - Initializing SSMT Specification
+2025-06-10 08:42:17,699.699 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/utils.py:57 load_plugin_map [DEBUG] (42833,8490000128) - Loading <class 'idmtools_platform_comps.plugin_info.COMPSPlatformSpecification'> as COMPS
+2025-06-10 08:42:17,699.699 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/plugin_info.py:39 __init__ [DEBUG] (42833,8490000128) - Initializing COMPS Specification
+2025-06-10 08:42:17,699.699 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: CALCULON_SSMT
+2025-06-10 08:42:17,699.699 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: IDMCLOUD_SSMT
+2025-06-10 08:42:17,699.699 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: NDCLOUD_SSMT
+2025-06-10 08:42:17,699.699 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: BMGF_IPMCLOUD_SSMT
+2025-06-10 08:42:17,699.699 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: QSTART_SSMT
+2025-06-10 08:42:17,699.699 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: NIBBLER_SSMT
+2025-06-10 08:42:17,700.700 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: SLURMSTAGE_SSMT
+2025-06-10 08:42:17,700.700 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: CUMULUS_SSMT
+2025-06-10 08:42:17,700.700 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: SLURM_SSMT
+2025-06-10 08:42:17,700.700 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: SLURM2_SSMT
+2025-06-10 08:42:17,700.700 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: BOXY_SSMT
+2025-06-10 08:42:17,700.700 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: CALCULON
+2025-06-10 08:42:17,700.700 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: IDMCLOUD
+2025-06-10 08:42:17,700.700 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: NDCLOUD
+2025-06-10 08:42:17,700.700 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: BMGF_IPMCLOUD
+2025-06-10 08:42:17,700.700 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: QSTART
+2025-06-10 08:42:17,700.700 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: NIBBLER
+2025-06-10 08:42:17,700.700 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: SLURMSTAGE
+2025-06-10 08:42:17,700.700 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: CUMULUS
+2025-06-10 08:42:17,700.700 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: SLURM
+2025-06-10 08:42:17,700.700 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: SLURM2
+2025-06-10 08:42:17,700.700 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (42833,8490000128) - Found Platform Configuration Alias: BOXY
+2025-06-10 08:42:17,700.700 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (42833,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-10 08:42:17,700.700 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (42833,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON",
+   "priority": "Highest",
+   "simulation_root": "$COMPS_PATH(USER)\\output",
+   "num_retries": 0,
+   "node_group": "idm_48cores",
+   "num_cores": 1,
+   "exclusive": false
+}
+2025-06-10 08:42:17,833.833 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/cache_enabled.py:50 initialize_cache [DEBUG] (42833,8490000128) - Initializing the cache with 0 shards and none policy.
+2025-06-10 08:42:17,833.833 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/cache_enabled.py:59 initialize_cache [DEBUG] (42833,8490000128) - Cache created in /var/folders/_w/1f_9b16x5_5586f8bjv7g5xr0000gn/T/tmpudh6ke50
+2025-06-10 08:42:17,953.953 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/services/ipersistance_service.py:83 save [DEBUG] (42833,8490000128) - Saving f17cdb68-f8c2-4b7e-ac2c-2e92e9cd0797 to platforms
+2025-06-10 08:42:17,970.970 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:224 get_item [DEBUG] (42833,8490000128) - Retrieve item 0cbb0048-b445-f011-aa22-b88303911bc1 of type Asset Collection
+2025-06-10 08:42:18,268.268 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:267 run_item [DEBUG] (42833,8490000128) - Calling pre_run_item
+2025-06-10 08:42:18,268.268 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:210 pre_run_item [DEBUG] (42833,8490000128) - Calling pre_run
+2025-06-10 08:42:18,268.268 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:215 pre_run_item [DEBUG] (42833,8490000128) - Calling create
+2025-06-10 08:42:18,268.268 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:59 pre_create [DEBUG] (42833,8490000128) - Calling idmtools_platform_pre_create_item hooks
+2025-06-10 08:42:18,268.268 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:62 pre_create [DEBUG] (42833,8490000128) - Calling experiment pre_creation
+2025-06-10 08:42:18,269.269 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/experiment.py:278 pre_creation [DEBUG] (42833,8490000128) - Using all tasks to gather assets
+2025-06-10 08:42:18,270.270 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:108 create [DEBUG] (42833,8490000128) - Finished pre_create
+2025-06-10 08:42:18,270.270 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:110 create [DEBUG] (42833,8490000128) - Calling platform_create
+2025-06-10 08:42:18,274.274 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:255 _get_experiment_command_line [DEBUG] (42833,8490000128) - List of simulations detected. Using base_task for command
+2025-06-10 08:42:18,274.274 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:164 platform_create [DEBUG] (42833,8490000128) - COMPS Experiment Configs: {'environment_name': 'CALCULON', 'simulation_input_args': 'exec --no-mount /app Assets/laser-polio_latest.sif python3 -m laser_polio.run_sim --model-config /app/calib/model_configs/config_zamfara.yaml --params-file Assets/overrides.json', 'working_directory_root': '$COMPS_PATH(USER)/output/laser-polio best from calib_20250610_154218', 'executable_path': 'singularity', 'node_group_name': 'idm_48cores', 'maximum_number_of_retries': 0, 'priority': 'Highest', 'min_cores': 1, 'max_cores': 1, 'exclusive': False}
+2025-06-10 08:42:18,412.412 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_asset_collection_operations.py:83 create [DEBUG] (42833,8490000128) - Calling pre_create
+2025-06-10 08:42:18,412.412 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_asset_collection_operations.py:40 pre_create [DEBUG] (42833,8490000128) - Calling idmtools_platform_pre_create_item
+2025-06-10 08:42:18,412.412 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_asset_collection_operations.py:43 pre_create [DEBUG] (42833,8490000128) - Calling pre_creation
+2025-06-10 08:42:18,412.412 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_asset_collection_operations.py:86 create [DEBUG] (42833,8490000128) - Calling platform_create
+2025-06-10 08:42:18,425.425 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/asset_collection_operations.py:94 platform_create [DEBUG] (42833,8490000128) - Building ac. Filtered out 0 assets that exist on COMPS already
+2025-06-10 08:42:18,581.581 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/asset_collection_operations.py:107 platform_create [DEBUG] (42833,8490000128) - 1 missing files detected
+2025-06-10 08:42:18,583.583 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/asset_collection_operations.py:139 platform_create [INFO] (42833,8490000128) - Uploading 1 files/416 bytes
+2025-06-10 08:42:18,782.782 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_asset_collection_operations.py:90 create [DEBUG] (42833,8490000128) - Calling post_create
+2025-06-10 08:42:18,782.782 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_asset_collection_operations.py:58 post_create [DEBUG] (42833,8490000128) - Calling idmtools_platform_post_create_item hooks
+2025-06-10 08:42:18,782.782 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_asset_collection_operations.py:61 post_create [DEBUG] (42833,8490000128) - Calling post_creation
+2025-06-10 08:42:18,783.783 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:366 send_assets [DEBUG] (42833,8490000128) - Asset collection for experiment: 4f8e067d-1146-f011-aa22-b88303911bc1 is: 508e067d-1146-f011-aa22-b88303911bc1
+2025-06-10 08:42:19,056.56 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:113 create [DEBUG] (42833,8490000128) - Finished platform_create
+2025-06-10 08:42:19,056.56 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:271 post_create [SUCCESS] (42833,8490000128) - 
+The created experiment can be viewed at https://comps.idmod.org/#explore/Simulations?filters=ExperimentId=4f8e067d-1146-f011-aa22-b88303911bc1
+Simulations are still being created
+
+2025-06-10 08:42:19,057.57 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:77 post_create [DEBUG] (42833,8490000128) - Calling idmtools_platform_post_create_item hooks
+2025-06-10 08:42:19,057.57 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:80 post_create [DEBUG] (42833,8490000128) - Calling experiment post_creation
+2025-06-10 08:42:19,057.57 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:118 create [DEBUG] (42833,8490000128) - Finished post_create
+2025-06-10 08:42:19,057.57 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:224 pre_run_item [DEBUG] (42833,8490000128) - Ensuring simulations exist
+2025-06-10 08:42:19,057.57 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:227 pre_run_item [DEBUG] (42833,8490000128) - Calling _create_items_of_type for sims
+2025-06-10 08:42:19,058.58 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/utils.py:116 batch_create_items [INFO] (42833,8490000128) - Creating 16 Platform Workers
+2025-06-10 08:42:19,058.58 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/utils.py:130 batch_create_items [DEBUG] (42833,8490000128) - Batching creation by 16
+2025-06-10 08:42:19,059.59 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/utils.py:152 batch_create_items [DEBUG] (42833,8490000128) - Submitting chunk: 1
+2025-06-10 08:42:19,059.59 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/simulation_operations.py:64 comps_batch_worker [DEBUG] (42833,6147960832) - Converting 1 to COMPS
+2025-06-10 08:42:19,060.60 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_simulation_operations.py:54 pre_create [DEBUG] (42833,6147960832) - Calling idmtools_platform_pre_create_item
+2025-06-10 08:42:19,060.60 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_simulation_operations.py:57 pre_create [DEBUG] (42833,6147960832) - Calling pre_creation
+2025-06-10 08:42:19,060.60 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/simulation.py:105 pre_creation [DEBUG] (42833,6147960832) - Calling task pre creation
+2025-06-10 08:42:19,060.60 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/simulation.py:121 pre_creation [DEBUG] (42833,6147960832) - Setting Simulation Tag "task_type" to "idmtools.entities.command_task.CommandTask"
+2025-06-10 08:42:19,061.61 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/simulation_operations.py:247 get_simulation_config_from_simulation [DEBUG] (42833,6147960832) - Simulation config: {}
+2025-06-10 08:42:19,061.61 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/simulation_operations.py:77 comps_batch_worker [DEBUG] (42833,6147960832) - Finished converting to COMPS. Starting saving of 1
+2025-06-10 08:42:19,204.204 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/simulation_operations.py:80 comps_batch_worker [DEBUG] (42833,6147960832) - Finished saving of 1. Starting post_create
+2025-06-10 08:42:19,204.204 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_simulation_operations.py:72 post_create [DEBUG] (42833,6147960832) - Calling idmtools_platform_post_create_item hooks
+2025-06-10 08:42:19,204.204 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_simulation_operations.py:75 post_create [DEBUG] (42833,6147960832) - Calling post_creation
+2025-06-10 08:42:19,204.204 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/simulation.py:135 post_creation [DEBUG] (42833,6147960832) - Calling task post creation
+2025-06-10 08:42:19,204.204 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/simulation.py:142 post_creation [DEBUG] (42833,6147960832) - Replacing task with proxy
+2025-06-10 08:42:19,204.204 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/simulation_operations.py:86 comps_batch_worker [DEBUG] (42833,6147960832) - Finished post-create of 1
+2025-06-10 08:42:19,330.330 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:238 pre_run_item [DEBUG] (42833,8490000128) - Finished checking simulations
+2025-06-10 08:42:19,330.330 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:271 run_item [DEBUG] (42833,8490000128) - Calling platform_run_item
+2025-06-10 08:42:19,330.330 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:336 platform_run_item [DEBUG] (42833,8490000128) - Commissioning experiment: 4f8e067d-1146-f011-aa22-b88303911bc1
+2025-06-10 08:42:19,331.331 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:274 run_item [DEBUG] (42833,8490000128) - Calling post_run_item
+2025-06-10 08:42:19,331.331 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:251 post_run_item [DEBUG] (42833,8490000128) - Calling idmtools_platform_post_run hooks
+2025-06-10 08:42:19,331.331 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (42833,8490000128) - Refreshing simulation status
+2025-06-10 08:42:24,476.476 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (42833,8490000128) - Refreshing simulation status
+2025-06-10 08:42:29,637.637 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (42833,8490000128) - Refreshing simulation status
+2025-06-10 08:42:34,796.796 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (42833,8490000128) - Refreshing simulation status
+2025-06-10 08:42:40,344.344 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (42833,8490000128) - Refreshing simulation status
+2025-06-10 08:42:45,700.700 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (42833,8490000128) - Refreshing simulation status
+2025-06-10 08:42:50,859.859 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (42833,8490000128) - Refreshing simulation status
+2025-06-10 08:42:56,020.20 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (42833,8490000128) - Refreshing simulation status
+2025-06-10 08:43:01,167.167 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (42833,8490000128) - Refreshing simulation status
+2025-06-10 08:48:52,495.495 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/logging.py:228 setup_logging [DEBUG] (56725,8490000128) - idmtools core version: 2.1.0
+2025-06-10 08:48:52,496.496 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:242 _load_config_file [VERBOSE] (56725,8490000128) - INI File Found: /Users/jonathanbloedow/PLAY/LASER/laser-polio/calib/idmtools.ini
+2025-06-10 08:48:52,570.570 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/functions.py:28 __init__ [DEBUG] (56725,8490000128) - {<module 'idmtools.plugins.item_sequence' from '/Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/plugins/item_sequence.py'>, <module 'idmtools.plugins.uuid_generator' from '/Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/plugins/uuid_generator.py'>, <module 'idmtools.plugins.git_commit' from '/Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/plugins/git_commit.py'>}
+2025-06-10 08:48:52,633.633 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/utils.py:57 load_plugin_map [DEBUG] (56725,8490000128) - Loading <class 'idmtools.entities.experiment.ExperimentSpecification'> as Experiment
+2025-06-10 08:48:52,643.643 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/utils.py:57 load_plugin_map [DEBUG] (56725,8490000128) - Loading <class 'idmtools.entities.command_task.CommandTaskSpecification'> as Command
+2025-06-10 08:48:52,643.643 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/utils.py:57 load_plugin_map [DEBUG] (56725,8490000128) - Loading <class 'idmtools.core.docker_task.DockerTaskSpecification'> as Docker
+2025-06-10 08:48:52,649.649 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/utils.py:57 load_plugin_map [DEBUG] (56725,8490000128) - Loading <class 'idmtools_platform_comps.plugin_info.SSMTPlatformSpecification'> as SSMT
+2025-06-10 08:48:52,649.649 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/plugin_info.py:125 __init__ [DEBUG] (56725,8490000128) - Initializing SSMT Specification
+2025-06-10 08:48:52,649.649 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/utils.py:57 load_plugin_map [DEBUG] (56725,8490000128) - Loading <class 'idmtools_platform_comps.plugin_info.COMPSPlatformSpecification'> as COMPS
+2025-06-10 08:48:52,649.649 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/plugin_info.py:39 __init__ [DEBUG] (56725,8490000128) - Initializing COMPS Specification
+2025-06-10 08:48:52,649.649 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: CALCULON_SSMT
+2025-06-10 08:48:52,649.649 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: IDMCLOUD_SSMT
+2025-06-10 08:48:52,649.649 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: NDCLOUD_SSMT
+2025-06-10 08:48:52,649.649 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: BMGF_IPMCLOUD_SSMT
+2025-06-10 08:48:52,649.649 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: QSTART_SSMT
+2025-06-10 08:48:52,649.649 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: NIBBLER_SSMT
+2025-06-10 08:48:52,649.649 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: SLURMSTAGE_SSMT
+2025-06-10 08:48:52,649.649 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: CUMULUS_SSMT
+2025-06-10 08:48:52,649.649 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: SLURM_SSMT
+2025-06-10 08:48:52,649.649 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: SLURM2_SSMT
+2025-06-10 08:48:52,650.650 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: BOXY_SSMT
+2025-06-10 08:48:52,650.650 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: CALCULON
+2025-06-10 08:48:52,650.650 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: IDMCLOUD
+2025-06-10 08:48:52,650.650 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: NDCLOUD
+2025-06-10 08:48:52,650.650 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: BMGF_IPMCLOUD
+2025-06-10 08:48:52,650.650 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: QSTART
+2025-06-10 08:48:52,650.650 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: NIBBLER
+2025-06-10 08:48:52,650.650 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: SLURMSTAGE
+2025-06-10 08:48:52,650.650 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: CUMULUS
+2025-06-10 08:48:52,650.650 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: SLURM
+2025-06-10 08:48:52,650.650 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: SLURM2
+2025-06-10 08:48:52,650.650 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: BOXY
+2025-06-10 08:48:52,652.652 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/utils.py:57 load_plugin_map [DEBUG] (56725,8490000128) - Loading <class 'idmtools_platform_comps.plugin_info.SSMTPlatformSpecification'> as SSMT
+2025-06-10 08:48:52,652.652 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/plugin_info.py:125 __init__ [DEBUG] (56725,8490000128) - Initializing SSMT Specification
+2025-06-10 08:48:52,652.652 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/utils.py:57 load_plugin_map [DEBUG] (56725,8490000128) - Loading <class 'idmtools_platform_comps.plugin_info.COMPSPlatformSpecification'> as COMPS
+2025-06-10 08:48:52,652.652 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/plugin_info.py:39 __init__ [DEBUG] (56725,8490000128) - Initializing COMPS Specification
+2025-06-10 08:48:52,652.652 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: CALCULON_SSMT
+2025-06-10 08:48:52,652.652 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: IDMCLOUD_SSMT
+2025-06-10 08:48:52,652.652 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: NDCLOUD_SSMT
+2025-06-10 08:48:52,652.652 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: BMGF_IPMCLOUD_SSMT
+2025-06-10 08:48:52,652.652 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: QSTART_SSMT
+2025-06-10 08:48:52,652.652 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: NIBBLER_SSMT
+2025-06-10 08:48:52,652.652 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: SLURMSTAGE_SSMT
+2025-06-10 08:48:52,652.652 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: CUMULUS_SSMT
+2025-06-10 08:48:52,652.652 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: SLURM_SSMT
+2025-06-10 08:48:52,652.652 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: SLURM2_SSMT
+2025-06-10 08:48:52,652.652 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: BOXY_SSMT
+2025-06-10 08:48:52,652.652 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: CALCULON
+2025-06-10 08:48:52,652.652 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: IDMCLOUD
+2025-06-10 08:48:52,652.652 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: NDCLOUD
+2025-06-10 08:48:52,652.652 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: BMGF_IPMCLOUD
+2025-06-10 08:48:52,652.652 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: QSTART
+2025-06-10 08:48:52,652.652 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: NIBBLER
+2025-06-10 08:48:52,652.652 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: SLURMSTAGE
+2025-06-10 08:48:52,652.652 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: CUMULUS
+2025-06-10 08:48:52,652.652 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: SLURM
+2025-06-10 08:48:52,652.652 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: SLURM2
+2025-06-10 08:48:52,652.652 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/registry/platform_specification.py:110 __init__ [DEBUG] (56725,8490000128) - Found Platform Configuration Alias: BOXY
+2025-06-10 08:48:52,652.652 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (56725,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-10 08:48:52,652.652 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (56725,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON",
+   "priority": "Highest",
+   "simulation_root": "$COMPS_PATH(USER)\\output",
+   "num_retries": 0,
+   "node_group": "idm_48cores",
+   "num_cores": 1,
+   "exclusive": false
+}
+2025-06-10 08:48:52,715.715 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/cache_enabled.py:50 initialize_cache [DEBUG] (56725,8490000128) - Initializing the cache with 0 shards and none policy.
+2025-06-10 08:48:52,715.715 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/cache_enabled.py:59 initialize_cache [DEBUG] (56725,8490000128) - Cache created in /var/folders/_w/1f_9b16x5_5586f8bjv7g5xr0000gn/T/tmpdvf777kc
+2025-06-10 08:48:52,833.833 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/services/ipersistance_service.py:83 save [DEBUG] (56725,8490000128) - Saving 590d02c8-c977-4645-b371-1271ae94c972 to platforms
+2025-06-10 08:48:52,843.843 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:224 get_item [DEBUG] (56725,8490000128) - Retrieve item 0cbb0048-b445-f011-aa22-b88303911bc1 of type Asset Collection
+2025-06-10 08:48:53,896.896 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:267 run_item [DEBUG] (56725,8490000128) - Calling pre_run_item
+2025-06-10 08:48:53,896.896 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:210 pre_run_item [DEBUG] (56725,8490000128) - Calling pre_run
+2025-06-10 08:48:53,896.896 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:215 pre_run_item [DEBUG] (56725,8490000128) - Calling create
+2025-06-10 08:48:53,896.896 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:59 pre_create [DEBUG] (56725,8490000128) - Calling idmtools_platform_pre_create_item hooks
+2025-06-10 08:48:53,896.896 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:62 pre_create [DEBUG] (56725,8490000128) - Calling experiment pre_creation
+2025-06-10 08:48:53,896.896 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/experiment.py:278 pre_creation [DEBUG] (56725,8490000128) - Using all tasks to gather assets
+2025-06-10 08:48:53,898.898 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:108 create [DEBUG] (56725,8490000128) - Finished pre_create
+2025-06-10 08:48:53,898.898 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:110 create [DEBUG] (56725,8490000128) - Calling platform_create
+2025-06-10 08:48:53,900.900 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:255 _get_experiment_command_line [DEBUG] (56725,8490000128) - List of simulations detected. Using base_task for command
+2025-06-10 08:48:53,901.901 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:164 platform_create [DEBUG] (56725,8490000128) - COMPS Experiment Configs: {'environment_name': 'CALCULON', 'simulation_input_args': 'exec --no-mount /app Assets/laser-polio_latest.sif python3 -m laser_polio.run_sim --model-config /app/calib/model_configs/config_nigeria_6y_underwt_gravity.yaml --params-file Assets/overrides.json', 'working_directory_root': '$COMPS_PATH(USER)/output/laser-polio best from calib_20250610_154853', 'executable_path': 'singularity', 'node_group_name': 'idm_48cores', 'maximum_number_of_retries': 0, 'priority': 'Highest', 'min_cores': 1, 'max_cores': 1, 'exclusive': False}
+2025-06-10 08:48:54,147.147 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_asset_collection_operations.py:83 create [DEBUG] (56725,8490000128) - Calling pre_create
+2025-06-10 08:48:54,148.148 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_asset_collection_operations.py:40 pre_create [DEBUG] (56725,8490000128) - Calling idmtools_platform_pre_create_item
+2025-06-10 08:48:54,148.148 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_asset_collection_operations.py:43 pre_create [DEBUG] (56725,8490000128) - Calling pre_creation
+2025-06-10 08:48:54,148.148 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_asset_collection_operations.py:86 create [DEBUG] (56725,8490000128) - Calling platform_create
+2025-06-10 08:48:54,160.160 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/asset_collection_operations.py:94 platform_create [DEBUG] (56725,8490000128) - Building ac. Filtered out 0 assets that exist on COMPS already
+2025-06-10 08:48:54,301.301 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/asset_collection_operations.py:107 platform_create [DEBUG] (56725,8490000128) - 1 missing files detected
+2025-06-10 08:48:54,303.303 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/asset_collection_operations.py:139 platform_create [INFO] (56725,8490000128) - Uploading 1 files/440 bytes
+2025-06-10 08:48:54,711.711 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_asset_collection_operations.py:90 create [DEBUG] (56725,8490000128) - Calling post_create
+2025-06-10 08:48:54,711.711 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_asset_collection_operations.py:58 post_create [DEBUG] (56725,8490000128) - Calling idmtools_platform_post_create_item hooks
+2025-06-10 08:48:54,711.711 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_asset_collection_operations.py:61 post_create [DEBUG] (56725,8490000128) - Calling post_creation
+2025-06-10 08:48:54,712.712 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:366 send_assets [DEBUG] (56725,8490000128) - Asset collection for experiment: e469e568-1246-f011-aa22-b88303911bc1 is: e569e568-1246-f011-aa22-b88303911bc1
+2025-06-10 08:48:55,166.166 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:113 create [DEBUG] (56725,8490000128) - Finished platform_create
+2025-06-10 08:48:55,166.166 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:271 post_create [SUCCESS] (56725,8490000128) - 
+The created experiment can be viewed at https://comps.idmod.org/#explore/Simulations?filters=ExperimentId=e469e568-1246-f011-aa22-b88303911bc1
+Simulations are still being created
+
+2025-06-10 08:48:55,166.166 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:77 post_create [DEBUG] (56725,8490000128) - Calling idmtools_platform_post_create_item hooks
+2025-06-10 08:48:55,166.166 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:80 post_create [DEBUG] (56725,8490000128) - Calling experiment post_creation
+2025-06-10 08:48:55,166.166 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:118 create [DEBUG] (56725,8490000128) - Finished post_create
+2025-06-10 08:48:55,167.167 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:224 pre_run_item [DEBUG] (56725,8490000128) - Ensuring simulations exist
+2025-06-10 08:48:55,167.167 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:227 pre_run_item [DEBUG] (56725,8490000128) - Calling _create_items_of_type for sims
+2025-06-10 08:48:55,167.167 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/utils.py:116 batch_create_items [INFO] (56725,8490000128) - Creating 16 Platform Workers
+2025-06-10 08:48:55,167.167 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/utils.py:130 batch_create_items [DEBUG] (56725,8490000128) - Batching creation by 16
+2025-06-10 08:48:55,167.167 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/utils.py:152 batch_create_items [DEBUG] (56725,8490000128) - Submitting chunk: 1
+2025-06-10 08:48:55,168.168 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/simulation_operations.py:64 comps_batch_worker [DEBUG] (56725,6146224128) - Converting 1 to COMPS
+2025-06-10 08:48:55,168.168 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_simulation_operations.py:54 pre_create [DEBUG] (56725,6146224128) - Calling idmtools_platform_pre_create_item
+2025-06-10 08:48:55,168.168 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_simulation_operations.py:57 pre_create [DEBUG] (56725,6146224128) - Calling pre_creation
+2025-06-10 08:48:55,168.168 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/simulation.py:105 pre_creation [DEBUG] (56725,6146224128) - Calling task pre creation
+2025-06-10 08:48:55,168.168 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/simulation.py:121 pre_creation [DEBUG] (56725,6146224128) - Setting Simulation Tag "task_type" to "idmtools.entities.command_task.CommandTask"
+2025-06-10 08:48:55,169.169 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/simulation_operations.py:247 get_simulation_config_from_simulation [DEBUG] (56725,6146224128) - Simulation config: {}
+2025-06-10 08:48:55,169.169 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/simulation_operations.py:77 comps_batch_worker [DEBUG] (56725,6146224128) - Finished converting to COMPS. Starting saving of 1
+2025-06-10 08:48:55,328.328 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/simulation_operations.py:80 comps_batch_worker [DEBUG] (56725,6146224128) - Finished saving of 1. Starting post_create
+2025-06-10 08:48:55,329.329 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_simulation_operations.py:72 post_create [DEBUG] (56725,6146224128) - Calling idmtools_platform_post_create_item hooks
+2025-06-10 08:48:55,329.329 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_simulation_operations.py:75 post_create [DEBUG] (56725,6146224128) - Calling post_creation
+2025-06-10 08:48:55,329.329 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/simulation.py:135 post_creation [DEBUG] (56725,6146224128) - Calling task post creation
+2025-06-10 08:48:55,329.329 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/simulation.py:142 post_creation [DEBUG] (56725,6146224128) - Replacing task with proxy
+2025-06-10 08:48:55,329.329 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/simulation_operations.py:86 comps_batch_worker [DEBUG] (56725,6146224128) - Finished post-create of 1
+2025-06-10 08:48:55,537.537 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:238 pre_run_item [DEBUG] (56725,8490000128) - Finished checking simulations
+2025-06-10 08:48:55,537.537 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:271 run_item [DEBUG] (56725,8490000128) - Calling platform_run_item
+2025-06-10 08:48:55,538.538 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:336 platform_run_item [DEBUG] (56725,8490000128) - Commissioning experiment: e469e568-1246-f011-aa22-b88303911bc1
+2025-06-10 08:48:55,538.538 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:274 run_item [DEBUG] (56725,8490000128) - Calling post_run_item
+2025-06-10 08:48:55,538.538 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform_ops/iplatform_experiment_operations.py:251 post_run_item [DEBUG] (56725,8490000128) - Calling idmtools_platform_post_run hooks
+2025-06-10 08:48:55,539.539 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:49:00,744.744 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:49:05,919.919 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:49:11,060.60 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:49:16,209.209 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:49:21,356.356 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:49:26,510.510 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:49:31,824.824 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:49:37,078.78 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:49:42,232.232 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:49:47,377.377 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:49:52,521.521 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:49:57,674.674 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:50:02,930.930 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:50:08,198.198 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:50:13,344.344 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:50:18,493.493 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:50:23,666.666 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:50:28,809.809 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:50:34,060.60 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:50:39,536.536 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:50:44,682.682 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:50:49,832.832 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:50:54,985.985 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:51:00,223.223 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:51:05,549.549 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:51:10,782.782 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:51:15,926.926 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:51:21,093.93 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:51:26,239.239 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:51:31,389.389 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:51:36,731.731 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:51:41,933.933 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:51:47,173.173 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:51:52,330.330 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:51:57,480.480 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:52:02,743.743 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:52:08,042.42 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:52:13,279.279 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:52:18,424.424 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:52:23,561.561 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:52:28,730.730 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:52:33,883.883 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:52:39,038.38 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:52:44,538.538 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:52:49,691.691 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:52:54,842.842 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:53:00,024.24 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:53:05,182.182 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:53:10,346.346 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:53:15,554.554 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:53:20,850.850 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:53:26,012.12 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:53:31,171.171 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:53:36,321.321 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:53:41,483.483 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:53:46,932.932 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:53:52,137.137 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:53:57,310.310 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:54:02,468.468 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:54:07,614.614 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:54:12,757.757 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:54:18,049.49 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:54:23,389.389 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:54:28,524.524 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:54:33,660.660 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:54:38,824.824 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:54:43,994.994 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:54:49,401.401 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:54:54,658.658 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:54:59,834.834 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:55:04,980.980 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:55:10,221.221 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:55:15,417.417 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:55:20,837.837 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:55:26,194.194 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:55:31,349.349 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:55:36,509.509 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:55:41,658.658 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:55:46,802.802 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:55:52,134.134 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:55:57,361.361 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:56:02,499.499 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:56:07,654.654 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:56:12,809.809 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:56:17,963.963 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:56:23,298.298 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:56:28,695.695 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:56:33,854.854 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:56:39,011.11 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:56:44,146.146 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:56:49,373.373 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:56:54,646.646 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:56:59,885.885 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:57:05,032.32 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:57:10,277.277 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:57:15,421.421 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:57:20,569.569 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:57:26,174.174 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:57:31,576.576 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:57:36,720.720 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:57:41,855.855 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:57:47,009.9 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:57:52,182.182 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:57:57,709.709 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:58:03,349.349 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:58:08,493.493 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:58:13,649.649 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:58:18,814.814 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:58:23,976.976 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:58:29,378.378 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:58:34,884.884 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:58:40,040.40 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:58:45,212.212 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:58:50,366.366 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:58:55,511.511 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:59:00,718.718 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:59:05,937.937 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:59:11,075.75 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:59:16,230.230 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:59:21,382.382 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 08:59:26,514.514 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:702 __wait_till_callback [DEBUG] (56725,8490000128) - Refreshing simulation status
+2025-06-10 12:49:10,385.385 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (74233,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-10 12:49:10,916.916 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (74233,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-10 12:49:10,921.921 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (74233,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON"
+}
+2025-06-10 12:55:00,577.577 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/asset_collection_operations.py:139 platform_create [INFO] (74233,8490000128) - Uploading 1 files/1.42 KB
+2025-06-10 12:55:01,000.0 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:271 post_create [SUCCESS] (74233,8490000128) - 
+The created experiment can be viewed at https://comps.idmod.org/#explore/Simulations?filters=ExperimentId=394b4bc8-3446-f011-aa22-b88303911bc1
+Simulations are still being created
+
+2025-06-10 14:06:10,362.362 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (54091,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-10 14:06:11,113.113 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (54091,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-10 14:06:11,115.115 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (54091,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON"
+}
+2025-06-10 14:06:11,994.994 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/asset_collection_operations.py:139 platform_create [INFO] (54091,8490000128) - Uploading 1 files/457 bytes
+2025-06-10 14:06:12,792.792 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:271 post_create [SUCCESS] (54091,8490000128) - 
+The created experiment can be viewed at https://comps.idmod.org/#explore/Simulations?filters=ExperimentId=614944bc-3e46-f011-aa22-b88303911bc1
+Simulations are still being created
+
+2025-06-10 14:41:35,670.670 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (2949,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-10 14:41:36,266.266 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (2949,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-10 14:41:36,272.272 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (2949,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON"
+}
+2025-06-10 14:41:36,578.578 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/exceptions.py:89 idmtools_error_handler [ERROR] (2949,8490000128) - name 'cfg' is not defined
+NoneType: None
+2025-06-10 14:42:57,302.302 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (4032,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-10 14:42:57,395.395 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (4032,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-10 14:42:57,417.417 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (4032,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON"
+}
+2025-06-10 14:42:57,945.945 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/exceptions.py:89 idmtools_error_handler [ERROR] (4032,8490000128) - type object 'Experiment' has no attribute 'from_tasks'
+NoneType: None
+2025-06-10 14:49:33,216.216 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (13353,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-10 14:49:33,311.311 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (13353,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-10 14:49:33,317.317 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (13353,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON"
+}
+2025-06-10 14:49:33,499.499 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/exceptions.py:89 idmtools_error_handler [ERROR] (13353,8490000128) - name 'platform' is not defined
+NoneType: None
+2025-06-10 14:50:33,201.201 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (14273,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-10 14:50:33,289.289 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (14273,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-10 14:50:33,319.319 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (14273,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON"
+}
+2025-06-10 14:50:33,493.493 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/exceptions.py:89 idmtools_error_handler [ERROR] (14273,8490000128) - Experiment.__init__() got an unexpected keyword argument 'platform'
+NoneType: None
+2025-06-10 14:52:54,488.488 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (15894,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-10 14:52:54,861.861 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (15894,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-10 14:52:54,863.863 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (15894,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON"
+}
+2025-06-10 14:52:56,270.270 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/exceptions.py:89 idmtools_error_handler [ERROR] (15894,8490000128) - name 'Simulation' is not defined
+NoneType: None
+2025-06-10 14:53:42,101.101 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (16287,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-10 14:53:42,199.199 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (16287,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-10 14:53:42,224.224 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (16287,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON"
+}
+2025-06-10 14:53:43,389.389 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/asset_collection_operations.py:139 platform_create [INFO] (16287,8490000128) - Uploading 11 files/5.06 KB
+2025-06-10 14:53:43,950.950 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:271 post_create [SUCCESS] (16287,8490000128) - 
+The created experiment can be viewed at https://comps.idmod.org/#explore/Simulations?filters=ExperimentId=bba9d35f-4546-f011-aa22-b88303911bc1
+Simulations are still being created
+
+2025-06-10 14:54:20,806.806 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:786 __wait_until_done_progress_callback [WARNING] (16287,8490000128) - The Experiment bba9d35f-4546-f011-aa22-b88303911bc1 has failed simulations. Check Experiment in platform
+2025-06-10 15:03:45,584.584 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (36695,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-10 15:03:45,679.679 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (36695,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-10 15:03:45,687.687 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (36695,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON"
+}
+2025-06-10 15:03:46,644.644 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/asset_collection_operations.py:139 platform_create [INFO] (36695,8490000128) - Uploading 9 files/3.95 KB
+2025-06-10 15:03:47,160.160 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:271 post_create [SUCCESS] (36695,8490000128) - 
+The created experiment can be viewed at https://comps.idmod.org/#explore/Simulations?filters=ExperimentId=dbaf61c7-4646-f011-aa22-b88303911bc1
+Simulations are still being created
+
+2025-06-10 15:25:31,606.606 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (59032,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-10 15:25:32,052.52 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (59032,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-10 15:25:32,064.64 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (59032,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON"
+}
+2025-06-10 15:25:33,948.948 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:271 post_create [SUCCESS] (59032,8490000128) - 
+The created experiment can be viewed at https://comps.idmod.org/#explore/Simulations?filters=ExperimentId=b17b6cd2-4946-f011-aa22-b88303911bc1
+Simulations are still being created
+
+2025-06-10 15:31:21,950.950 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (65034,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-10 15:31:22,143.143 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (65034,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-10 15:31:22,148.148 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (65034,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON",
+   "num_cores": 12
+}
+2025-06-10 15:31:23,893.893 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:271 post_create [SUCCESS] (65034,8490000128) - 
+The created experiment can be viewed at https://comps.idmod.org/#explore/Simulations?filters=ExperimentId=94d8f1a2-4a46-f011-aa22-b88303911bc1
+Simulations are still being created
+
+2025-06-10 15:53:15,038.38 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:786 __wait_until_done_progress_callback [WARNING] (65034,8490000128) - The Experiment 94d8f1a2-4a46-f011-aa22-b88303911bc1 has failed simulations. Check Experiment in platform
+2025-06-10 15:57:21,687.687 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (1940,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-10 15:57:22,346.346 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (1940,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-10 15:57:22,354.354 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (1940,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON",
+   "num_cores": 2
+}
+2025-06-10 15:57:24,949.949 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:271 post_create [SUCCESS] (1940,8490000128) - 
+The created experiment can be viewed at https://comps.idmod.org/#explore/Simulations?filters=ExperimentId=f0c52745-4e46-f011-aa22-b88303911bc1
+Simulations are still being created
+
+2025-06-10 16:24:51,248.248 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (34485,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-10 16:24:51,792.792 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (34485,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-10 16:24:51,797.797 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (34485,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON",
+   "num_cores": 4
+}
+2025-06-10 16:24:53,630.630 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:271 post_create [SUCCESS] (34485,8490000128) - 
+The created experiment can be viewed at https://comps.idmod.org/#explore/Simulations?filters=ExperimentId=9b831c1c-5246-f011-aa22-b88303911bc1
+Simulations are still being created
+
+2025-06-10 16:49:34,046.46 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:786 __wait_until_done_progress_callback [WARNING] (34485,8490000128) - The Experiment 9b831c1c-5246-f011-aa22-b88303911bc1 has failed simulations. Check Experiment in platform
+2025-06-11 11:14:29,876.876 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (88227,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-11 11:14:30,414.414 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (88227,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-11 11:14:30,421.421 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (88227,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON"
+}
+2025-06-11 11:15:14,582.582 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/exceptions.py:89 idmtools_error_handler [ERROR] (88227,8490000128) - 'CommandTask' object has no attribute 'transient_asset'
+NoneType: None
+2025-06-11 11:15:51,805.805 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (89331,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-11 11:15:51,895.895 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (89331,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-11 11:15:51,904.904 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (89331,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON"
+}
+2025-06-11 11:15:52,916.916 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/exceptions.py:89 idmtools_error_handler [ERROR] (89331,8490000128) - name 'Asset' is not defined
+NoneType: None
+2025-06-11 11:16:54,177.177 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (90358,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-11 11:16:54,258.258 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (90358,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-11 11:16:54,283.283 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (90358,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON"
+}
+2025-06-11 11:16:56,055.55 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:271 post_create [SUCCESS] (90358,8490000128) - 
+The created experiment can be viewed at https://comps.idmod.org/#explore/Simulations?filters=ExperimentId=0b24823f-f046-f011-aa22-b88303911bc1
+Simulations are still being created
+
+2025-06-11 11:17:23,733.733 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:786 __wait_until_done_progress_callback [WARNING] (90358,8490000128) - The Experiment 0b24823f-f046-f011-aa22-b88303911bc1 has failed simulations. Check Experiment in platform
+2025-06-11 11:20:08,105.105 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (93409,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-11 11:20:08,202.202 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (93409,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-11 11:20:08,210.210 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (93409,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON"
+}
+2025-06-11 11:20:09,905.905 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:271 post_create [SUCCESS] (93409,8490000128) - 
+The created experiment can be viewed at https://comps.idmod.org/#explore/Simulations?filters=ExperimentId=2ee22cb4-f046-f011-aa22-b88303911bc1
+Simulations are still being created
+
+2025-06-11 11:38:56,241.241 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (24730,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-11 11:38:56,704.704 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (24730,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-11 11:38:56,711.711 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (24730,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON"
+}
+2025-06-11 11:38:57,230.230 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/exceptions.py:89 idmtools_error_handler [ERROR] (24730,8490000128) - name 'add_schedule_config' is not defined
+NoneType: None
+2025-06-11 11:49:07,544.544 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (32661,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-11 11:49:07,575.575 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (32661,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-11 11:49:07,575.575 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (32661,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON"
+}
+2025-06-11 11:49:08,653.653 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/exceptions.py:89 idmtools_error_handler [ERROR] (32661,8490000128) - name 'cmdline' is not defined
+NoneType: None
+2025-06-11 11:49:36,392.392 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:786 __wait_until_done_progress_callback [WARNING] (93409,8490000128) - The Experiment 2ee22cb4-f046-f011-aa22-b88303911bc1 has failed simulations. Check Experiment in platform
+2025-06-11 11:51:15,553.553 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (38678,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-11 11:51:15,582.582 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (38678,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-11 11:51:15,582.582 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (38678,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON"
+}
+2025-06-11 11:51:17,738.738 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:271 post_create [SUCCESS] (38678,8490000128) - 
+The created experiment can be viewed at https://comps.idmod.org/#explore/Simulations?filters=ExperimentId=50e86f0c-f546-f011-aa22-b88303911bc1
+Simulations are still being created
+
+2025-06-11 11:51:18,555.555 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/exceptions.py:89 idmtools_error_handler [ERROR] (38678,8490000128) - 400 BadRequest - Invalid Simulation: Validation check failed. Failed JSON Schema validation check for WorkOrder.  Errors are: JSON element 'num_cores' failed schema validation: Property 'num_cores' has not been defined and the schema does not allow additional properties. Path 'num_cores', line 4, position 15.
+JSON element 'node_group_name' failed schema validation: Property 'node_group_name' has not been defined and the schema does not allow additional properties. Path 'node_group_name', line 5, position 21.
+NoneType: None
+2025-06-11 11:52:34,084.84 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (40590,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-11 11:52:34,266.266 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (40590,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-11 11:52:34,266.266 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (40590,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON"
+}
+2025-06-11 11:52:35,497.497 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:271 post_create [SUCCESS] (40590,8490000128) - 
+The created experiment can be viewed at https://comps.idmod.org/#explore/Simulations?filters=ExperimentId=a446d536-f546-f011-aa22-b88303911bc1
+Simulations are still being created
+
+2025-06-11 12:27:04,902.902 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (85202,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-11 12:27:05,081.81 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (85202,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-11 12:27:05,081.81 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (85202,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON"
+}
+2025-06-11 12:27:06,235.235 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:271 post_create [SUCCESS] (85202,8490000128) - 
+The created experiment can be viewed at https://comps.idmod.org/#explore/Simulations?filters=ExperimentId=2882a10e-fa46-f011-aa22-b88303911bc1
+Simulations are still being created
+
+2025-06-11 12:36:37,918.918 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (95155,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-11 12:36:37,948.948 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (95155,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-11 12:36:37,948.948 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (95155,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON"
+}
+2025-06-11 12:36:38,879.879 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:271 post_create [SUCCESS] (95155,8490000128) - 
+The created experiment can be viewed at https://comps.idmod.org/#explore/Simulations?filters=ExperimentId=998dc35f-fb46-f011-aa22-b88303911bc1
+Simulations are still being created
+
+2025-06-11 12:37:58,636.636 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/entities/iplatform.py:786 __wait_until_done_progress_callback [WARNING] (95155,8490000128) - The Experiment 998dc35f-fb46-f011-aa22-b88303911bc1 has failed simulations. Check Experiment in platform
+2025-06-11 12:46:17,143.143 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (6338,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-11 12:46:17,315.315 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (6338,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-11 12:46:17,315.315 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (6338,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON"
+}
+2025-06-11 12:46:19,200.200 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:271 post_create [SUCCESS] (6338,8490000128) - 
+The created experiment can be viewed at https://comps.idmod.org/#explore/Simulations?filters=ExperimentId=7907cabd-fc46-f011-aa22-b88303911bc1
+Simulations are still being created
+
+2025-06-12 14:54:49,159.159 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (75500,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-12 14:54:49,312.312 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (75500,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-12 14:54:49,312.312 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (75500,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON"
+}
+2025-06-12 14:56:14,263.263 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:271 post_create [SUCCESS] (75500,8490000128) - 
+The created experiment can be viewed at https://comps.idmod.org/#explore/Simulations?filters=ExperimentId=854d720e-d847-f011-aa22-b88303911bc1
+Simulations are still being created
+
+2025-06-24 14:45:20,555.555 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (49118,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-24 14:45:20,575.575 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (49118,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-24 14:45:20,575.575 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (49118,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON"
+}
+2025-06-24 14:45:22,939.939 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:271 post_create [SUCCESS] (49118,8490000128) - 
+The created experiment can be viewed at https://comps.idmod.org/#explore/Simulations?filters=ExperimentId=c6a81287-4451-f011-aa23-b88303911bc1
+Simulations are still being created
+
+2025-06-24 14:46:05,164.164 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/exceptions.py:89 idmtools_error_handler [ERROR] (49118,8490000128) - 
+NoneType: None
+2025-06-24 16:53:40,912.912 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (32288,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-24 16:53:41,176.176 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (32288,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-24 16:53:41,177.177 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (32288,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON"
+}
+2025-06-24 16:53:43,587.587 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:271 post_create [SUCCESS] (32288,8490000128) - 
+The created experiment can be viewed at https://comps.idmod.org/#explore/Simulations?filters=ExperimentId=0446f374-5651-f011-aa23-b88303911bc1
+Simulations are still being created
+
+2025-06-24 17:01:55,324.324 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (39825,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-24 17:01:55,400.400 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (39825,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-24 17:01:55,400.400 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (39825,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON"
+}
+2025-06-24 17:01:56,382.382 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:271 post_create [SUCCESS] (39825,8490000128) - 
+The created experiment can be viewed at https://comps.idmod.org/#explore/Simulations?filters=ExperimentId=90a6dd9a-5751-f011-aa23-b88303911bc1
+Simulations are still being created
+
+2025-06-24 17:03:10,196.196 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (40013,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-24 17:03:10,221.221 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (40013,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-24 17:03:10,221.221 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (40013,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON"
+}
+2025-06-24 17:03:11,985.985 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:271 post_create [SUCCESS] (40013,8490000128) - 
+The created experiment can be viewed at https://comps.idmod.org/#explore/Simulations?filters=ExperimentId=cee9c5c7-5751-f011-aa23-b88303911bc1
+Simulations are still being created
+
+2025-06-24 17:05:38,845.845 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (41307,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-24 17:05:38,869.869 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (41307,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-24 17:05:38,869.869 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (41307,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON"
+}
+2025-06-24 17:05:39,836.836 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:271 post_create [SUCCESS] (41307,8490000128) - 
+The created experiment can be viewed at https://comps.idmod.org/#explore/Simulations?filters=ExperimentId=90290f20-5851-f011-aa23-b88303911bc1
+Simulations are still being created
+
+2025-06-24 17:08:35,746.746 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (49575,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-24 17:08:35,776.776 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (49575,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-24 17:08:35,777.777 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (49575,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON"
+}
+2025-06-24 17:08:37,185.185 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:271 post_create [SUCCESS] (49575,8490000128) - 
+The created experiment can be viewed at https://comps.idmod.org/#explore/Simulations?filters=ExperimentId=866bbe89-5851-f011-aa23-b88303911bc1
+Simulations are still being created
+
+2025-06-24 17:12:47,893.893 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/config/idm_config_parser.py:213 _load_config_file [WARNING] (53701,8490000128) - /!\ WARNING: File 'idmtools.ini' Not Found! For details on how to configure idmtools, see https://docs.idmod.org/projects/idmtools/en/v2.1.0/configuration.html for details on how to configure idmtools.
+2025-06-24 17:12:48,019.19 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:312 _display_inputs [VERBOSE] (53701,8490000128) - 
+Initializing COMPSPlatform with:
+2025-06-24 17:12:48,019.19 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools/core/platform_factory.py:313 _display_inputs [VERBOSE] (53701,8490000128) - {
+   "endpoint": "https://comps.idmod.org",
+   "environment": "CALCULON"
+}
+2025-06-24 17:12:50,165.165 /Users/jonathanbloedow/.venvs/venv_polio_uv/lib/python3.12/site-packages/idmtools_platform_comps/comps_operations/experiment_operations.py:271 post_create [SUCCESS] (53701,8490000128) - 
+The created experiment can be viewed at https://comps.idmod.org/#explore/Simulations?filters=ExperimentId=b0409220-5951-f011-aa23-b88303911bc1
+Simulations are still being created
+
