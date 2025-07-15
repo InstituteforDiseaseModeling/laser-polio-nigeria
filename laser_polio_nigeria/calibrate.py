@@ -38,9 +38,6 @@ n_replicates = 1  # Number of replicates to run for each trial
 
 CONTEXT_SETTINGS = {"help_option_names": ["--help"], "terminal_width": 240}
 
-if os.getenv("POLIO_ROOT"):
-    lp.root = Path(os.getenv("POLIO_ROOT"))
-
 
 def resolve_paths(study_name, model_config, calib_config, results_path, actual_data_file):
     from importlib.resources import files

@@ -40,9 +40,10 @@ classifiers = [
 
 [tool.setuptools]
 packages = ["laser_polio_nigeria"]
+include-package-data = true
 
 [tool.setuptools.package-data]
-laser_polio_nigeria = ["calib_configs/*.yaml", "model_configs/*.yaml"]
+laser_polio_nigeria = ["calib_configs/*.yaml", "model_configs/*.yaml", "data/*" ]
 "examples" = ["**/*"]
 
 [project.optional-dependencies]

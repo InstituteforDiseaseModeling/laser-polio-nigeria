@@ -1,13 +1,14 @@
 import pandas as pd
 
 import laser_polio as lp
+import laser_polio_nigeria as lpn
 
 regions = ["NIGERIA"]  # Define your regions here
-dot_names = lp.find_matching_dot_names(regions, lp.root / "data/compiled_cbr_pop_ri_sia_underwt_africa.csv")
+dot_names = lp.find_matching_dot_names(regions, lpn.root / "data/compiled_cbr_pop_ri_sia_underwt_africa.csv")
 
 
 # Load NGA_NORTH patterns
-nga_north_df = pd.read_csv(lp.root / "data/curation_scripts/shp/NGA_NORTH.csv")
+nga_north_df = pd.read_csv(lpn.root / "data/curation_scripts/shp/NGA_NORTH.csv")
 patterns = nga_north_df["dot_name"].dropna().unique()  # base strings to match
 
 # Find matching indices or values

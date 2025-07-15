@@ -10,6 +10,7 @@ import yaml
 from laser_polio_nigeria.objective import objective
 
 import laser_polio as lp
+import laser_polio_nigeria as lpn
 
 
 def load_function(module_path: str, function_name: str):
@@ -36,11 +37,11 @@ def run_worker_main(
 
     # 👇 Provide defaults for programmatic use
     n_trials = n_trials or 1
-    calib_config = calib_config or lp.root / "calib/calib_configs/calib_pars_r0.yaml"
-    model_config = model_config or lp.root / "calib/model_configs/config_zamfara.yaml"
+    calib_config = calib_config or lpn.root / "calib/calib_configs/calib_pars_r0.yaml"
+    model_config = model_config or lpn.root / "calib/model_configs/config_zamfara.yaml"
     fit_function = fit_function or "mse"  # options are "log_likelihood" or "mse"
-    results_path = results_path or lp.root / "calib/results" / study_name
-    actual_data_file = actual_data_file or lp.root / "examples/calib_demo_zamfara/synthetic_infection_counts_zamfara_250.csv"
+    results_path = results_path or lpn.root / "calib/results" / study_name
+    actual_data_file = actual_data_file or lpn.root / "examples/calib_demo_zamfara/synthetic_infection_counts_zamfara_250.csv"
     n_replicates = n_replicates or 1
 
     # We want to show users on console what values we ended up going with based on command line args and defaults.
@@ -87,9 +88,9 @@ def run_worker_main(
 
     # Load the actual case data (moved from run_sim into calib code)
     regions = model_config_dict.pop("regions", ["ZAMFARA"])
-    dot_names = lp.find_matching_dot_names(regions, lp.root / "data/compiled_cbr_pop_ri_sia_underwt_africa.csv")
-    node_lookup = lp.get_node_lookup(lp.root / "data/node_lookup.json", dot_names)
-    actual_data = model_config_dict.pop("actual_data", lp.root / "data/epi_africa_20250421.h5")
+    dot_names = lp.find_matching_dot_names(regions, lpn.root / "data/compiled_cbr_pop_ri_sia_underwt_africa.csv")
+    node_lookup = lp.get_node_lookup(lpn.root / "data/node_lookup.json", dot_names)
+    actual_data = model_config_dict.pop("actual_data", lpn.root / "data/epi_africa_20250421.h5")
     start_year = model_config_dict["start_year"]
     n_days = model_config_dict["n_days"]
     epi = lp.get_epi_data(actual_data, dot_names, node_lookup, start_year, n_days)
