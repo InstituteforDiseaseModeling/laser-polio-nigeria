@@ -29,7 +29,7 @@ try:
 except Exception:
     HAS_IDMTOOLS = False
 
-import laser_polio_nigeria as lp
+import laser_polio as lp
 
 
 def sweep_seed_best_comps(study, output_dir: Path = "results"):
