@@ -30,6 +30,7 @@ except Exception:
     HAS_IDMTOOLS = False
 
 import laser_polio as lp
+import laser_polio_nigeria as lpn
 
 
 def sweep_seed_best_comps(study, output_dir: Path = "results"):
@@ -423,12 +424,12 @@ def get_shapefile_from_config(model_config):
     dot_names = lp.find_matching_dot_names(regions, lp.root / "data/compiled_cbr_pop_ri_sia_underwt_africa.csv")
 
     # Load node lookup and create dot_name to adm01 mapping
-    node_lookup_full = lp.get_node_lookup("data/node_lookup.json", dot_names)
+    node_lookup_full = lp.get_node_lookup( lp.root / "data/node_lookup.json", dot_names)
     # Convert from index-based to dot_name-based dictionary
     node_lookup = {entry["dot_name"]: entry["adm01"] for entry in node_lookup_full.values()}
 
     # Load and filter shapefile
-    shp = gpd.read_file("data/shp_africa_low_res.gpkg", layer="adm2")
+    shp = gpd.read_file( lp.root / "data/shp_africa_low_res.gpkg", layer="adm2")
     shp = shp[shp["dot_name"].isin(dot_names)]
 
     # Ensure correct ordering if needed
@@ -468,7 +469,7 @@ def plot_targets(study, output_dir=None, shp=None, start_year=2018):
             shp, node_lookup = get_shapefile_from_config(model_config)
             print("[INFO] Generated shapefile from model config")
         except Exception as e:
-            print(f"[WARN] Could not generate shapefile: {e}")
+            print(f"[WARN] plot_targets: Could not generate shapefile: {e}")
             shp = None
 
     # Load region group labels from study_metadata.json
@@ -943,7 +944,7 @@ def plot_top_trials(study, output_dir, n_best=10, title="Top Calibration Results
             shp, node_lookup = get_shapefile_from_config(model_config)
             print("[INFO] Generated shapefile from model config")
         except Exception as e:
-            print(f"[WARN] Could not generate shapefile: {e}")
+            print(f"[WARN] plot_top_trials: Could not generate shapefile: {e}")
             shp = None
 
     # Define consistent colors for trials
