@@ -46,7 +46,7 @@ where = ["src"]
 include = ["laser_polio_nigeria*"]
 
 [tool.setuptools.package-data]
-laser_polio_nigeria = ["calib_configs/*.yaml", "model_configs/*.yaml"]
+laser_polio_nigeria = ["calib_configs/*.yaml", "model_configs/*.yaml", "data/*"]
 "examples" = ["**/*"]
 
 [project.optional-dependencies]
