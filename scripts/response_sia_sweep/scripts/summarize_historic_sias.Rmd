@@ -1,0 +1,231 @@
+---
+title: "Historic SIA Summary Analysis"
+date: "`r Sys.Date()`"
+# To generate: rmarkdown::render("scripts/response_sia_sweep/scripts/summarize_historic_sias.Rmd")
+output:
+  pdf_document:
+    toc: false
+    number_sections: true
+header-includes:
+  - \usepackage{float}
+  - \floatplacement{figure}{H}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  fig.width = 8,
+  fig.height = 5
+)
+
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(jsonlite)
+  library(dplyr)
+  library(geosphere)
+})
+options(max.print = 1000)
+```
+
+# Introduction
+
+This document summarizes the historic Supplementary Immunization Activities (SIAs) for Nigeria from 2017 onwards using vaccine types mOPV2, nOPV2, or tOPV. The analysis focuses on:
+- Number of SIAs per year
+- Time gaps between SIAs
+- Geographic scope of SIAs (provinces and nodes)
+- Geographic extent (distances between locations)
+
+
+```{r load-data, echo = FALSE}
+# Load the historic SIA schedule
+historic_sias <- read_csv("../../../data/sia_historic_schedule.csv") %>%
+  mutate(
+    date = as.Date(date),
+    year = year(date)
+  )
+
+# Filter to Nigeria
+historic_sias <- historic_sias %>%
+  filter(str_detect(dot_name, "NIGERIA")) %>%
+  filter(year >= 2017) %>%
+  filter(vaccinetype %in% c("mOPV2", "topv", "nOPV2"))
+
+# Add lat/long to the historic_sias dataframe
+node_lookup <- fromJSON("../../../data/node_lookup.json")
+node_df <- bind_rows(node_lookup)
+historic_sias <- historic_sias %>%
+  left_join(node_df, by = c("dot_name" = "dot_name"))
+```
+
+# Number of SIAs Per Year
+
+```{r sias-per-year, echo = FALSE}
+sias_per_year <- historic_sias %>%
+  group_by(year) %>%
+  summarize(n_sias = n_distinct(date))
+```
+
+```{r sias-per-year-plot, fig.cap="Number of distinct SIA dates per year", echo = FALSE}
+ggplot(sias_per_year, aes(x = year, y = n_sias, label = n_sias)) +
+  geom_line() +
+  geom_point() +
+  geom_text(vjust = -0.5) +
+  labs(
+    x = "Year",
+    y = "Number of SIAs"
+  ) +
+  theme_minimal()
+```
+
+
+```{r sias-per-year-summary, echo = FALSE}
+cat("Summary of number of SIAs per year:\n")
+summary(sias_per_year$n_sias)
+```
+
+
+# Time Between SIAs
+
+```{r time-gaps, echo = FALSE}
+avg_gaps <- historic_sias %>%
+  arrange(dot_name, date) %>%
+  group_by(dot_name) %>%
+  mutate(
+    gap_days = as.numeric(date - lag(date))
+  )
+```
+
+```{r time-gaps-plot, fig.cap="Distribution of time between consecutive SIAs within districts", echo = FALSE}
+ggplot(avg_gaps, aes(x = gap_days)) +
+  geom_histogram(bins = 100, fill = "steelblue", color = "white") +
+  labs(
+    x = "Time Between SIAs (days)",
+    y = "Count"
+  ) +
+  theme_minimal()
+
+cat("Summary of gap between SIAs (days):\n")
+summary(avg_gaps$gap_days)
+```
+
+# Geographic Scope of SIAs
+
+## Provinces per SIA
+
+```{r provinces-per-sia, echo = FALSE}
+avg_provinces_per_sias <- historic_sias %>%
+  group_by(date) %>%
+  summarize(n_provinces = n_distinct(adm1))
+```
+
+```{r provinces-per-sia-plot, fig.cap="Distribution of the number of provinces covered per SIA", echo = FALSE}
+ggplot(avg_provinces_per_sias, aes(x = n_provinces)) +
+  geom_histogram(bins = 20, fill = "steelblue", color = "white") +
+  labs(
+    x = "Number of Provinces per SIA",
+    y = "Count"
+  ) +
+  theme_minimal()
+
+cat("Summary of provinces per SIA:\n")
+summary(avg_provinces_per_sias$n_provinces)
+```
+
+## Nodes per SIA
+
+```{r nodes-per-sia, echo = FALSE}
+avg_nodes_per_sias <- historic_sias %>%
+  group_by(date) %>%
+  summarize(n_nodes = n())
+```
+
+```{r nodes-per-year, echo = FALSE}
+avg_nodes_per_sias_per_year <- historic_sias %>%
+  group_by(year, date) %>%
+  group_by(year) %>%
+  summarize(n_nodes = n())
+
+# print(avg_nodes_per_sias_per_year)
+```
+
+```{r nodes-per-year-plot, fig.cap="Total nodes covered by SIAs per year", echo = FALSE}
+ggplot(avg_nodes_per_sias_per_year, aes(x = year, y = n_nodes, label = n_nodes)) +
+  geom_line() +
+  geom_point() +
+  geom_text(vjust = -0.5) +
+  labs(
+    x = "Year",
+    y = "Number of Nodes per SIA"
+  ) +
+  theme_minimal()
+
+cat("Summary of nodes per SIA:\n")
+summary(avg_nodes_per_sias$n_nodes)
+```
+
+
+\newpage
+# Geographic Extent of SIAs
+
+Calculate pairwise distances between all locations within each SIA to understand the geographic spread.
+
+```{r distance-function, echo = FALSE}
+# Function to calculate pairwise distances for a group
+calc_pairwise_distances <- function(df) {
+  n <- nrow(df)
+  if (n < 2) {
+    return(data.frame(
+      dot_name_1 = character(),
+      dot_name_2 = character(),
+      distance_km = numeric()
+    ))
+  }
+
+  # Create all pairs
+  pairs <- expand.grid(i = 1:n, j = 1:n) %>%
+    filter(i < j)
+
+  # Calculate distances
+  results <- data.frame(
+    dot_name_1 = df$dot_name[pairs$i],
+    dot_name_2 = df$dot_name[pairs$j],
+    distance_km = distHaversine(
+      cbind(df$lon[pairs$i], df$lat[pairs$i]),
+      cbind(df$lon[pairs$j], df$lat[pairs$j])
+    ) / 1000
+  )
+
+  return(results)
+}
+```
+
+```{r calculate-distances, echo = FALSE}
+# Apply to each date
+distance_summary <- historic_sias %>%
+  group_by(date) %>%
+  group_modify(~ calc_pairwise_distances(.x)) %>%
+  ungroup() %>%
+  group_by(date) %>%
+  summarise(
+    n_locations = n_distinct(c(dot_name_1, dot_name_2)),
+    n_pairs = n(),
+    mean_dist_km = mean(distance_km),
+    max_dist_km = max(distance_km),
+    min_dist_km = min(distance_km)
+  )
+```
+
+```{r distance-plot, fig.cap="Distribution of maximum pairwise distance within each SIA", echo = FALSE}
+ggplot(distance_summary, aes(x = max_dist_km)) +
+  geom_histogram(bins = 30, fill = "steelblue", color = "white") +
+  labs(
+    x = "Maximum Distance Between Locations in an SIA (km)",
+    y = "Count"
+  ) +
+  theme_minimal()
+
+cat("Summary of maximum distance (km) within SIAs:\n")
+summary(distance_summary$max_dist_km)
+```

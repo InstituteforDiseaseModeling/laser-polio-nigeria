@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: check-results
+spec:
+  template:
+    spec:
+      containers:
+      - name: check-results
+        image: ubuntu
+        command: ["sh", "-c", "find /shared -type f -name '*.csv' | head -20 && echo '---' && ls -la /shared/results"]
+        volumeMounts:
+        - name: shared
+          mountPath: /shared
+      restartPolicy: Never
+      volumes:
+      - name: shared
+        persistentVolumeClaim:
+          claimName: laser-stg-pvc
+  backoffLimit: 1

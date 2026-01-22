@@ -1,0 +1,2 @@
+storage_url: "mysql+pymysql://optuna:superSecretPassword@localhost:3307/optunaDatabase"
+

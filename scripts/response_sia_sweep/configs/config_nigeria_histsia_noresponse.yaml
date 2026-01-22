@@ -1,0 +1,34 @@
+results_path: "results/response_sia_sweep_nigeria_histsia_noresponse"
+regions: ["NIGERIA"]
+admin_level: 0
+start_year: 2017
+n_days: 2555
+pop_scale: 1.0
+vx_prob_ri: 0.0
+init_region: "ANKA"
+init_prev: 0
+seed_schedule:
+  - date: "2017-10-01"
+    dot_name: "AFRO:NIGERIA:JIGAWA:HADEJIA"
+    prevalence: 100
+  - date: "2017-10-01"
+    dot_name: "AFRO:NIGERIA:JIGAWA:GARKI"
+    prevalence: 100
+  - date: "2020-07-01"
+    dot_name: "AFRO:NIGERIA:ZAMFARA:TALATA_MAFARA"
+    prevalence: 100
+  - date: "2020-10-01"
+    dot_name: "AFRO:NIGERIA:NIGER:SULEJA"
+    prevalence: 100
+r0: 12.596628416809017
+migration_method: "radiation"
+radiation_k_log10: -1.9923605157363817
+node_seeding_zero_inflation: 0.0
+max_migr_frac: 0.05
+seasonal_amplitude: 0.2346813621297781
+seasonal_peak_doy: 200
+use_pim_scalars: true
+pim_re_center: -0.8426157363250124
+pim_re_scale: 0.740827361594329
+sia_schedule_source: "default"
+response_sia: false

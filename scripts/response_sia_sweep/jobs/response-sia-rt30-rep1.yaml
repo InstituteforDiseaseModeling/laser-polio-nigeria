@@ -1,0 +1,71 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    response-sia-sweep/cleanup-delay-hours: "1"
+  name: response-sia-rt30-rep1
+  labels:
+    app: laser-polio
+    component: response-sia-sweep
+    response-time: "30"
+    replicate: "1"
+spec:
+  backoffLimit: 1
+  template:
+    metadata:
+      labels:
+        job-name: response-sia-rt30-rep1
+        app: laser-polio
+        component: response-sia-sweep
+    spec:
+      restartPolicy: Never
+      # Use the same node selector as working v3 script
+      nodeSelector:
+        nodepool: 128gb
+      # Add tolerations for dedicated high-memory nodes
+      tolerations:
+      - key: nodepool
+        operator: Equal
+        value: 128gb
+        effect: NoSchedule
+      # Add image pull secrets (same as v3 script)
+      imagePullSecrets:
+      - name: idmodregcred3
+      - name: registry4idm
+      containers:
+      - name: response-sia-job
+        image: idm-docker-staging.packages.idmod.org/laser/response-sia-sweep:v20251106.2
+        args:
+        - "--config=scripts/response_sia_sweep/configs/config_nigeria_0sia_noresponse.yaml"
+        - "--response_time=30"
+        - "--rep=1"
+        - "--output_dir=/shared/results"
+        # Use /shared mount path (same as v3 script)
+        volumeMounts:
+        - name: shared
+          mountPath: /shared
+        # Add resource requests (important for scheduling)
+        resources:
+          requests:
+            memory: 32G
+            cpu: 8
+          limits:
+            memory: 32G
+            cpu: 8
+        # Environment variables (same as v3 script)
+        env:
+        - name: PYTHONUNBUFFERED
+          value: "1"
+        - name: JOB_NAME
+          value: response-sia-rt30-rep1
+        - name: RUN_ID
+          value: run_20251110_230337
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+      # Use existing laser-stg-pvc (5TB capacity)
+      volumes:
+      - name: shared
+        persistentVolumeClaim:
+          claimName: laser-stg-pvc
