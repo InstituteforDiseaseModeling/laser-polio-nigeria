@@ -11,9 +11,14 @@ ENV NUMBA_CPU_NAME=generic
 ENV HEADLESS=1
 
 # -----------------------------
-# Install laser-polio
+# Build arguments
 # -----------------------------
 ARG CACHE_BREAKER=1
+ARG NIGERIA_VERSION=0.1.0
+
+# -----------------------------
+# Install laser-polio
+# -----------------------------
 RUN pip install --upgrade --pre \
     -i https://packages.idmod.org/api/pypi/pypi-production/simple \
     -vvv laser-polio[viz]==0.2.46.dev0 \
@@ -29,10 +34,10 @@ RUN pip install \
     -i https://packages.idmod.org/api/pypi/idm-pypi-staging/simple \
     nigeria-polio
 
-# Bootstrap data into /app
-RUN python3 -m nigeria_polio.bootstrap --target /app
+# Bootstrap data into /app/data (final location)
+RUN python3 -m nigeria_polio.bootstrap --target /app/data
 
-# Copy data into canonical location expected by LASER_POLIO_DATA
+# Also copy data from package (in case bootstrap doesn't get everything)
 RUN python3 - <<EOF
 import nigeria_polio, shutil, os
 pkg_path = os.path.dirname(nigeria_polio.__file__)
@@ -43,17 +48,24 @@ EOF
 # Remove credentials
 RUN rm -f /root/.netrc
 
+# Set LASER_POLIO_DATA early (needed for subsequent steps)
+ENV LASER_POLIO_DATA=/app/data
+
 # -----------------------------
 # Install calibration engine
 # -----------------------------
-COPY dist/laser_polio_calibration-0.1.0-py3-none-any.whl /tmp/
-RUN pip install /tmp/laser_polio_calibration-0.1.0-py3-none-any.whl
+RUN pip install plotly
+RUN pip install --pre \
+    -i https://packages.idmod.org/api/pypi/idm-pypi-production/simple \
+    laser_polio_calibration
 
 # -----------------------------
-# NEW: install Nigeria country package
+# Install Nigeria country package (local wheel)
+# NOTE: This is installed AFTER stable dependencies to maximize cache hits
 # -----------------------------
-COPY dist/laser_polio_nigeria-*.whl /tmp/
-RUN pip install /tmp/laser_polio_nigeria-*.whl
+COPY dist/laser_polio_nigeria-${NIGERIA_VERSION}-py3-none-any.whl /tmp/
+RUN pip install --no-cache-dir /tmp/laser_polio_nigeria-${NIGERIA_VERSION}-py3-none-any.whl && \
+    rm /tmp/laser_polio_nigeria-${NIGERIA_VERSION}-py3-none-any.whl
 
 # -----------------------------
 # Copy configs (runtime-mounted in prod, baked here for now)
@@ -93,7 +105,12 @@ run_sim(
 EOF
 
 # -----------------------------
+# Health check
+# -----------------------------
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD python3 -c "import laser_polio_nigeria; print('OK')" || exit 1
+
+# -----------------------------
 # NEW ENTRYPOINT (country runner)
 # -----------------------------
-ENV LASER_POLIO_DATA=/app/data
 ENTRYPOINT ["python3", "-m", "laser_polio_nigeria.calibration.calibrate"]
