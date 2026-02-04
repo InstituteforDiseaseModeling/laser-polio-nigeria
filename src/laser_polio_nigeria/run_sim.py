@@ -307,14 +307,6 @@ def build_nigeria_inputs( configs, verbose ):
     sus_by_age_node = sus_by_age_node.drop(columns=["age_min_months_immun", "age_max_months_immun"])
     sus_summary = sus_by_age_node.groupby("dot_name")["n_susceptible"].sum().astype(int)
 
-    # Apply scalar multiplier to immunity values, clipping to [0.0, 1.0]
-    if init_immun_scalar != 1.0:
-        tot_pop = sus_by_age_node["n_susceptible"] + sus_by_age_node["n_immune"]
-        prop_immune = sus_by_age_node["n_immune"] / tot_pop
-        scaled_prop_immune = (prop_immune * init_immun_scalar).clip(lower=0.0, upper=1.0)
-        sus_by_age_node["n_immune"] = (tot_pop * scaled_prop_immune).astype(int)
-        sus_by_age_node["n_susceptible"] = (tot_pop * (1 - scaled_prop_immune)).astype(int)
-
     # Sanity checks
     assert np.all(age_merged["immune_frac"] <= 1.0), "Immunity fraction exceeds 1.0"
     assert np.all(age_merged["immune_frac"] >= 0.0), "Negative immunity fraction"

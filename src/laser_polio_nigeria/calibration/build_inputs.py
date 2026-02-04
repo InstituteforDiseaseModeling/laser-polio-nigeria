@@ -4,16 +4,16 @@ from laser_polio_nigeria.run_sim import build_nigeria_inputs
 def build_calibrate_nigeria_inputs(configs, verbose):
     """
     Calibration wrapper around Nigeria inputs.
-    Applies calibration transforms externally.
+    Applies calibration-only transforms.
     """
     inputs = build_nigeria_inputs(configs, verbose)
 
-    # --- R0 scaling ---
+    # --- R0 scaling (Optuna-controlled) ---
     r0_scalar_multiplier = configs.pop("r0_scalar_multiplier", None)
     if r0_scalar_multiplier is not None:
         inputs["r0_scalars"] = inputs["r0_scalars"] * r0_scalar_multiplier
 
-    # --- Immunity scaling ---
+    # --- Immunity scaling (Optuna-controlled) ---
     init_immun_scalar = configs.pop("init_immun_scalar", None)
     if init_immun_scalar is not None:
         df = inputs["sus_by_age_node"].copy()
