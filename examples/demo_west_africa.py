@@ -1,6 +1,7 @@
 import sciris as sc
 
 import laser_polio as lp
+from laser_polio_nigeria.run_sim import build_nigeria_inputs
 
 ###################################
 ######### USER PARAMETERS #########
@@ -51,6 +52,7 @@ seed_schedule = [
 
 lp.print_memory("Before run_sim")
 sim = lp.run_sim(
+    build_inputs=build_nigeria_inputs,
     regions=regions,
     admin_level=admin_level,
     start_year=start_year,

@@ -1,6 +1,7 @@
 import sciris as sc
 
 import laser_polio as lp
+from laser_polio_nigeria.run_sim import build_nigeria_inputs
 
 ###################################
 ######### USER PARAMETERS #########
@@ -34,6 +35,7 @@ use_pim_scalars = True
 
 sim = lp.run_sim(
     **config,
+    build_inputs=build_nigeria_inputs,
     verbose=verbose,
     plot_pars=plot_pars,
     use_pim_scalars=use_pim_scalars,

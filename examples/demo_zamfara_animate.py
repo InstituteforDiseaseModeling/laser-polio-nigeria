@@ -2,6 +2,7 @@ import numpy as np
 import sciris as sc
 
 import laser_polio as lp
+from laser_polio_nigeria.run_sim import build_nigeria_inputs
 from laser_polio.utils import prep_actual_data_for_calibration
 
 ###################################
@@ -53,6 +54,7 @@ actual_data_monthly[[1, 5, 6]] = [1, 2, 3]
 actual_data_monthly = np.insert(actual_data_monthly, 0, 0)
 
 sim = lp.run_sim(
+    build_inputs=build_nigeria_inputs,
     regions=regions,
     start_year=start_year,
     n_days=n_days,

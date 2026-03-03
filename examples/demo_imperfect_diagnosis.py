@@ -10,6 +10,7 @@ The model now tracks both:
 """
 
 import laser_polio as lp
+from laser_polio_nigeria.run_sim import build_nigeria_inputs
 
 
 def demo_imperfect_diagnosis():
@@ -21,6 +22,7 @@ def demo_imperfect_diagnosis():
     # Scenario 1: Perfect diagnosis (100% sensitivity)
     print("Running Scenario 1: Perfect diagnosis (100% sensitivity)")
     model_perfect = lp.run_sim(
+    build_inputs=build_nigeria_inputs,
         regions=["ZAMFARA"],
         start_year=2019,
         n_days=180,  # 6 months
@@ -48,6 +50,7 @@ def demo_imperfect_diagnosis():
     # Scenario 2: Imperfect diagnosis (80% sensitivity)
     print("Running Scenario 2: Imperfect diagnosis (80% sensitivity)")
     model_imperfect = lp.run_sim(
+    build_inputs=build_nigeria_inputs,
         regions=["ZAMFARA"],
         start_year=2019,
         n_days=180,  # 6 months

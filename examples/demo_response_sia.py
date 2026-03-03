@@ -13,6 +13,7 @@ import datetime
 import sciris as sc
 
 import laser_polio as lp
+from laser_polio_nigeria.run_sim import build_nigeria_inputs
 
 ###################################
 ######### USER PARAMETERS #########
@@ -61,6 +62,7 @@ config = {
 
 sim = lp.run_sim(
     **config,
+    build_inputs=build_nigeria_inputs,
     use_pim_scalars=True,
     pim_re_center=-0.84,
     pim_re_scale=0.74,

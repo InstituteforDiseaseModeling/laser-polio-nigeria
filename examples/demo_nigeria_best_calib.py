@@ -1,6 +1,7 @@
 import sciris as sc
 
 import laser_polio as lp
+from laser_polio_nigeria.run_sim import build_nigeria_inputs
 
 ###################################
 ######### USER PARAMETERS #########
@@ -48,6 +49,7 @@ init_immun_scalar = 1.7383406836075246
 
 
 sim = lp.run_sim(
+    build_inputs=build_nigeria_inputs,
     regions=regions,
     start_year=start_year,
     n_days=n_days,

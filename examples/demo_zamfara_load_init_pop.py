@@ -1,6 +1,7 @@
 import sciris as sc
 
 import laser_polio as lp
+from laser_polio_nigeria.run_sim import build_nigeria_inputs
 
 ###################################
 ######### USER PARAMETERS #########
@@ -36,6 +37,7 @@ init_pop_file = "results/demo_zamfara/init_pop.h5"  # Path to initial population
 
 
 sim = lp.run_sim(
+    build_inputs=build_nigeria_inputs,
     regions=regions,
     start_year=start_year,
     n_days=n_days,
