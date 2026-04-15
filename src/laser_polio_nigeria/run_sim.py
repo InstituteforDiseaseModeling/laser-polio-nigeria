@@ -11,13 +11,14 @@ import laser_polio as lp
 from laser_polio.run_sim import run_sim
 from laser_polio.manifest_loader import load_manifest
 
-manifest = load_manifest()
 
 def build_nigeria_inputs( configs, verbose ):
+    manifest = load_manifest()
     # Extract simulation setup parameters with defaults or overrides
     regions = configs.pop("regions", ["ZAMFARA"])
     admin_level = configs.pop("admin_level", None)  # level to match region strings against: None: dot_name, 0: adm0, 1: adm1, 2: adm2
     start_year = configs.pop("start_year", 2018)
+    start_date_override = configs.pop("start_date", None)  # Optional explicit start date (e.g., for snapshot reloads mid-year)
     n_days = configs.pop("n_days", 365)
     pop_scale = configs.pop("pop_scale", 1)
     init_region = configs.pop("init_region", "ANKA")
@@ -127,7 +128,10 @@ def build_nigeria_inputs( configs, verbose ):
     sia_re = df_comp.set_index("dot_name").loc[dot_names, "sia_random_effect"].values
     sia_prob = lp.calc_sia_prob_from_rand_eff(sia_re, center=sia_re_center, scale=sia_re_scale)
     # SIA scheduled
-    start_date = lp.date(f"{start_year}-01-01")
+    if start_date_override is not None:
+        start_date = lp.date(start_date_override) if isinstance(start_date_override, str) else start_date_override
+    else:
+        start_date = lp.date(f"{start_year}-01-01")
     # historic = pd.read_csv(lp.root / "data/sia_historic_schedule.csv")
     # future = pd.read_csv(lp.root / "data/sia_scenario_1.csv")
     # sia_schedule = lp.process_sia_schedule_polio(pd.concat([historic, future]), dot_names, start_date, n_days, filter_to_type2=True)
@@ -383,6 +387,15 @@ def build_nigeria_inputs( configs, verbose ):
     # Sanity checks
     assert np.all(sus_by_age_node["n_ipv_protected"] >= 0.0), "Negative IPV protected count"
 
+    # ---- Response SIA adjacency enrichment ----
+    # Must happen after node_lookup is built, before returning
+    response_sia_mode = configs.get("response_sia_mode", "adjacency")
+    if response_sia and response_sia_mode == "adjacency":
+        node_lookup = lp.enrich_node_lookup_with_adjacency(node_lookup, lp.root / "data/adm01_adjacency.npz")
+
+    # Inject age_pyramid_path so run_sim passes it through to pars (needed for plot_age_pyramid)
+    configs.setdefault("age_pyramid_path", manifest.age_pyramid)
+
     # Validate all arrays match
     assert all(len(arr) == len(dot_names) for arr in [shp, node_lookup, init_prevs, pop, cbr, ri, ri_ipv, sia_prob, r0_scalars])
 
@@ -404,10 +417,11 @@ def build_nigeria_inputs( configs, verbose ):
     }
 
 
-run_sim(
-    config={
-        "regions": ["ZAMFARA"],
-        "n_days": 365,
-    },
-    build_inputs=build_nigeria_inputs,
-)
+if __name__ == "__main__":
+    run_sim(
+        config={
+            "regions": ["ZAMFARA"],
+            "n_days": 365,
+        },
+        build_inputs=build_nigeria_inputs,
+    )
