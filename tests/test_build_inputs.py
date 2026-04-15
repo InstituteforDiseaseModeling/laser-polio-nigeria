@@ -88,8 +88,9 @@ def test_pop_scale():
 
 
 def test_sia_schedule_default_not_empty():
-    # With default sia_source="default", there should be some SIA events over a year
-    inputs = build_nigeria_inputs(_make_configs(n_days=365), verbose=0)
+    # With default sia_source="default", there should be some SIA events over a year.
+    # Use start_year=2019: synthetic schedule has mOPV2 campaigns in odd years only.
+    inputs = build_nigeria_inputs(_make_configs(n_days=365, start_year=2019), verbose=0)
     assert inputs["sia_schedule"] is not None
     assert len(inputs["sia_schedule"]) > 0, "Expected at least one SIA event in a year"
 
