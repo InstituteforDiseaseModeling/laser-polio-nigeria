@@ -22,9 +22,20 @@ data = [
     "pyyaml",
     "dvc",         # optional — for data versioning, if used
 ]
+dev = [
+    "pytest",
+    "pytest-xdist",  # parallel test execution with -n auto
+]
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+]
+addopts = "-m 'not slow'"  # skip slow tests by default
 
 [build-system]
 requires = ["setuptools>=61.0"]
