@@ -391,7 +391,7 @@ def build_nigeria_inputs( configs, verbose ):
     # Must happen after node_lookup is built, before returning
     response_sia_mode = configs.get("response_sia_mode", "adjacency")
     if response_sia and response_sia_mode == "adjacency":
-        node_lookup = lp.enrich_node_lookup_with_adjacency(node_lookup, lp.root / "data/adm01_adjacency.npz")
+        node_lookup = lp.enrich_node_lookup_with_adjacency(node_lookup, manifest.adjacency)
 
     # Inject age_pyramid_path so run_sim passes it through to pars (needed for plot_age_pyramid)
     configs.setdefault("age_pyramid_path", manifest.age_pyramid)

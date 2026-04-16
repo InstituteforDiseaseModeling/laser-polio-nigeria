@@ -49,7 +49,7 @@ actual_data = prep_actual_data_for_calibration(
     save_csv=False,
 )
 # Sum actual data by month
-actual_data_monthly = np.asarray(actual_data.groupby("month_start").sum("P").reset_index()["P"])
+actual_data_monthly = actual_data.groupby("month_start")[["P"]].sum().reset_index()["P"].to_numpy().copy()
 actual_data_monthly[[1, 5, 6]] = [1, 2, 3]
 actual_data_monthly = np.insert(actual_data_monthly, 0, 0)
 
@@ -94,7 +94,7 @@ lp.animate_maps_plus_series(
     log=False,
     fig_width_per_panel=4.0,
     fig_height=6.0,
-    out_path=f"{results_path}/animated.mp4",
+    out_path=f"{results_path}/animated.gif",
 )
 
 sc.printcyan("Done.")
