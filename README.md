@@ -6,8 +6,19 @@ The core contribution is `build_nigeria_inputs()` — a function that assembles 
 
 ## Install
 
+**Using the library in your own code** — pip install the package:
+
 ```bash
 pip install --extra-index-url https://packages.idmod.org/api/pypi/pypi-production/simple laser-polio-nigeria
+```
+
+**Running scripts, examples, or calibrations** — clone the repo instead. The `examples/` scripts,
+`config/` YAML files, and calibration entry point all require the repo to be present locally:
+
+```bash
+git clone https://github.com/InstituteforDiseaseModeling/laser-polio-nigeria.git
+cd laser-polio-nigeria
+pip install -e .
 ```
 
 ## Data setup
