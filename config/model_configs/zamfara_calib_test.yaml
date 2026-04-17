@@ -1,0 +1,27 @@
+regions: ["ZAMFARA"]
+admin_level: 1
+start_year: 2017
+n_days: 2555          # 7 years — keeps time_periods bins aligned with Nigeria configs
+pop_scale: 0.05       # 5% of Zamfara pop (~200K agents) for fast test runs
+init_region: "ANKA"
+init_prev: 0
+seed_schedule:
+  - date: "2019-06-01"
+    dot_name: "AFRO:NIGERIA:ZAMFARA:ANKA"
+    prevalence: 100
+r0: 13.78
+seasonal_amplitude: 0.23
+seasonal_peak_doy: 200
+migration_method: "radiation"
+radiation_k_log10: -2.66
+node_seeding_zero_inflation: 0.0
+max_migr_frac: 0.05
+use_pim_scalars: false
+save_plots: false
+save_data: true
+summary_config:
+  time_periods:
+    bins: ["2020-07-01", "2022-07-01"]
+    labels: ["2017-2020.5", "2020.5-2022.5", "2022.5-2024"]
+  grouping_level: "adm01"
+  region_groupings: ["NIGERIA"]

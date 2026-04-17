@@ -7,24 +7,23 @@ readme = "README.md"
 requires-python = ">=3.9"
 
 dependencies = [
-    "laser-polio>=0.1.0",  # make sure this is versioned and installable
+    "laser-polio[viz]>=0.3.0",
+    "laser-polio-calibration>=0.1.0",
     "numpy",
     "scipy",
     "pandas",
     "matplotlib",
+    "geopandas",
+    "pyyaml",
+    "sciris",
+    "click",
 ]
 
 [project.optional-dependencies]
-data = [
-    "h5py",
-    "tables",
-    "geopandas",
-    "pyyaml",
-    "dvc",         # optional — for data versioning, if used
-]
 dev = [
     "pytest",
     "pytest-xdist",  # parallel test execution with -n auto
+    "kaleido<1.0",   # Plotly static image export — pin <1.0 to avoid Chrome dependency
 ]
 
 [tool.setuptools.packages.find]
