@@ -83,6 +83,97 @@ laser-polio-nigeria/
 └── scripts/                    # Response SIA sweeps and other analyses
 ```
 
+## Calibration
+
+Calibration uses [laser-polio-calibration](https://github.com/InstituteforDiseaseModeling/laser-polio-calibration)
+as the engine and Optuna for hyperparameter optimization. The entry point in this repo is
+`laser_polio_nigeria.calibration.calibrate`.
+
+### Prerequisites
+
+Install this package with calibration deps:
+
+```bash
+pip install --extra-index-url https://packages.idmod.org/api/pypi/pypi-production/simple \
+    "laser-polio-nigeria[dev]"
+```
+
+Set up data and storage:
+
+```bash
+export LASER_POLIO_DATA=/path/to/nigeria_polio_data   # or zamfara_data for a quick test
+export STORAGE_URL=sqlite:///my_calib.db              # local SQLite; omit to use MySQL
+```
+
+### Run a calibration
+
+```bash
+python -m laser_polio_nigeria.calibration.calibrate \
+  --study-name my_study \
+  --model-config nigeria_7y_2017_regions_r0_radk_mmf_ssn_nozi_pim_pop50.yaml \
+  --calib-config r0_radk_pim.yaml \
+  --config-root config \
+  --n-trials 100 \
+  --n-replicates 1
+```
+
+All `--model-config` and `--calib-config` paths are resolved relative to `--config-root`
+under `model_configs/` and `calib_configs/` subdirectories respectively.
+
+Results are written to `results/<study-name>/`.
+
+### Quick local test (~30s, Zamfara only)
+
+Validates the full pipeline end-to-end with a small population:
+
+```bash
+export STORAGE_URL=sqlite:///test_calib.db
+export LASER_POLIO_DATA=/path/to/zamfara_data   # zamfara-data package is sufficient
+
+python -m laser_polio_nigeria.calibration.calibrate \
+  --study-name zamfara_test \
+  --model-config zamfara_calib_test.yaml \
+  --calib-config r0.yaml \
+  --config-root config \
+  --n-trials 3 \
+  --n-replicates 1
+```
+
+### Config files
+
+| Config | Location | Purpose |
+|--------|----------|---------|
+| `zamfara_calib_test.yaml` | `config/model_configs/` | Minimal Zamfara test (pop_scale=0.05, ~8s/trial) |
+| `nigeria_7y_2017_regions_r0_radk_mmf_ssn_nozi_pim_pop50.yaml` | `config/model_configs/` | Full Nigeria at 50% pop |
+| `nigeria_7y_2017_regions_r0_radk_mmf_ssn_nozi_pim_pop10.yaml` | `config/model_configs/` | Full Nigeria at 10% pop |
+| `r0.yaml` | `config/calib_configs/` | Single-parameter: r0 only |
+| `r0_radk_pim.yaml` | `config/calib_configs/` | r0 + radiation_k + PIM random effects |
+
+### Inspect results
+
+```python
+import optuna
+import os
+
+study = optuna.load_study(
+    study_name="my_study",
+    storage=os.environ["STORAGE_URL"],
+)
+print(study.best_trial)
+print(study.trials_dataframe()[["number", "value", "params_r0"]].head(10))
+```
+
+### Dry run (verify config without running)
+
+```bash
+python -m laser_polio_nigeria.calibration.calibrate \
+  --study-name my_study \
+  --model-config zamfara_calib_test.yaml \
+  --calib-config r0.yaml \
+  --config-root config \
+  --dry-run
+```
+
 ## Public synthetic data (CI / open development)
 
 The [laser-polio-zamfara-data](https://github.com/InstituteforDiseaseModeling/laser-polio-zamfara-data)
