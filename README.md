@@ -45,11 +45,11 @@ export LASER_POLIO_DATA=~/zamfara_data
 Full Nigeria + West Africa dataset. Required for national-scale simulations and calibrations.
 
 ```bash
-pip install --extra-index-url https://packages.idmod.org/api/pypi/pypi-production/simple \
-    laser-polio-nigeria-data
+pip install --extra-index-url https://packages.idmod.org/api/pypi/idm-pypi-staging/simple \
+    nigeria-polio
 
 # Extract data files and write manifest.py to ~/nigeria_polio_data/
-python -m laser_polio_nigeria_data --target ~/nigeria_polio_data
+python -m nigeria_polio --target ~/nigeria_polio_data
 
 export LASER_POLIO_DATA=~/nigeria_polio_data
 ```
