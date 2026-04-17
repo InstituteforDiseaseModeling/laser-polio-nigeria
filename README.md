@@ -23,13 +23,36 @@ pip install -e .
 
 ## Data setup
 
-This package requires the protected Nigeria data package. Point `LASER_POLIO_DATA` at the directory containing `manifest.py`:
+The simulation and calibration code reads data via a `manifest.py` file whose location is
+set by the `LASER_POLIO_DATA` environment variable. Two data packages are available:
+
+### Public Zamfara data (open access)
+
+Covers Zamfara state only. Sufficient for running examples, tests, and the quick calibration test.
 
 ```bash
-export LASER_POLIO_DATA=/path/to/nigeria_polio_data
+pip install --extra-index-url https://packages.idmod.org/api/pypi/pypi-production/simple \
+    laser-polio-zamfara-data
+
+# Extract data files and write manifest.py to ~/zamfara_data/
+python -m laser_polio_zamfara --target ~/zamfara_data
+
+export LASER_POLIO_DATA=~/zamfara_data
 ```
 
-For development, `nigeria_polio_data/` in this repo is the data root (protected; not in version control).
+### Private Nigeria data (IDM access required)
+
+Full Nigeria + West Africa dataset. Required for national-scale simulations and calibrations.
+
+```bash
+pip install --extra-index-url https://packages.idmod.org/api/pypi/pypi-production/simple \
+    laser-polio-nigeria-data
+
+# Extract data files and write manifest.py to ~/nigeria_polio_data/
+python -m laser_polio_nigeria_data --target ~/nigeria_polio_data
+
+export LASER_POLIO_DATA=~/nigeria_polio_data
+```
 
 ## Quick start
 
@@ -190,13 +213,3 @@ python -m laser_polio_nigeria.calibration.calibrate \
   --dry-run
 ```
 
-## Public synthetic data (CI / open development)
-
-The [laser-polio-zamfara-data](https://github.com/InstituteforDiseaseModeling/laser-polio-zamfara-data)
-package provides a synthetic Zamfara subset safe for open distribution:
-
-```bash
-pip install --extra-index-url https://packages.idmod.org/api/pypi/pypi-production/simple laser-polio-zamfara-data
-python -m laser_polio_zamfara --target ~/zamfara_data
-export LASER_POLIO_DATA=~/zamfara_data
-```
