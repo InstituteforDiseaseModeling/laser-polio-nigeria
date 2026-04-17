@@ -94,8 +94,10 @@ Or run any of the scripts in `examples/`.
 ## Tests
 
 ```bash
-LASER_POLIO_DATA=/path/to/nigeria_polio_data pytest tests/
+pytest tests/
 ```
+
+Set `LASER_POLIO_DATA` before running if it isn't already in your environment (see [Data setup](#data-setup)).
 
 - `tests/test_build_inputs.py` — unit tests for `build_nigeria_inputs`
 - `tests/test_run_sim.py` — integration tests for `lp.run_sim` with Nigeria inputs
@@ -111,7 +113,7 @@ laser-polio-nigeria/
 │   └── calibration/            # Calibration integration wrappers
 ├── examples/                   # 11 runnable demo scripts
 ├── tests/                      # pytest test suite
-├── nigeria_polio_data/         # Protected data (not in version control)
+├── nigeria_polio_data/         # Data root after running 'python -m nigeria_polio' (not in version control)
 ├── config/                     # Model and calibration YAML configs
 ├── data_curation_scripts/      # ETL pipelines for curating raw data
 └── scripts/                    # Response SIA sweeps and other analyses
