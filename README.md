@@ -91,18 +91,23 @@ as the engine and Optuna for hyperparameter optimization. The entry point in thi
 
 ### Prerequisites
 
-Install this package with calibration deps:
+**1. Install `kaleido` for post-run report plots** (skip if you don't need static PNG output):
 
 ```bash
-pip install --extra-index-url https://packages.idmod.org/api/pypi/pypi-production/simple \
-    "laser-polio-nigeria[dev]"
+pip install "kaleido<1.0"   # pin <1.0 to avoid Chrome dependency on Linux servers
 ```
 
-Set up data and storage:
+**2. Set up data:**
 
 ```bash
 export LASER_POLIO_DATA=/path/to/nigeria_polio_data   # or zamfara_data for a quick test
-export STORAGE_URL=sqlite:///my_calib.db              # local SQLite; omit to use MySQL
+```
+
+**3. Configure Optuna storage:**
+
+```bash
+export STORAGE_URL=sqlite:///my_calib.db   # local SQLite file (created automatically)
+# omit STORAGE_URL to default to MySQL (used in AKS/Docker deployments)
 ```
 
 ### Run a calibration
