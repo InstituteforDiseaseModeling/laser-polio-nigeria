@@ -21,6 +21,38 @@ cd laser-polio-nigeria
 pip install -e .
 ```
 
+**Local development across all three repos** — if you want editable installs of `laser-polio`
+and `laser-polio-calibration` alongside this repo (e.g., to make changes to the core engine or
+calibration workflows), clone all three repos as siblings and install from source into the
+`laser-polio-nigeria` venv:
+
+```bash
+# Clone the three repos as siblings (e.g., under ~/github/)
+git clone https://github.com/InstituteforDiseaseModeling/laser-polio.git
+git clone https://github.com/InstituteforDiseaseModeling/laser-polio-calibration.git
+git clone https://github.com/InstituteforDiseaseModeling/laser-polio-nigeria.git
+
+# Create and activate a venv inside laser-polio-nigeria
+cd laser-polio-nigeria
+uv venv
+source .venv/bin/activate
+
+# Install laser-polio editable
+uv pip install -e ../laser-polio
+
+# Build and install laser-polio-calibration from a local wheel
+cd ../laser-polio-calibration
+uv build
+uv pip install dist/laser_polio_calibration-0.1.0-py3-none-any.whl
+
+# Install laser-polio-nigeria editable
+cd ../laser-polio-nigeria
+uv pip install -e .
+```
+
+With `laser-polio` and `laser-polio-calibration` already installed, the final `uv pip install -e .`
+resolves cleanly without needing the IDM extra-index-url.
+
 ## Data setup
 
 The simulation and calibration code reads data via a `manifest.py` file whose location is
