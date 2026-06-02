@@ -44,6 +44,52 @@ export LASER_POLIO_DATA=~/zamfara_data
 
 Full Nigeria + West Africa dataset. Required for national-scale simulations and calibrations.
 
+#### Authentication
+
+The `nigeria-polio` package lives on a private IDM index. You need a JFrog/Artifactory account with read access to `idm-pypi-staging` — the same credentials you'd use to log into the JFrog web UI at `packages.idmod.org`. Without auth, `pip`/`uv` will report a `403 Forbidden`.
+
+Configure credentials once via `.netrc` and both `pip` and `uv` pick them up automatically:
+
+**Linux / macOS**
+
+```bash
+cat >> ~/.netrc <<'EOF'
+machine packages.idmod.org
+  login YOUR_USERNAME
+  password YOUR_PASSWORD
+EOF
+chmod 600 ~/.netrc
+```
+
+**Windows (PowerShell)**
+
+```powershell
+@"
+machine packages.idmod.org
+  login YOUR_USERNAME
+  password YOUR_PASSWORD
+"@ | Add-Content -Path "$env:USERPROFILE\.netrc"
+```
+
+The file lives at `%USERPROFILE%\.netrc` (typically `C:\Users\<you>\.netrc`). If a tool can't find it, try renaming to `_netrc` — some legacy tools follow the older curl convention — or set `NETRC=%USERPROFILE%\.netrc` explicitly.
+
+> Your IDM account password works directly. If you'd rather not store it in a plaintext file, you can generate a scoped **API token** from the JFrog web UI (*Edit Profile → Identity Tokens*) and use that as the `password` value instead.
+
+**Troubleshooting.** If `pip install` still returns `403 Forbidden`, verify `.netrc` is being read:
+
+```bash
+curl -n -I https://packages.idmod.org/api/pypi/idm-pypi-staging/simple/nigeria-polio/
+```
+
+`HTTP/1.1 200 OK` means auth is working — re-run the install. `401`/`403` means the file isn't being picked up or the credentials are wrong. Common causes:
+
+- File permissions too open on Linux/macOS (`chmod 600 ~/.netrc`).
+- Wrong filename or location on Windows — try `_netrc`, or set `NETRC=%USERPROFILE%\.netrc`.
+- Credential is wrong, or your account lacks read access to `idm-pypi-staging` (verify by logging into the JFrog UI). If using a token, confirm it hasn't expired.
+- Stale credentials cached by a corporate proxy — try from outside the VPN, or with `--no-cache-dir`.
+
+#### Install
+
 ```bash
 pip install --extra-index-url https://packages.idmod.org/api/pypi/idm-pypi-staging/simple \
     nigeria-polio
