@@ -8,7 +8,7 @@ from laser_polio_nigeria.run_sim import build_nigeria_inputs
 
 config = {
     "regions": ["ZAMFARA"],
-    "start_year": 2018,
+    "start_year": 2019,
     "n_days": 365,
     "pop_scale": 1 / 1,
     "init_region": "ANKA",
