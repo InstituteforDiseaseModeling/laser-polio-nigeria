@@ -1,0 +1,6 @@
+{
+  // Load repo-local environment variables (e.g. LASER_POLIO_DATA) from .env
+  // when running or debugging Python files. This is VSCode's default location,
+  // set explicitly here to document the behavior.
+  "python.envFile": "${workspaceFolder}/.env"
+}

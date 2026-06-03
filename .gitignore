@@ -1,3 +1,16 @@
 __pycache__/
 *.pyc
 *.egg-info
+
+# macOS Finder metadata
+.DS_Store
+
+# Logs
+*simulation_log*.txt
+
+# Results
+/results
+
+# Local environment (machine-specific paths). Keep .env.example committed.
+.env
+!.env.example
