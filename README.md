@@ -141,7 +141,7 @@ from laser_polio_nigeria.run_sim import build_nigeria_inputs
 sim = lp.run_sim(
     build_inputs=build_nigeria_inputs,
     regions=["ZAMFARA"],
-    start_year=2018,
+    start_year=2019,
     n_days=365,
     init_region="ANKA",
     init_prev=200,
