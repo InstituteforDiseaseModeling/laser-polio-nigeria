@@ -9,7 +9,7 @@ The core contribution is `build_nigeria_inputs()` — a function that assembles 
 **Using the library in your own code** — pip install the package:
 
 ```bash
-pip install --extra-index-url https://packages.idmod.org/api/pypi/pypi-production/simple laser-polio-nigeria
+uv pip install --extra-index-url https://packages.idmod.org/api/pypi/pypi-production/simple laser-polio-nigeria
 ```
 
 **Running scripts, examples, or calibrations** — clone the repo instead. The `examples/` scripts,
@@ -18,7 +18,7 @@ pip install --extra-index-url https://packages.idmod.org/api/pypi/pypi-productio
 ```bash
 git clone https://github.com/InstituteforDiseaseModeling/laser-polio-nigeria.git
 cd laser-polio-nigeria
-pip install -e .
+uv pip install -e .
 ```
 
 **Local development across all three repos** — if you want editable installs of `laser-polio`
@@ -63,7 +63,7 @@ set by the `LASER_POLIO_DATA` environment variable. Two data packages are availa
 Covers Zamfara state only. Sufficient for running examples, tests, and the quick calibration test.
 
 ```bash
-pip install --extra-index-url https://packages.idmod.org/api/pypi/pypi-production/simple \
+uv pip install --extra-index-url https://packages.idmod.org/api/pypi/pypi-production/simple \
     laser-polio-zamfara-data
 
 # Extract data files and write manifest.py to ~/zamfara_data/
@@ -77,7 +77,7 @@ export LASER_POLIO_DATA=~/zamfara_data
 Full Nigeria + West Africa dataset. Required for national-scale simulations and calibrations.
 
 ```bash
-pip install --extra-index-url https://packages.idmod.org/api/pypi/idm-pypi-staging/simple \
+uv pip install --extra-index-url https://packages.idmod.org/api/pypi/idm-pypi-staging/simple \
     nigeria-polio
 
 # Extract data files and write manifest.py to ~/nigeria_polio_data/
@@ -162,7 +162,7 @@ as the engine and Optuna for hyperparameter optimization. The entry point in thi
 **1. Install `kaleido` for post-run report plots** (skip if you don't need static PNG output):
 
 ```bash
-pip install "kaleido<1.0"   # pin <1.0 to avoid Chrome dependency on Linux servers
+uv pip install "kaleido<1.0"   # pin <1.0 to avoid Chrome dependency on Linux servers
 ```
 
 **2. Set up data:**
