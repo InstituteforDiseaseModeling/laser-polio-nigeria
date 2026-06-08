@@ -58,6 +58,13 @@ resolves cleanly without needing the IDM extra-index-url.
 The simulation and calibration code reads data via a `manifest.py` file whose location is
 set by the `LASER_POLIO_DATA` environment variable. Two data packages are available:
 
+> **Set `LASER_POLIO_DATA` once via `.env`.** Copy `.env.example` to `.env` and point
+> `LASER_POLIO_DATA` at your data directory (the one containing `manifest.py`). `.env` is
+> gitignored, so it's never committed — each developer keeps their own. The
+> `laser_polio_nigeria` package loads it automatically on import (terminal, VSCode, and
+> `pytest`), so no per-terminal `export` is needed. A real environment variable still wins over
+> `.env`, so on AKS/in containers you set `LASER_POLIO_DATA` in the pod spec and skip `.env`.
+
 ### Public Zamfara data (open access)
 
 Covers Zamfara state only. Sufficient for running examples, tests, and the quick calibration test.
@@ -69,7 +76,7 @@ pip install --extra-index-url https://packages.idmod.org/api/pypi/pypi-productio
 # Extract data files and write manifest.py to ~/zamfara_data/
 python -m laser_polio_zamfara --target ~/zamfara_data
 
-export LASER_POLIO_DATA=~/zamfara_data
+# Then set LASER_POLIO_DATA=~/zamfara_data in your .env (see note above).
 ```
 
 ### Private Nigeria data (IDM access required)
@@ -129,7 +136,7 @@ pip install --extra-index-url https://packages.idmod.org/api/pypi/idm-pypi-stagi
 # Extract data files and write manifest.py to ~/nigeria_polio_data/
 python -m nigeria_polio --target ~/nigeria_polio_data
 
-export LASER_POLIO_DATA=~/nigeria_polio_data
+# Then set LASER_POLIO_DATA=~/nigeria_polio_data in your .env (see note above).
 ```
 
 ## Quick start
@@ -175,7 +182,7 @@ Or run any of the scripts in `examples/`.
 pytest tests/
 ```
 
-Set `LASER_POLIO_DATA` before running if it isn't already in your environment (see [Data setup](#data-setup)).
+Make sure `LASER_POLIO_DATA` is set in your `.env` (see [Data setup](#data-setup)) — `pytest` picks it up automatically on import.
 
 - `tests/test_build_inputs.py` — unit tests for `build_nigeria_inputs`
 - `tests/test_run_sim.py` — integration tests for `lp.run_sim` with Nigeria inputs
@@ -211,16 +218,14 @@ as the engine and Optuna for hyperparameter optimization. The entry point in thi
 pip install "kaleido<1.0"   # pin <1.0 to avoid Chrome dependency on Linux servers
 ```
 
-**2. Set up data:**
+**2. Set up data and Optuna storage in your `.env`:**
+
+The `.env` loader picks up every `KEY=VALUE`, so both vars live there (see [Data setup](#data-setup)) —
+no `export` needed:
 
 ```bash
-export LASER_POLIO_DATA=/path/to/nigeria_polio_data   # or zamfara_data for a quick test
-```
-
-**3. Configure Optuna storage:**
-
-```bash
-export STORAGE_URL=sqlite:///my_calib.db   # local SQLite file (created automatically)
+LASER_POLIO_DATA=/path/to/nigeria_polio_data   # or zamfara_data for a quick test
+STORAGE_URL=sqlite:///my_calib.db              # local SQLite file (created automatically)
 # omit STORAGE_URL to default to MySQL (used in AKS/Docker deployments)
 ```
 
