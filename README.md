@@ -139,6 +139,49 @@ python -m nigeria_polio --target ~/nigeria_polio_data
 # Then set LASER_POLIO_DATA=~/nigeria_polio_data in your .env (see note above).
 ```
 
+### Switching between datasets in VSCode
+
+If you bounce between the Zamfara (test) and Nigeria (production) data packages, hard-coding `LASER_POLIO_DATA` in your shell rc (`.zshrc`, `.bashrc`, PowerShell profile) pins your environment to one dataset. VSCode launch configurations let you switch per-run with a dropdown — no shell config, no script edits.
+
+Create `.vscode/launch.json` in the repo root:
+
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run current file — Zamfara data",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "env": {
+        "LASER_POLIO_DATA": "${env:USERPROFILE}/zamfara_data"
+      }
+    },
+    {
+      "name": "Run current file — Nigeria data",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "env": {
+        "LASER_POLIO_DATA": "${env:USERPROFILE}/nigeria_polio_data"
+      }
+    }
+  ]
+}
+```
+
+Open any script (e.g., `examples/demo_zamfara.py`), pick the dataset from the Run & Debug dropdown, and hit `F5`. Each launch sets `LASER_POLIO_DATA` for that run only — nothing leaks into your shell.
+
+**Notes:**
+
+- **Windows:** `${env:USERPROFILE}` expands to `C:\Users\<name>`. On macOS/Linux substitute `${env:HOME}`.
+- **Path adjustment:** the example assumes the data packages were extracted to `~/zamfara_data` and `~/nigeria_polio_data`. Edit the values to match your actual extraction targets.
+- **Integrated terminal:** launch-config env vars apply only when launching via Run & Debug. If you type `python my_script.py` directly into the integrated terminal, they're not consulted — either run via the launch config, or set the env inline: `$env:LASER_POLIO_DATA="$env:USERPROFILE\zamfara_data"; python my_script.py` (PowerShell) or `LASER_POLIO_DATA=~/zamfara_data python my_script.py` (bash).
+- **Alternative — `.env` file:** a `.env` file at the workspace root (with `LASER_POLIO_DATA=...`) is auto-loaded by VSCode's Python extension for the debugger, "Run Python File," and Test Explorer. Switching is a one-line edit. Same integrated-terminal caveat applies.
+
 ## Quick start
 
 ```python
