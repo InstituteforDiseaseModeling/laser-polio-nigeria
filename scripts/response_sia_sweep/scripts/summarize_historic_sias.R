@@ -31,10 +31,10 @@ historic_sias <- historic_sias %>%
     left_join(node_df, by = c("dot_name" = "dot_name"))
 
 # Load the historic cases data
-cases <- h5read("data/epi_africa_20250421.h5", "/epi", compoundAsDataFrame = FALSE)
+cases <- h5read("data/epi_africa_20260610.h5", "/epi", compoundAsDataFrame = FALSE)
 
 
-df <- h5read("data/epi_africa_20250421.h5", "/epi", compoundAsDataFrame = FALSE)
+df <- h5read("data/epi_africa_20260610.h5", "/epi", compoundAsDataFrame = FALSE)
 df <- as.data.frame(df)
 h5closeAll()
 
@@ -42,7 +42,7 @@ h5closeAll()
 library(reticulate)
 library(dplyr)
 pd <- import("pandas")
-df <- pd$read_hdf("data/epi_africa_20250421.h5", key = "epi")
+df <- pd$read_hdf("data/epi_africa_20260610.h5", key = "epi")
 df <- as.data.frame(df) |>
     filter(str_detect(dot_name, "NIGERIA")) |>
     mutate(year = year(month_start)) |>
