@@ -1,27 +1,56 @@
 import geopandas as gpd
 import pandas as pd
 
-import laser_polio as lp
+# AFP case linelist from the polio-immunity-mapping repo:
+# https://github.com/InstituteforDiseaseModeling/polio-immunity-mapping
+# File: scn/cvd2/results/linelist_afp.csv
+# Expected to be cloned alongside this repo (i.e. ../polio-immunity-mapping/)
+linelist_path = "../polio-immunity-mapping/scn/cvd2/results/linelist_afp.csv"
+df = pd.read_csv(linelist_path, low_memory=False, parse_dates=["donset"])
+shp = gpd.read_file(filename="data_local/curated/shp_africa_low_res.gpkg", layer="adm2")
 
-# Load data
-df = pd.read_hdf("data/curation_scripts/epi/tsir_data_subset_type2_2025-04-21.h5", key="tsir_data")
-shp = gpd.read_file(filename="data/shp_africa_low_res.gpkg", layer="adm2")
+# Drop rows with missing onset date
+df = df.dropna(subset=["donset"])
 
-# Drop the administrative level columns from the df
-df = df.drop(columns=["adm0_name", "adm1_name", "adm2_name"])
-# Merge the shp & df to get the dot_name column
-df = df.merge(shp[["guid", "dot_name"]], on="guid", how="left")
-# Filter out the rows with missing dot_names
-df = df[df["dot_name"].notnull()]
-# Check for number of unique dot_names
-assert len(shp) == df["dot_name"].nunique()
-# Clean up & reorder the columns
-df = df[["dot_name", "guid", "month_start", "cases", "es_samples", "es_positives"]]
-# Drop any rows with month_start > today
-df = df[lp.date(df["month_start"]) <= pd.Timestamp.now().date()]
+# Create month_start from date of onset, floored to first of month
+df["month_start"] = df["donset"].dt.strftime("%Y-%m-01")
 
+# Aggregate AFP case counts per (guid, adm0_name, month_start)
+cases = df.groupby(["guid", "adm0_name", "month_start"]).size().reset_index(name="cases")
+cases["cases"] = cases["cases"].astype(float)
+
+# Merge with shapefile to get dot_name
+cases = cases.merge(shp[["guid", "dot_name"]], on="guid", how="left")
+
+# Warn about districts not in the shapefile (e.g. non-Africa regions like EMRO)
+unmatched = cases[cases["dot_name"].isna()]
+if not unmatched.empty:
+    n_districts = unmatched["guid"].nunique()
+    n_rows = len(unmatched)
+    total_cases = int(unmatched["cases"].sum())
+    print(f"\nWARNING: {n_districts} districts ({n_rows} district-month rows, {total_cases} cases) not matched in shapefile.")
+    counts_by_adm0 = (
+        unmatched.groupby("adm0_name")["guid"]
+        .nunique()
+        .reset_index(name="unmatched_districts")
+        .sort_values("unmatched_districts", ascending=False)
+    )
+    print("Unmatched district counts by country (adm0_name):")
+    print(counts_by_adm0.to_string(index=False))
+
+# Keep only districts matched in the shapefile
+cases = cases[cases["dot_name"].notna()].copy()
+
+# Drop future months
+cases = cases[cases["month_start"] <= pd.Timestamp.now().strftime("%Y-%m-%d")]
+
+# Final column order
+cases = cases[["dot_name", "guid", "month_start", "cases"]]
 
 # Save in Pandas-native HDF5 format
-df.to_hdf("data/epi_africa_20250421.h5", key="epi", mode="w", format="table", complevel=5)
+today = pd.Timestamp.now().strftime("%Y%m%d")
+output_path = f"data_local/curated/epi_africa_{today}.h5"
+cases.to_hdf(output_path, key="epi", mode="w", format="table", complevel=5)
 
+print(f"\nSaved {len(cases)} rows to {output_path}")
 print("Done")

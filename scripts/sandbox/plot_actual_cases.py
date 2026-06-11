@@ -18,7 +18,7 @@ shp.set_index("dot_name", inplace=True)
 shp = shp.loc[dot_names].reset_index()
 
 # --- Load epidemiological data ---
-epi = lp.get_epi_data("data/epi_africa_20250421.h5", dot_names, node_lookup, start_year, n_days)
+epi = lp.get_epi_data("data/epi_africa_20260610.h5", dot_names, node_lookup, start_year, n_days)
 
 # --- Convert time to quarter ---
 epi["quarter"] = epi["date"].dt.to_period("Q")
