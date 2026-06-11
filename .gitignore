@@ -8,9 +8,16 @@ __pycache__/
 # Logs
 *simulation_log*.txt
 
+# Data
+/data_local
+
 # Results
 /results
 
 # Local environment (machine-specific paths). Keep .env.example committed.
 .env
 !.env.example
+
+# Workspace settings (if using an IDE)
+laser.code-workspace
+launch.json
