@@ -58,12 +58,13 @@ resolves cleanly without needing the IDM extra-index-url.
 The simulation and calibration code reads data via a `manifest.py` file whose location is
 set by the `LASER_POLIO_DATA` environment variable. Two data packages are available:
 
-> **Set `LASER_POLIO_DATA` once via `.env`.** Copy `.env.example` to `.env` and point
-> `LASER_POLIO_DATA` at your data directory (the one containing `manifest.py`). `.env` is
-> gitignored, so it's never committed — each developer keeps their own. The
-> `laser_polio_nigeria` package loads it automatically on import (terminal, VSCode, and
-> `pytest`), so no per-terminal `export` is needed. A real environment variable still wins over
-> `.env`, so on AKS/in containers you set `LASER_POLIO_DATA` in the pod spec and skip `.env`.
+Create a `.env` file in the repo root (gitignored) with:
+
+```
+LASER_POLIO_DATA=/absolute/path/to/repo/data_local/nigeria_polio_data
+```
+
+Use an absolute path — `~` is not expanded. The package loads `.env` automatically on import, so no per-terminal `export` is needed.
 
 ### Public Zamfara data (open access)
 
@@ -73,10 +74,10 @@ Covers Zamfara state only. Sufficient for running examples, tests, and the quick
 pip install --extra-index-url https://packages.idmod.org/api/pypi/pypi-production/simple \
     laser-polio-zamfara-data
 
-# Extract data files and write manifest.py to ~/zamfara_data/
-python -m laser_polio_zamfara --target ~/zamfara_data
+# Extract data files and write manifest.py to data_local/zamfara_data/
+python -m laser_polio_zamfara --target data_local/zamfara_data
 
-# Then set LASER_POLIO_DATA=~/zamfara_data in your .env (see note above).
+# Then update LASER_POLIO_DATA in your .env to point here.
 ```
 
 ### Private Nigeria data (IDM access required)
@@ -133,10 +134,10 @@ curl -n -I https://packages.idmod.org/api/pypi/idm-pypi-staging/simple/nigeria-p
 pip install --extra-index-url https://packages.idmod.org/api/pypi/idm-pypi-staging/simple \
     nigeria-polio
 
-# Extract data files and write manifest.py to ~/nigeria_polio_data/
-python -m nigeria_polio --target ~/nigeria_polio_data
+# Extract data files and write manifest.py to data_local/nigeria_polio_data/
+python -m nigeria_polio --target data_local/nigeria_polio_data
 
-# Then set LASER_POLIO_DATA=~/nigeria_polio_data in your .env (see note above).
+# Then update LASER_POLIO_DATA in your .env to point here.
 ```
 
 ## Quick start
@@ -224,7 +225,7 @@ The `.env` loader picks up every `KEY=VALUE`, so both vars live there (see [Data
 no `export` needed:
 
 ```bash
-LASER_POLIO_DATA=/path/to/nigeria_polio_data   # or zamfara_data for a quick test
+LASER_POLIO_DATA=/path/to/repo/data_local/nigeria_polio_data   # or data_local/zamfara_data for a quick test
 STORAGE_URL=sqlite:///my_calib.db              # local SQLite file (created automatically)
 # omit STORAGE_URL to default to MySQL (used in AKS/Docker deployments)
 ```
@@ -252,7 +253,7 @@ Validates the full pipeline end-to-end with a small population:
 
 ```bash
 export STORAGE_URL=sqlite:///test_calib.db
-export LASER_POLIO_DATA=/path/to/zamfara_data   # zamfara-data package is sufficient
+export LASER_POLIO_DATA=/path/to/repo/data_local/zamfara_data   # zamfara-data package is sufficient
 
 python -m laser_polio_nigeria.calibration.calibrate \
   --study-name zamfara_test \
