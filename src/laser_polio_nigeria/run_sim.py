@@ -1,5 +1,6 @@
 from pathlib import Path
 import click
+import json
 import numpy as np
 import pandas as pd
 import sciris as sc
@@ -417,11 +418,41 @@ def build_nigeria_inputs( configs, verbose ):
     }
 
 
+@click.command()
+@click.option("--model-config", type=click.Path(exists=True), default=None, help="Path to model config YAML")
+@click.option("--params-file", type=click.Path(exists=True), default=None, help="Optional Optuna trial parameter JSON")
+@click.option("--results-path", type=str, default=None, help="Path to write simulation results")
+@click.option("--extra-pars", type=str, default=None, help='Extra parameters as JSON string, e.g. \'{"r0": 14}\'')
+@click.option("--init-pop-file", type=click.Path(exists=True), default=None, help="Optional initial population snapshot")
+@click.option("--save-init-pop", is_flag=True, help="Save initial population snapshot")
+@click.option("--save-final-pop", is_flag=True, help="Save final population snapshot")
+@click.option("--save-data", is_flag=True, help="Save simulation output data (HDF5)")
+@click.option("--save-plots", is_flag=True, help="Save plots to results_path")
+def main(model_config, params_file, results_path, extra_pars, init_pop_file, save_init_pop, save_final_pop, save_data, save_plots):
+    """Run a Nigeria polio LASER simulation using build_nigeria_inputs."""
+    config = {}
+
+    if model_config:
+        with open(model_config) as f:
+            config = yaml.safe_load(f)
+        print(f"[INFO] Loaded config from {model_config}")
+
+    if params_file:
+        with open(params_file) as f:
+            config.update(json.load(f))
+        print(f"[INFO] Loaded params from {params_file}")
+
+    if results_path:
+        config["results_path"] = results_path
+    if extra_pars:
+        config.update(json.loads(extra_pars))
+    if save_data:
+        config["save_data"] = True
+    if save_plots:
+        config["save_plots"] = True
+
+    run_sim(config=config, build_inputs=build_nigeria_inputs, init_pop_file=init_pop_file, save_init_pop=save_init_pop, save_final_pop=save_final_pop)
+
+
 if __name__ == "__main__":
-    run_sim(
-        config={
-            "regions": ["ZAMFARA"],
-            "n_days": 365,
-        },
-        build_inputs=build_nigeria_inputs,
-    )
+    main()
