@@ -232,6 +232,14 @@ STORAGE_URL=sqlite:///my_calib.db              # local SQLite file (created auto
 
 ### Run a calibration
 
+For a self-contained local run (SQLite, no extra setup), use the script:
+
+```bash
+python scripts/run_calib_local.py   # edit QUICK_TEST / config vars at the top
+```
+
+Or invoke the CLI directly:
+
 ```bash
 python -m laser_polio_nigeria.calibration.calibrate \
   --study-name my_study \
