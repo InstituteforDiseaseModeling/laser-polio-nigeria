@@ -29,7 +29,7 @@ else:
     STUDY_NAME   = "nigeria_calib"
     MODEL_CONFIG = "nigeria_7y_2017_regions_r0_radk_mmf_ssn_nozi_pim.yaml"
     CALIB_CONFIG = "r0_radk_pim.yaml"
-    N_TRIALS     = 100
+    N_TRIALS     = 1
 
 CONFIG_ROOT  = "config"
 N_REPLICATES = 1

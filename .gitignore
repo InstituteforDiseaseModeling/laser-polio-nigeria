@@ -18,6 +18,9 @@ __pycache__/
 .env
 !.env.example
 
+# Docker build credentials — never commit
+.netrc
+
 # Workspace settings (if using an IDE)
 laser.code-workspace
 launch.json
