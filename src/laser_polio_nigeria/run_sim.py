@@ -47,6 +47,7 @@ def build_nigeria_inputs( configs, verbose ):
     # Geography
     dot_names = lp.find_matching_dot_names( regions, manifest.population, verbose=verbose, admin_level=admin_level)
     node_lookup = lp.get_node_lookup(manifest.node_lookup, dot_names)
+    distance_matrix = pd.read_hdf(manifest.distance_matrix).loc[dot_names, dot_names].values
     shp = gpd.read_file(filename=manifest.shapefile, layer="adm2")
     shp = shp[shp["dot_name"].isin(dot_names)]
     # Sort the GeoDataFrame by the order of dot_names
@@ -410,6 +411,7 @@ def build_nigeria_inputs( configs, verbose ):
         "r0_scalars": r0_scalars,
         "shp": shp,
         "node_lookup": node_lookup,
+        "distances": distance_matrix,
         "ri": ri,
         "ri_ipv": ri_ipv,
         "sia_schedule": sia_schedule,
