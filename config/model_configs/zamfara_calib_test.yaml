@@ -2,7 +2,7 @@ regions: ["ZAMFARA"]
 admin_level: 1
 start_year: 2017
 n_days: 2555          # 7 years — keeps time_periods bins aligned with Nigeria configs
-pop_scale: 0.05       # 5% of Zamfara pop (~200K agents) for fast test runs
+pop_scale: 1.0       # Change to 5% of Zamfara pop (~200K agents) for fast test runs
 init_region: "ANKA"
 init_prev: 0
 seed_schedule:
@@ -23,5 +23,3 @@ summary_config:
   time_periods:
     bins: ["2020-07-01", "2022-07-01"]
     labels: ["2017-2020.5", "2020.5-2022.5", "2022.5-2024"]
-  grouping_level: "adm01"
-  region_groupings: ["NIGERIA"]
