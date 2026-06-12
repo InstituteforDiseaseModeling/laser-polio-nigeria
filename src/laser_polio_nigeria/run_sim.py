@@ -398,6 +398,10 @@ def build_nigeria_inputs( configs, verbose ):
     # Inject age_pyramid_path so run_sim passes it through to pars (needed for plot_age_pyramid)
     configs.setdefault("age_pyramid_path", manifest.age_pyramid)
 
+    # Inject regions_yaml_path into summary_config so save_sim_results can find regions.yaml
+    if "summary_config" in configs and configs["summary_config"]:
+        configs["summary_config"]["regions_yaml_path"] = str(manifest.regions)
+
     # Validate all arrays match
     assert all(len(arr) == len(dot_names) for arr in [shp, node_lookup, init_prevs, pop, cbr, ri, ri_ipv, sia_prob, r0_scalars])
 
