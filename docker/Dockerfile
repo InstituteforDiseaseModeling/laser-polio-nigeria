@@ -19,9 +19,10 @@ ARG NIGERIA_VERSION=0.1.0
 # -----------------------------
 # Install laser-polio
 # -----------------------------
+ARG LP_VERSION
 RUN pip install --upgrade --pre \
     -i https://packages.idmod.org/api/pypi/pypi-production/simple \
-    -vvv "laser-polio[viz]==0.4.0" \
+    "laser-polio[viz]==${LP_VERSION}" \
     --extra-index-url https://pypi.org/simple
 
 # -----------------------------
