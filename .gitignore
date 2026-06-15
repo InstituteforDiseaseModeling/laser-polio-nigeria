@@ -14,6 +14,10 @@ __pycache__/
 # Results
 /results
 
+# Docker builds and whls
+/dist
+*.whl
+
 # Local environment (machine-specific paths). Keep .env.example committed.
 .env
 !.env.example

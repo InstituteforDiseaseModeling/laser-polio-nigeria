@@ -309,43 +309,47 @@ python -m laser_polio_nigeria.calibration.calibrate \
 
 ### Dockerized local calibration
 
-Run calibration inside the same Docker image used on AKS — useful for testing the containerized pipeline locally.
+Run calibration inside the same Docker image used on AKS, with MySQL storage for exact environment parity.
 
-**1. Set up `.netrc` for IDM PyPI access** (needed once to build the image):
+**1. Set up `.netrc` for IDM PyPI access** (one-time setup to build the image):
 
-Create `~/.netrc` (or copy it to the repo root for the Docker build):
+```bash
+cp ~/.netrc .netrc   # gitignored — never commit this
+```
 
+If you don't have `~/.netrc`, create it with your IDM credentials:
 ```
 machine packages.idmod.org
 login <your-idm-username>
 password <your-idm-password>
 ```
 
-Then copy it to the repo root so the Docker build can reach it:
-
-```bash
-cp ~/.netrc .netrc   # gitignored — never commit this
-```
-
 **2. Build the image:**
 
-```bash
-bash build.sh
-docker tag idm-docker-staging.packages.idmod.org/laser/laser-polio:latest laser-polio-nigeria:local
-```
-
-**3. Run calibration in Docker:**
+Run `scripts/calibration/build_calib_docker.py` with the VS Code play button, or from the terminal:
 
 ```bash
-bash scripts/calibration/run_calib_docker.sh
+python scripts/calibration/build_calib_docker.py
 ```
 
-Edit `QUICK_TEST`, `N_TRIALS`, and config vars at the top of the script. The script:
+Builds wheels for `laser-polio-calibration` and `laser-polio-nigeria`, then builds the Docker image tagged as `laser-polio-nigeria:local`.
 
-- Mounts `LASER_POLIO_DATA` (from `.env`) into the container as read-only
-- Mounts `config/` so config changes take effect without rebuilding
-- Writes results and the SQLite DB to `results/<study-name>/` on the host
-- Passes `STORAGE_URL=sqlite://...` so no external database is needed
+**3. Run calibration:**
 
-To rebuild the image automatically before running, set `BUILD_IMAGE=true` at the top of the script.
+Run `scripts/calibration/run_calib_local_docker.py` with the VS Code play button, or from the terminal:
+
+```bash
+python scripts/calibration/run_calib_local_docker.py
+```
+
+Edit `QUICK_TEST`, `N_TRIALS`, and config vars at the top of the script. It calls `docker compose up` which:
+
+- Starts a MySQL container (Optuna storage, matching AKS)
+- Starts the calibration worker once MySQL is healthy
+- Uses data baked into the image (from the `nigeria-polio` package — no local mount needed)
+- Mounts `config/` so config changes take effect without rebuilding the image
+- Writes results to `results/<study-name>/` on the host
+- Tears down both containers (and MySQL volume) on exit
+
+To run multiple parallel workers: `docker compose up --scale calib_worker=N`
 

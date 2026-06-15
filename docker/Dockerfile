@@ -21,7 +21,7 @@ ARG NIGERIA_VERSION=0.1.0
 # -----------------------------
 RUN pip install --upgrade --pre \
     -i https://packages.idmod.org/api/pypi/pypi-production/simple \
-    -vvv laser-polio[viz]==0.2.46.dev0 \
+    -vvv "laser-polio[viz]==0.4.0" \
     --extra-index-url https://pypi.org/simple
 
 # -----------------------------
@@ -48,16 +48,19 @@ EOF
 # Remove credentials
 RUN rm -f /root/.netrc
 
+# Patch manifest: alias epi_20260610 → epi_20250408 so worker.py default resolves
+RUN echo "epi_20260610 = epi_20250408" >> /app/data/manifest.py
+
 # Set LASER_POLIO_DATA early (needed for subsequent steps)
 ENV LASER_POLIO_DATA=/app/data
 
 # -----------------------------
-# Install calibration engine
+# Install calibration engine from local wheel
 # -----------------------------
-RUN pip install plotly
-RUN pip install --pre \
-    -i https://packages.idmod.org/api/pypi/idm-pypi-production/simple \
-    laser_polio_calibration
+ARG CALIB_VERSION=0.1.0
+COPY dist/laser_polio_calibration-${CALIB_VERSION}-py3-none-any.whl /tmp/
+RUN pip install --no-cache-dir /tmp/laser_polio_calibration-${CALIB_VERSION}-py3-none-any.whl && \
+    rm /tmp/laser_polio_calibration-${CALIB_VERSION}-py3-none-any.whl
 
 # -----------------------------
 # Install Nigeria country package (local wheel)
