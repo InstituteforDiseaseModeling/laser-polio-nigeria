@@ -29,7 +29,7 @@ else:
     STUDY_NAME   = "nigeria_calib"
     MODEL_CONFIG = "nigeria_7y_2017_regions_r0_radk_mmf_ssn_nozi_pim.yaml"
     CALIB_CONFIG = "r0_radk_pim.yaml"
-    N_TRIALS     = 1
+    N_TRIALS     = 5
 
 N_REPLICATES = 1
 
@@ -67,6 +67,7 @@ try:
             "docker", "compose", "up",
             "--abort-on-container-exit",
             "--exit-code-from", "calib_worker",
+            "--no-attach", "mysql",
         ],
         env=env,
         cwd=REPO_ROOT,
