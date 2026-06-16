@@ -14,7 +14,11 @@ import subprocess
 import sys
 import time
 from collections import Counter
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
+
+CYAN  = "\033[96m"
+RESET = "\033[0m"
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 
@@ -42,7 +46,7 @@ def kubectl(*args):
     return subprocess.run(["kubectl", *args], capture_output=True, text=True)
 
 def section(title):
-    print(f"\n{'─' * 4} {title} {'─' * max(0, 60 - len(title))}")
+    print(f"\n{CYAN}{'─' * 4} {title} {'─' * max(0, 60 - len(title))}{RESET}")
 
 # ── Job + pod status ──────────────────────────────────────────────────────────
 
@@ -90,6 +94,19 @@ n_errors       = sum(v for k, v in status_counts.items()
                      if k in ("Failed", "CrashLoopBackOff", "Error"))
 n_yet_to_run   = max(0, COMPLETIONS - n_succeeded - n_active)
 
+# ETA: elapsed time / completions so far → rate → remaining time
+start_str = job_status.get("startTime")
+eta_str = "n/a"
+rate_str = "n/a"
+if start_str and n_succeeded > 0:
+    start_dt  = datetime.fromisoformat(start_str.replace("Z", "+00:00"))
+    elapsed_s = (datetime.now(timezone.utc) - start_dt).total_seconds()
+    rate      = n_succeeded / elapsed_s                       # completions/sec
+    remaining = max(0, COMPLETIONS - n_succeeded)
+    eta_dt    = datetime.now(timezone.utc) + timedelta(seconds=remaining / rate)
+    eta_str   = eta_dt.astimezone().strftime("%Y-%m-%d %H:%M %Z")
+    rate_str  = f"{rate * 3600:.1f} completions/hr"
+
 section("Pod Status")
 print(f"  Completed:    {n_succeeded:>5}")
 print(f"  Running:      {n_active:>5}")
@@ -99,6 +116,8 @@ print(f"  Yet to run:   {n_yet_to_run:>5}")
 if n_errors:
     print(f"  Errors:       {n_errors:>5}  ({n_failed_k8} cumulative failed attempts)")
 print(f"  ── target ──  {COMPLETIONS:>5}")
+print(f"  Rate:         {rate_str}")
+print(f"  ETA:          {eta_str}")
 
 # ── Optuna DB via port-forward ────────────────────────────────────────────────
 
@@ -140,7 +159,7 @@ try:
     print(f"  Failed:    {len(failed):>5}")
 
     if completed:
-        top        = sorted(completed, key=lambda t: t.value)[:N_TOP_TRIALS]
+        top        = sorted(completed, key=lambda t: t.value if t.value is not None else float("inf"))[:N_TOP_TRIALS]
         param_names = list(top[0].params.keys())
         col_w       = max(14, max(len(p) for p in param_names) + 2)
 
