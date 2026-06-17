@@ -1,5 +1,6 @@
 import geopandas as gpd
 import pandas as pd
+pd.set_option("display.max_columns", None)
 
 # AFP case linelist from the polio-immunity-mapping repo:
 # https://github.com/InstituteforDiseaseModeling/polio-immunity-mapping
@@ -8,6 +9,9 @@ import pandas as pd
 linelist_path = "../polio-immunity-mapping/scn/cvd2/results/linelist_afp.csv"
 df = pd.read_csv(linelist_path, low_memory=False, parse_dates=["donset"])
 shp = gpd.read_file(filename="data_local/curated/shp_africa_low_res.gpkg", layer="adm2")
+
+# Filter to VDPV2 cases
+df = df[df["polio_virus_types"].str.contains("VDPV2", na=False)]
 
 # Drop rows with missing onset date
 df = df.dropna(subset=["donset"])
@@ -43,6 +47,18 @@ cases = cases[cases["dot_name"].notna()].copy()
 
 # Drop future months
 cases = cases[cases["month_start"] <= pd.Timestamp.now().strftime("%Y-%m-%d")]
+
+# Summary by country before finalizing
+cases["year"] = pd.to_datetime(cases["month_start"]).dt.year
+totals = cases.groupby("adm0_name").agg(
+    cases=("cases", "sum"),
+    min_year=("year", "min"),
+    max_year=("year", "max"),
+)
+totals["cases"] = totals["cases"].astype(int)
+totals = totals.sort_values("cases", ascending=False)
+print("\nTotal cases by country:")
+print(totals.to_string())
 
 # Final column order
 cases = cases[["dot_name", "guid", "month_start", "cases"]]
