@@ -49,9 +49,6 @@ EOF
 # Remove credentials
 RUN rm -f /root/.netrc
 
-# Patch manifest: alias epi_20260610 → epi_20250408 so worker.py default resolves
-RUN echo "epi_20260610 = epi_20250408" >> /app/data/manifest.py
-
 # Set LASER_POLIO_DATA early (needed for subsequent steps)
 ENV LASER_POLIO_DATA=/app/data
 
