@@ -28,3 +28,6 @@ __pycache__/
 # Workspace settings (if using an IDE)
 laser.code-workspace
 launch.json
+*settings.json
+/.vscode/settings.json
+/.vscode
