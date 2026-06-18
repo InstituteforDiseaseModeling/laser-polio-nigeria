@@ -18,7 +18,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 
-QUICK_TEST = True    # True = Zamfara (~30s/trial); False = full Nigeria
+QUICK_TEST = False    # True = Zamfara (~30s/trial); False = full Nigeria
 
 if QUICK_TEST:
     STUDY_NAME   = "zamfara_test"
@@ -26,10 +26,10 @@ if QUICK_TEST:
     CALIB_CONFIG = "r0.yaml"
     N_TRIALS     = 3
 else:
-    STUDY_NAME   = "nigeria_calib"
+    STUDY_NAME   = "nigeria_calib_dockerlocal_20260617"
     MODEL_CONFIG = "nigeria_7y_2017_regions_r0_radk_mmf_ssn_nozi_pim.yaml"
     CALIB_CONFIG = "r0_radk_pim.yaml"
-    N_TRIALS     = 5
+    N_TRIALS     = 1
 
 N_REPLICATES = 1
 
