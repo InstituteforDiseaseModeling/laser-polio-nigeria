@@ -82,6 +82,7 @@ run([
     "--build-arg", f"LP_VERSION={LP_VERSION}",
     "--build-arg", f"NIGERIA_VERSION={NIGERIA_VERSION}",
     "--build-arg", f"CALIB_VERSION={CALIB_VERSION}",
+    "--build-arg", f"CACHE_BREAKER={DATE_TAG}",
     "--tag", f"{REGISTRY}:{DATE_TAG}",
     "--tag", f"{REGISTRY}:latest",
     "--tag", LOCAL_TAG,
