@@ -14,28 +14,28 @@ Use kubeutil.py from laser-polio-calibration to download them locally.
 
 import subprocess
 import sys
-from datetime import date
+from datetime import datetime
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 
-JOB_NAME     = "lpsk-nigeria-02"   # Short unique k8s name; must be lowercase, no underscores
-STUDY_NAME   = "calib_nga_7y_2017_r0_radk_pim_20260616"
-MODEL_CONFIG = "nigeria_7y_2017_regions_r0_radk_mmf_ssn_nozi_pim.yaml"
+JOB_NAME     = "lpsk-nigeria-07"   # Short unique k8s name; must be lowercase, no underscores
+STUDY_NAME   = "calib_nga_9y_2017_r0_radk_pim_20260618"
+MODEL_CONFIG = "nigeria_9y_2017_regions_r0_radk_mmf_ssn_nozi_pim.yaml"
 CALIB_CONFIG = "r0_radk_pim.yaml"
 N_TRIALS     = 1     # trials per pod
 N_REPLICATES = 1     # model runs per trial
 PARALLELISM  = 50    # pods running simultaneously
-COMPLETIONS  = 500  # total pods (= total trials when N_TRIALS=1)
+COMPLETIONS  = 5000  # total pods (= total trials when N_TRIALS=1)
 NODE_POOL    = "64gb"   # "64gb" (200 GiB RAM total) or "128gb" (for best-trial analysis)
 MEMORY_GiB   = 50       # memory request per pod (use 50 for 64gb pool, 100 for 128gb)
 
 # ── Constants ─────────────────────────────────────────────────────────────────
 
 REGISTRY  = "idm-docker-staging.packages.idmod.org/laser/laser-polio"
-DATE_TAG  = date.today().strftime("%Y-%m-%d")
+DATE_TAG  = datetime.now().strftime("%Y-%m-%d-%H%M")
 IMAGE     = f"{REGISTRY}:{DATE_TAG}"
 NAMESPACE = "default"
 PVC_NAME  = "laser-stg-pvc"
@@ -65,7 +65,9 @@ print()
 
 # ── Push image ────────────────────────────────────────────────────────────────
 
-print("==> Pushing image to registry...")
+print("==> Tagging and pushing image to registry...")
+subprocess.run(["docker", "tag", "laser-polio-nigeria:local", IMAGE], check=True)
+subprocess.run(["docker", "tag", "laser-polio-nigeria:local", f"{REGISTRY}:latest"], check=True)
 subprocess.run(["docker", "push", IMAGE], check=True)
 subprocess.run(["docker", "push", f"{REGISTRY}:latest"], check=True)
 
