@@ -24,6 +24,9 @@ dev = [
     "pytest",
     "pytest-xdist",  # parallel test execution with -n auto
     "kaleido<1.0",   # Plotly static image export — pin <1.0 to avoid Chrome dependency
+    "pip",           # required by build_calib_docker.py to query Artifactory package versions
+    "build",         # required by build_calib_docker.py to build wheels
+    "kubernetes",    # required by run_calib_aks.py to deploy calibration workers on AKS
 ]
 
 [tool.setuptools.packages.find]
