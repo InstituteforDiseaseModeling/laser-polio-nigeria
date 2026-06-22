@@ -26,8 +26,8 @@ if QUICK_TEST:
     CALIB_CONFIG = "r0.yaml"
     N_TRIALS     = 3
 else:
-    STUDY_NAME   = "nigeria_calib_dockerlocal_20260617"
-    MODEL_CONFIG = "nigeria_7y_2017_regions_r0_radk_mmf_ssn_nozi_pim.yaml"
+    STUDY_NAME   = "nigeria_calib_dockerlocal_9y"
+    MODEL_CONFIG = "nigeria_9y_2017_regions_r0_radk_mmf_ssn_nozi_pim.yaml"
     CALIB_CONFIG = "r0_radk_pim.yaml"
     N_TRIALS     = 1
 

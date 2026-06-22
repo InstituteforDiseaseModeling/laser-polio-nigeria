@@ -34,7 +34,7 @@ save_plots: false
 save_data: true
 summary_config:
   time_periods:
-    bins: ["2020-01-01", "2023-01-01"]  # Split points
-    labels: ["2017-2020", "2020-2023", "2023-2026"]
+    bins: ["2018-01-01", "2019-01-01", "2020-01-01", "2021-01-01", "2022-01-01", "2023-01-01", "2024-01-01", "2025-01-01"]
+    labels: ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"]
   grouping_level: "adm01"
   region_groupings: ["NIGERIA"]
