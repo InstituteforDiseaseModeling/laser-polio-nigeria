@@ -55,8 +55,18 @@ resolves cleanly without needing the IDM extra-index-url.
 
 ## Data setup
 
-The simulation and calibration code reads data via a `manifest.py` file whose location is
-set by the `LASER_POLIO_DATA` environment variable. Two data packages are available:
+The simulation and calibration code locates its data via the `LASER_POLIO_DATA` environment
+variable. The loader (`laser_polio_nigeria.manifest.load_manifest`) handles three layouts:
+
+- A directory containing a generated `manifest.py` (rich or thin — both work).
+- A "naked" directory containing just the data files. The loader synthesizes the variable
+  bindings on its own from a known filename list.
+- The current working directory, if `LASER_POLIO_DATA` is unset.
+
+Most maintainers will use the standard install + bootstrap flow below, which produces a
+`manifest.py`. If you have a folder of files from somewhere else (a colleague, an internal
+share, a tarball), see [Don't have the package?](#dont-have-the-package) below — you can
+skip the install entirely.
 
 Create a `.env` file in the repo root (gitignored) with:
 
@@ -139,6 +149,31 @@ python -m nigeria_polio --target data_local/nigeria_polio_data
 
 # Then update LASER_POLIO_DATA in your .env to point here.
 ```
+
+### Don't have the package?
+
+If you have the data files from somewhere other than the `nigeria-polio` wheel (a
+colleague's tarball, an internal share, a USB drive) and don't want to set up Artifactory
+credentials, you can skip `pip install nigeria-polio` entirely:
+
+```bash
+# Drop the files anywhere. No manifest.py needed.
+LASER_POLIO_DATA=/absolute/path/to/data laser-polio-nigeria-run-sim  # or your usual entry point
+```
+
+The loader's "naked dir" path resolves every required file from `LASER_POLIO_DATA` directly,
+using the consumer-side filename contract (`EXPECTED_DATA_FILES` in
+`laser_polio_nigeria.manifest`).
+
+If you'd rather have a shareable `manifest.py` written into the dir (so a recipient can
+unpack a tarball and just set the env var), generate one with:
+
+```bash
+python -m laser_polio_nigeria.manifest /absolute/path/to/data
+```
+
+This writes a portable manifest whose `DATA_ROOT` resolves relative to its own location, so
+the data dir can be `tar`'d / `rsync`'d / moved anywhere without breaking.
 
 ## Quick start
 
