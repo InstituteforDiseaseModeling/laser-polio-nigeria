@@ -74,17 +74,28 @@ def load_manifest():
         loaded = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(loaded)
 
-        # Promote only the known names (DATA_ROOT + EXPECTED_DATA_FILES variables).
-        # Tolerate str-typed paths (common in hand-written manifests) by coercing to Path.
+        # First pass: resolve DATA_ROOT. Strings — common in hand-written
+        # manifests — resolve relative to the manifest's directory, not CWD.
+        manifest_dir = manifest_path.parent.resolve()
+        if hasattr(loaded, "DATA_ROOT"):
+            raw = loaded.DATA_ROOT
+            if isinstance(raw, Path):
+                data_root = raw if raw.is_absolute() else (manifest_dir / raw).resolve()
+            elif isinstance(raw, str):
+                data_root = (manifest_dir / raw).resolve()
+            mod.DATA_ROOT = data_root
+
+        # Second pass: promote known variables, coercing string paths against
+        # the now-resolved DATA_ROOT so a manifest like `population = 'pop.csv'`
+        # is interpreted as DATA_ROOT/pop.csv rather than CWD/pop.csv.
         expected_vars = set(EXPECTED_DATA_FILES.values())
         for attr, value in vars(loaded).items():
-            if attr.startswith("_") or not isinstance(value, (Path, str)):
+            if attr.startswith("_") or attr == "DATA_ROOT" or attr not in expected_vars:
                 continue
-            if attr == "DATA_ROOT":
-                data_root = Path(value)
-                mod.DATA_ROOT = data_root
-            elif attr in expected_vars:
-                setattr(mod, attr, Path(value))
+            if isinstance(value, Path):
+                setattr(mod, attr, value)
+            elif isinstance(value, str):
+                setattr(mod, attr, (data_root / value).resolve())
 
     missing = []
     for filename, var_name in EXPECTED_DATA_FILES.items():

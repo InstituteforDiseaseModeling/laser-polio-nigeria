@@ -150,6 +150,59 @@ def test_load_coerces_string_variable_paths(tmp_path, monkeypatch):
     assert mod.population == tmp_path / "compiled_cbr_pop_ri_sia_underwt_africa.csv"
 
 
+def test_load_resolves_relative_string_data_root(tmp_path, monkeypatch):
+    """A relative-string DATA_ROOT resolves against the manifest's directory,
+    not against CWD."""
+    nested = tmp_path / "nested"
+    _populate_data_files(nested)
+    (nested / "manifest.py").write_text("DATA_ROOT = '.'\n")
+
+    monkeypatch.setenv("LASER_POLIO_DATA", str(nested))
+    monkeypatch.chdir(tmp_path)  # CWD deliberately != nested
+
+    mod = load_manifest()
+
+    assert mod.DATA_ROOT == nested
+    assert mod.population == nested / "compiled_cbr_pop_ri_sia_underwt_africa.csv"
+
+
+def test_load_resolves_relative_string_variable_path(tmp_path, monkeypatch):
+    """A relative-string variable resolves against DATA_ROOT, not against CWD."""
+    _populate_data_files(tmp_path)
+    (tmp_path / "manifest.py").write_text(
+        f"from pathlib import Path\n"
+        f"DATA_ROOT = Path({str(tmp_path)!r})\n"
+        f"population = 'compiled_cbr_pop_ri_sia_underwt_africa.csv'\n"
+    )
+
+    monkeypatch.setenv("LASER_POLIO_DATA", str(tmp_path))
+    monkeypatch.chdir(tmp_path.parent)  # CWD != DATA_ROOT
+
+    mod = load_manifest()
+
+    assert mod.population == tmp_path / "compiled_cbr_pop_ri_sia_underwt_africa.csv"
+
+
+def test_load_processes_data_root_before_variable_bindings(tmp_path, monkeypatch):
+    """If DATA_ROOT is declared *after* a variable in source order, the variable
+    must still resolve against the correct DATA_ROOT (the manifest's, not the
+    fallback)."""
+    nested = tmp_path / "nested"
+    _populate_data_files(nested)
+    (nested / "manifest.py").write_text(
+        # population declared FIRST, DATA_ROOT after — pure-string form.
+        "population = 'compiled_cbr_pop_ri_sia_underwt_africa.csv'\n"
+        "DATA_ROOT = '.'\n"
+    )
+
+    monkeypatch.setenv("LASER_POLIO_DATA", str(nested))
+    monkeypatch.chdir(tmp_path)
+
+    mod = load_manifest()
+
+    assert mod.population == nested / "compiled_cbr_pop_ri_sia_underwt_africa.csv"
+
+
 def test_load_validates_rich_manifest_paths_exist(tmp_path, monkeypatch):
     """A rich manifest must not silently hand the model paths to missing files."""
     monkeypatch.setenv("LASER_POLIO_DATA", str(tmp_path))
