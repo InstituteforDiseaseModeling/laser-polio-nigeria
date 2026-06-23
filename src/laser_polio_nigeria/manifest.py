@@ -138,6 +138,12 @@ def load_manifest():
 
     if missing:
         bullet_list = "\n".join(f"  - {f}" for f in missing)
+        env_var_set = bool(os.environ.get("LASER_POLIO_DATA"))
+        location_caveat = (
+            "(from LASER_POLIO_DATA)"
+            if env_var_set
+            else "(set LASER_POLIO_DATA to override)"
+        )
         hint = ""
         if (
             manifest_data_root_hint is not None
@@ -152,7 +158,7 @@ def load_manifest():
         raise MissingDataError(
             f"\nLASER Polio (Nigeria) data not found.\n\n"
             f"Looked in: {data_root}\n"
-            f"(set LASER_POLIO_DATA to override)\n\n"
+            f"{location_caveat}\n\n"
             f"The following required files are missing:\n"
             f"{bullet_list}\n"
             f"{hint}\n"

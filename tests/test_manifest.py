@@ -268,6 +268,35 @@ def test_load_error_message_surfaces_both_paths_when_they_disagree(tmp_path, mon
     assert "LASER_POLIO_DATA wins" in msg
 
 
+def test_error_message_says_from_env_var_when_env_var_set(tmp_path, monkeypatch):
+    """When LASER_POLIO_DATA is set, the missing-data error must NOT tell the
+    user to 'set LASER_POLIO_DATA to override' — they already did. It should
+    acknowledge the source ('from LASER_POLIO_DATA') so the user knows the
+    loader is honoring their env var."""
+    monkeypatch.setenv("LASER_POLIO_DATA", str(tmp_path))
+
+    with pytest.raises(MissingDataError) as exc:
+        load_manifest()
+
+    msg = str(exc.value)
+    assert "(from LASER_POLIO_DATA)" in msg
+    assert "(set LASER_POLIO_DATA to override)" not in msg
+
+
+def test_error_message_says_set_env_var_when_unset(tmp_path, monkeypatch):
+    """When LASER_POLIO_DATA is NOT set and the loader falls back to CWD, the
+    error must hint that the user can set the env var to point elsewhere."""
+    monkeypatch.delenv("LASER_POLIO_DATA", raising=False)
+    monkeypatch.chdir(tmp_path)  # CWD becomes the unconfigured fallback root
+
+    with pytest.raises(MissingDataError) as exc:
+        load_manifest()
+
+    msg = str(exc.value)
+    assert "(set LASER_POLIO_DATA to override)" in msg
+    assert "(from LASER_POLIO_DATA)" not in msg
+
+
 def test_cli_writes_manifest(tmp_path, capsys):
     _populate_data_files(tmp_path)
     _cli([str(tmp_path)])
