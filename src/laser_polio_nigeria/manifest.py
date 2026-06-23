@@ -118,7 +118,9 @@ def load_manifest():
             if attr.startswith("_") or attr == "DATA_ROOT" or attr not in expected_vars:
                 continue
             if isinstance(value, Path):
-                manifest_bindings[attr] = value
+                manifest_bindings[attr] = (
+                    value if value.is_absolute() else (bind_root / value).resolve()
+                )
             elif isinstance(value, str):
                 manifest_bindings[attr] = (bind_root / value).resolve()
 
