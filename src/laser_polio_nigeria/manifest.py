@@ -60,15 +60,19 @@ EXPECTED_DATA_FILES = {
 def load_manifest():
     """Return a namespace with paths to every data file this model needs.
 
-    Resolution strategy, in order:
-      1. Run ``manifest.py`` from the data root if present, promoting any
-         Path-valued attributes it defines. Supports both rich (old-style)
-         manifests that bind every variable and thin (new-style) manifests
-         that only set DATA_ROOT.
-      2. For every EXPECTED_DATA_FILES entry not already supplied, resolve
-         ``<DATA_ROOT>/<filename>`` directly from the data root.
-      3. If any expected file is still missing, raise MissingDataError with a
-         clear recovery path.
+    Resolution rules:
+      * ``LASER_POLIO_DATA`` (the env var; CWD if unset) is **authoritative**
+        — it's where the user said the data lives, and the loader honors that.
+      * If ``manifest.py`` exists in that directory, its variable bindings
+        are used as overrides — but only when the file each one points at
+        actually exists. A manifest whose hardcoded ``DATA_ROOT`` no longer
+        matches reality (e.g., the dir was moved or copied elsewhere) is
+        treated as informational, not authoritative.
+      * For any expected variable not supplied by a working manifest
+        binding, ``<LASER_POLIO_DATA>/<filename>`` is resolved directly.
+      * If, after both passes, a required file is still missing, raise
+        MissingDataError listing what's missing and reporting the
+        ``LASER_POLIO_DATA`` location.
     """
     data_root = get_data_root()
     manifest_path = data_root / "manifest.py"
@@ -76,6 +80,13 @@ def load_manifest():
     mod = types.SimpleNamespace()
     mod.DATA_ROOT = data_root
 
+    # First (optional) pass: gather any usable bindings the manifest provides.
+    # We deliberately do NOT let the manifest override `data_root` — the env
+    # var wins. The manifest's variable bindings are kept only when the file
+    # they point at actually exists; otherwise we ignore them and synthesize
+    # against `data_root` below.
+    manifest_data_root_hint = None
+    manifest_bindings = {}
     if manifest_path.exists():
         spec = importlib.util.spec_from_file_location(
             "laser_polio_nigeria_user_manifest", manifest_path
@@ -88,54 +99,63 @@ def load_manifest():
         loaded = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(loaded)
 
-        # First pass: resolve DATA_ROOT. Strings — common in hand-written
-        # manifests — resolve relative to the manifest's directory, not CWD.
         manifest_dir = manifest_path.parent.resolve()
         if hasattr(loaded, "DATA_ROOT"):
             raw = loaded.DATA_ROOT
             if isinstance(raw, Path):
-                data_root = raw if raw.is_absolute() else (manifest_dir / raw).resolve()
+                manifest_data_root_hint = (
+                    raw if raw.is_absolute() else (manifest_dir / raw).resolve()
+                )
             elif isinstance(raw, str):
-                data_root = (manifest_dir / raw).resolve()
-            mod.DATA_ROOT = data_root
+                manifest_data_root_hint = (manifest_dir / raw).resolve()
 
-        # Second pass: promote known variables, coercing string paths against
-        # the now-resolved DATA_ROOT so a manifest like `population = 'pop.csv'`
-        # is interpreted as DATA_ROOT/pop.csv rather than CWD/pop.csv.
+        # Manifest variables: paths declared on attributes whose names match
+        # EXPECTED_DATA_FILES. String paths resolve against the manifest's own
+        # DATA_ROOT hint (or against `data_root` if it had none).
+        bind_root = manifest_data_root_hint or data_root
         expected_vars = set(EXPECTED_DATA_FILES.values())
         for attr, value in vars(loaded).items():
             if attr.startswith("_") or attr == "DATA_ROOT" or attr not in expected_vars:
                 continue
             if isinstance(value, Path):
-                setattr(mod, attr, value)
+                manifest_bindings[attr] = value
             elif isinstance(value, str):
-                setattr(mod, attr, (data_root / value).resolve())
+                manifest_bindings[attr] = (bind_root / value).resolve()
 
+    # Resolve each expected file. Prefer a manifest binding when it points at
+    # an existing file; otherwise look for the file in LASER_POLIO_DATA.
     missing = []
     for filename, var_name in EXPECTED_DATA_FILES.items():
-        if hasattr(mod, var_name):
-            # Rich manifest supplied this variable — verify the file exists, so we
-            # don't silently hand the model a path to a missing file.
-            bound = getattr(mod, var_name)
-            if not bound.exists():
-                missing.append(
-                    f"{filename} (manifest binds {var_name!r} to {bound}, which does not exist)"
-                )
+        bound = manifest_bindings.get(var_name)
+        if bound is not None and bound.exists():
+            setattr(mod, var_name, bound)
             continue
         candidate = data_root / filename
-        if not candidate.exists():
-            missing.append(filename)
+        if candidate.exists():
+            setattr(mod, var_name, candidate)
             continue
-        setattr(mod, var_name, candidate)
+        missing.append(filename)
 
     if missing:
         bullet_list = "\n".join(f"  - {f}" for f in missing)
+        hint = ""
+        if (
+            manifest_data_root_hint is not None
+            and manifest_data_root_hint != data_root
+        ):
+            hint = (
+                f"\nNote: {manifest_path} declares DATA_ROOT={manifest_data_root_hint},\n"
+                f"but LASER_POLIO_DATA pointed at {data_root}, so LASER_POLIO_DATA wins.\n"
+                f"If you actually want to use the manifest's location, set\n"
+                f"  export LASER_POLIO_DATA={manifest_data_root_hint}\n"
+            )
         raise MissingDataError(
             f"\nLASER Polio (Nigeria) data not found.\n\n"
             f"Looked in: {data_root}\n"
             f"(set LASER_POLIO_DATA to override)\n\n"
             f"The following required files are missing:\n"
-            f"{bullet_list}\n\n"
+            f"{bullet_list}\n"
+            f"{hint}\n"
             f"Either drop those files into {data_root}, or — if you have the\n"
             f"nigeria_polio package installed — run:\n"
             f"    python -m nigeria_polio.bootstrap --target {data_root}\n"

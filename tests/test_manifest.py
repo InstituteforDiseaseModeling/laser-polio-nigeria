@@ -203,8 +203,10 @@ def test_load_processes_data_root_before_variable_bindings(tmp_path, monkeypatch
     assert mod.population == nested / "compiled_cbr_pop_ri_sia_underwt_africa.csv"
 
 
-def test_load_validates_rich_manifest_paths_exist(tmp_path, monkeypatch):
-    """A rich manifest must not silently hand the model paths to missing files."""
+def test_load_falls_through_to_env_root_when_manifest_binding_is_stale(tmp_path, monkeypatch):
+    """If a manifest binding points at a missing file but LASER_POLIO_DATA has the
+    file under its default name, the loader uses the env-root version. The
+    manifest is informational; LASER_POLIO_DATA is authoritative."""
     monkeypatch.setenv("LASER_POLIO_DATA", str(tmp_path))
     _populate_data_files(tmp_path)
     (tmp_path / "manifest.py").write_text(
@@ -213,11 +215,57 @@ def test_load_validates_rich_manifest_paths_exist(tmp_path, monkeypatch):
         f"population = DATA_ROOT / 'i-do-not-exist.csv'\n"
     )
 
+    mod = load_manifest()
+
+    # Manifest binding was unusable; loader fell through to <LASER_POLIO_DATA>/<filename>.
+    assert mod.population == tmp_path / "compiled_cbr_pop_ri_sia_underwt_africa.csv"
+
+
+def test_load_ignores_manifest_data_root_override(tmp_path, monkeypatch):
+    """A manifest with a hardcoded DATA_ROOT pointing somewhere other than
+    LASER_POLIO_DATA must NOT cause the loader to look at that other location.
+    The env var is the user's stated intent — the manifest is just a hint."""
+    env_root = tmp_path / "env_root"
+    _populate_data_files(env_root)
+    stale_root = tmp_path / "stale_root_with_no_files"
+    stale_root.mkdir()
+
+    (env_root / "manifest.py").write_text(
+        f"from pathlib import Path\n"
+        f"DATA_ROOT = Path({str(stale_root)!r})\n"
+    )
+
+    monkeypatch.setenv("LASER_POLIO_DATA", str(env_root))
+
+    mod = load_manifest()
+
+    assert mod.DATA_ROOT == env_root
+    assert mod.population == env_root / "compiled_cbr_pop_ri_sia_underwt_africa.csv"
+
+
+def test_load_error_message_surfaces_both_paths_when_they_disagree(tmp_path, monkeypatch):
+    """If files are genuinely missing AND the manifest's DATA_ROOT disagrees with
+    LASER_POLIO_DATA, the error message must mention both so the user isn't
+    misdirected to fix the wrong location."""
+    env_root = tmp_path / "env_root_empty"
+    env_root.mkdir()
+    stale_root = tmp_path / "the_old_dir"
+    stale_root.mkdir()
+
+    (env_root / "manifest.py").write_text(
+        f"from pathlib import Path\n"
+        f"DATA_ROOT = Path({str(stale_root)!r})\n"
+    )
+
+    monkeypatch.setenv("LASER_POLIO_DATA", str(env_root))
+
     with pytest.raises(MissingDataError) as exc:
         load_manifest()
 
-    assert "population" in str(exc.value)
-    assert "i-do-not-exist.csv" in str(exc.value)
+    msg = str(exc.value)
+    assert str(env_root) in msg
+    assert str(stale_root) in msg
+    assert "LASER_POLIO_DATA wins" in msg
 
 
 def test_cli_writes_manifest(tmp_path, capsys):
