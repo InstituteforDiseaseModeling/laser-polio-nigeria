@@ -118,6 +118,55 @@ def test_write_manifest_refuses_when_files_missing(tmp_path):
     assert not (tmp_path / "manifest.py").exists()
 
 
+def test_load_coerces_string_data_root(tmp_path, monkeypatch):
+    """A rich manifest that declares DATA_ROOT as a string (common in hand-written
+    manifests) must work, not crash with a TypeError when the loader tries to do
+    Path arithmetic."""
+    monkeypatch.setenv("LASER_POLIO_DATA", str(tmp_path))
+    _populate_data_files(tmp_path)
+    (tmp_path / "manifest.py").write_text(
+        f"DATA_ROOT = {str(tmp_path)!r}\n"
+    )
+
+    mod = load_manifest()
+
+    assert mod.DATA_ROOT == tmp_path
+    assert mod.population == tmp_path / "compiled_cbr_pop_ri_sia_underwt_africa.csv"
+
+
+def test_load_coerces_string_variable_paths(tmp_path, monkeypatch):
+    """A manifest that binds a known variable to a str path must coerce to Path."""
+    monkeypatch.setenv("LASER_POLIO_DATA", str(tmp_path))
+    _populate_data_files(tmp_path)
+    (tmp_path / "manifest.py").write_text(
+        f"from pathlib import Path\n"
+        f"DATA_ROOT = Path({str(tmp_path)!r})\n"
+        f"population = {str(tmp_path / 'compiled_cbr_pop_ri_sia_underwt_africa.csv')!r}\n"
+    )
+
+    mod = load_manifest()
+
+    assert isinstance(mod.population, Path)
+    assert mod.population == tmp_path / "compiled_cbr_pop_ri_sia_underwt_africa.csv"
+
+
+def test_load_validates_rich_manifest_paths_exist(tmp_path, monkeypatch):
+    """A rich manifest must not silently hand the model paths to missing files."""
+    monkeypatch.setenv("LASER_POLIO_DATA", str(tmp_path))
+    _populate_data_files(tmp_path)
+    (tmp_path / "manifest.py").write_text(
+        f"from pathlib import Path\n"
+        f"DATA_ROOT = Path(__file__).resolve().parent\n"
+        f"population = DATA_ROOT / 'i-do-not-exist.csv'\n"
+    )
+
+    with pytest.raises(MissingDataError) as exc:
+        load_manifest()
+
+    assert "population" in str(exc.value)
+    assert "i-do-not-exist.csv" in str(exc.value)
+
+
 def test_cli_writes_manifest(tmp_path, capsys):
     _populate_data_files(tmp_path)
     _cli([str(tmp_path)])

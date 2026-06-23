@@ -66,17 +66,36 @@ def load_manifest():
         spec = importlib.util.spec_from_file_location(
             "laser_polio_nigeria_user_manifest", manifest_path
         )
+        if spec is None or spec.loader is None:
+            raise MissingDataError(
+                f"Could not interpret {manifest_path} as a Python module. "
+                "Check that it is a valid .py file."
+            )
         loaded = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(loaded)
+
+        # Promote only the known names (DATA_ROOT + EXPECTED_DATA_FILES variables).
+        # Tolerate str-typed paths (common in hand-written manifests) by coercing to Path.
+        expected_vars = set(EXPECTED_DATA_FILES.values())
         for attr, value in vars(loaded).items():
-            if not attr.startswith("_") and isinstance(value, Path):
-                setattr(mod, attr, value)
-        if hasattr(loaded, "DATA_ROOT"):
-            data_root = loaded.DATA_ROOT
+            if attr.startswith("_") or not isinstance(value, (Path, str)):
+                continue
+            if attr == "DATA_ROOT":
+                data_root = Path(value)
+                mod.DATA_ROOT = data_root
+            elif attr in expected_vars:
+                setattr(mod, attr, Path(value))
 
     missing = []
     for filename, var_name in EXPECTED_DATA_FILES.items():
         if hasattr(mod, var_name):
+            # Rich manifest supplied this variable — verify the file exists, so we
+            # don't silently hand the model a path to a missing file.
+            bound = getattr(mod, var_name)
+            if not bound.exists():
+                missing.append(
+                    f"{filename} (manifest binds {var_name!r} to {bound}, which does not exist)"
+                )
             continue
         candidate = data_root / filename
         if not candidate.exists():
