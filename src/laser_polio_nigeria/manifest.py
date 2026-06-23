@@ -13,10 +13,24 @@ exec a ``manifest.py``. This module adds the three-path resolution
 shareable manifest from any compliant data dir.
 """
 import importlib.util
+import os
 import types
 from pathlib import Path
 
-from laser_polio.manifest_loader import MissingDataError, get_data_root
+
+class MissingDataError(RuntimeError):
+    """Raised when the Nigeria data root is absent, incomplete, or unreadable."""
+
+
+def get_data_root() -> Path:
+    """Return the directory the loader should look in for Nigeria data files.
+
+    Reads ``LASER_POLIO_DATA``; falls back to the current working directory.
+    Defined locally so this module has no runtime dependency on laser_polio —
+    a user with a naked data dir can run the manifest tooling without any
+    other LASER packages installed.
+    """
+    return Path(os.environ.get("LASER_POLIO_DATA", Path.cwd())).resolve()
 
 __all__ = [
     "EXPECTED_DATA_FILES",

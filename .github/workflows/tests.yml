@@ -22,12 +22,12 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: pip
 
-      - name: Install minimal deps
-        # Just enough to import laser_polio_nigeria.manifest. We deliberately do
-        # NOT install lpn's full dependency tree here (no `pip install -e .`),
-        # because the broader test suite needs nigeria_polio_data hydrated and
-        # this workflow is scoped only to tests/test_manifest.py.
-        run: python -m pip install --upgrade 'laser-polio>=0.3.0' 'pytest>=8'
+      - name: Install pytest
+        # laser_polio_nigeria.manifest is intentionally self-contained — it has
+        # no runtime dependency on laser_polio, so a user with just a folder of
+        # data files can use it without any other LASER package installed. We
+        # only need pytest here.
+        run: python -m pip install --upgrade 'pytest>=8'
 
       - name: Run manifest tests
         run: PYTHONPATH=src python -m pytest tests/test_manifest.py -v
