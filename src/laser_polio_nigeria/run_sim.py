@@ -10,7 +10,7 @@ import geopandas as gpd
 
 import laser_polio as lp
 from laser_polio.run_sim import run_sim
-from laser_polio.manifest_loader import load_manifest
+from laser_polio_nigeria.manifest import load_manifest
 
 
 def build_nigeria_inputs( configs, verbose ):
