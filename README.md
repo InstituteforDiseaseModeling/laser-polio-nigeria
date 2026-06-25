@@ -211,6 +211,9 @@ python -m laser_polio_nigeria.manifest /absolute/path/to/data
 That writes a portable manifest whose `DATA_ROOT` resolves relative to its own location,
 so the directory can be `tar`'d / `rsync`'d / moved anywhere without breaking.
 
+The command refuses to overwrite an existing `manifest.py` so you don't accidentally
+clobber custom user bindings; pass `--force` if you really do want to replace it.
+
 ## Quick start
 
 ```python

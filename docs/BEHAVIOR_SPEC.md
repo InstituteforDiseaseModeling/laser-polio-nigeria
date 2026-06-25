@@ -40,6 +40,24 @@ Citations use `path:line` form where helpful. All paths are relative to the repo
   (`src/laser_polio_nigeria/manifest.py`, `tests/test_manifest.py`)
 - `LASER_POLIO_DATA` is authoritative — a manifest with a hardcoded `DATA_ROOT` pointing
   elsewhere does **not** redirect the loader. (`tests/test_manifest.py::test_load_ignores_manifest_data_root_override`)
+- The loader validates that the data root exists and is a directory before any other check;
+  a typo'd `LASER_POLIO_DATA` or a file passed in its place fails fast with a precise
+  message rather than cascading into "all 8 files are missing."
+  (`tests/test_manifest.py::test_load_manifest_rejects_nonexistent_data_root`,
+  `::test_load_manifest_rejects_file_as_data_root`)
+- A user-supplied `manifest.py` is **executed as Python** at load time. Failures during
+  execution (SyntaxError, ImportError, anything raised at module level) are caught and
+  re-raised as `MissingDataError` with the underlying exception chained via
+  `__cause__`, so the user sees the manifest's path and the original error in one place.
+  Trust implication: only point `LASER_POLIO_DATA` at directories from sources you trust,
+  the same way you'd only `pip install` packages from a trusted index. Deleting an
+  untrusted bundle's `manifest.py` forces filename-based binding and runs no code from
+  the bundle. (`tests/test_manifest.py::test_load_manifest_wraps_exec_errors_in_missing_data_error`)
+- `write_manifest(data_root)` (and the `python -m laser_polio_nigeria.manifest` CLI) refuses
+  to overwrite an existing `manifest.py` to protect user-maintained overrides; pass
+  `force=True` (or `--force` on the CLI) to overwrite knowingly.
+  (`tests/test_manifest.py::test_write_manifest_refuses_to_overwrite_existing_manifest`,
+  `::test_cli_force_flag_overwrites`)
 
 ---
 
