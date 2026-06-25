@@ -66,9 +66,25 @@ loader takes care of resolving where the file actually lives on disk.
 The loader (`laser_polio_nigeria.manifest.load_manifest`) builds that manifest by
 inspecting whatever directory the `LASER_POLIO_DATA` environment variable points at. It
 can build a manifest from a generated `manifest.py` *or* directly from a directory of
-correctly-named files — whichever you have. The set of filenames the loader expects is
-defined in `EXPECTED_DATA_FILES` in
-[`src/laser_polio_nigeria/manifest.py`](src/laser_polio_nigeria/manifest.py).
+correctly-named files — whichever you have.
+
+### Required files
+
+Eight files are expected in the data directory. The authoritative list lives in
+`EXPECTED_DATA_FILES` in
+[`src/laser_polio_nigeria/manifest.py`](src/laser_polio_nigeria/manifest.py); the table
+below summarizes it for convenience.
+
+| Variable | Filename | Purpose |
+|---|---|---|
+| `manifest.adjacency` | `adm01_adjacency.npz` | ADM1 adjacency graph |
+| `manifest.age_pyramid` | `Nigeria_age_pyramid_2024.csv` | Nigeria age structure |
+| `manifest.node_lookup` | `node_lookup.json` | Node metadata |
+| `manifest.population` | `compiled_cbr_pop_ri_sia_underwt_africa.csv` | Combined demographic and vaccination dataset |
+| `manifest.shapefile` | `shp_africa_low_res.gpkg` | Simplified Africa administrative boundaries |
+| `manifest.sia_future` | `sia_scenario_1.csv` | Prospective SIA schedule |
+| `manifest.sia_historic` | `sia_historic_schedule.csv` | Historical SIA schedules |
+| `manifest.init_immunity` | `init_immunity_0.5coverage_january.h5` | Initial immunity at 0.5 coverage (default scenario) |
 
 ### How to get the files
 
