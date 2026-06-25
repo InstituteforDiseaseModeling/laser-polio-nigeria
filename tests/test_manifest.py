@@ -346,6 +346,65 @@ def test_cli_force_flag_overwrites(tmp_path, capsys):
     assert "old content" not in (tmp_path / "manifest.py").read_text()
 
 
+def test_write_manifest_rejects_nonexistent_path(tmp_path):
+    """A typo'd path shouldn't surface as 'all 8 files are missing' — the
+    actual problem is that the directory itself doesn't exist."""
+    bogus = tmp_path / "this_path_does_not_exist"
+
+    with pytest.raises(MissingDataError) as exc:
+        write_manifest(bogus)
+
+    msg = str(exc.value)
+    assert "does not exist" in msg
+    assert str(bogus) in msg
+    # The misleading "missing required files" message must NOT appear.
+    assert "missing required files" not in msg
+
+
+def test_write_manifest_rejects_file_path(tmp_path):
+    """If the user points write_manifest at a file (instead of a dir), say so
+    plainly rather than falling through to the missing-files check."""
+    bogus = tmp_path / "i_am_a_file.txt"
+    bogus.write_bytes(b"")
+
+    with pytest.raises(MissingDataError) as exc:
+        write_manifest(bogus)
+
+    msg = str(exc.value)
+    assert "is a file" in msg
+    assert str(bogus) in msg
+
+
+def test_load_manifest_rejects_nonexistent_data_root(tmp_path, monkeypatch):
+    """Typo'd LASER_POLIO_DATA surfaces as 'directory not found', not a wall of
+    'missing files'."""
+    bogus = tmp_path / "does_not_exist"
+    monkeypatch.setenv("LASER_POLIO_DATA", str(bogus))
+
+    with pytest.raises(MissingDataError) as exc:
+        load_manifest()
+
+    msg = str(exc.value)
+    assert "directory not found" in msg
+    assert "does not exist" in msg
+    assert str(bogus) in msg
+
+
+def test_load_manifest_rejects_file_as_data_root(tmp_path, monkeypatch):
+    """Same defensive check when LASER_POLIO_DATA points at a file instead of
+    a directory."""
+    bogus = tmp_path / "a_file.txt"
+    bogus.write_bytes(b"")
+    monkeypatch.setenv("LASER_POLIO_DATA", str(bogus))
+
+    with pytest.raises(MissingDataError) as exc:
+        load_manifest()
+
+    msg = str(exc.value)
+    assert "is a file" in msg
+    assert str(bogus) in msg
+
+
 def test_load_manifest_wraps_exec_errors_in_missing_data_error(tmp_path, monkeypatch):
     """A manifest.py with a SyntaxError shouldn't bubble up an opaque exception
     from importlib — load_manifest must re-raise as MissingDataError with the

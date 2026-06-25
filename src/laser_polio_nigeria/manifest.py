@@ -75,6 +75,21 @@ def load_manifest():
         ``LASER_POLIO_DATA`` location.
     """
     data_root = get_data_root()
+    if not data_root.is_dir():
+        # Surface the actual problem (typo'd LASER_POLIO_DATA, file instead of
+        # dir) rather than letting it cascade into "all 8 files are missing",
+        # which is true but unhelpful.
+        env_var_set = bool(os.environ.get("LASER_POLIO_DATA"))
+        source = (
+            "LASER_POLIO_DATA points at" if env_var_set else "Falling back to CWD —"
+        )
+        kind = "a file" if data_root.exists() else "a path that does not exist"
+        raise MissingDataError(
+            f"LASER Polio (Nigeria) data directory not found.\n"
+            f"{source} {data_root}, which is {kind}, not a directory.\n"
+            "Point LASER_POLIO_DATA at an existing data directory."
+        )
+
     manifest_path = data_root / "manifest.py"
 
     mod = types.SimpleNamespace()
@@ -199,6 +214,12 @@ def write_manifest(data_root: Path, *, force: bool = False) -> Path:
     requiring ``nigeria_polio`` installed on the recipient side.
     """
     data_root = data_root.resolve()
+    if not data_root.is_dir():
+        kind = "is a file" if data_root.exists() else "does not exist"
+        raise MissingDataError(
+            f"Cannot write manifest.py — {data_root} {kind}. "
+            "Pass an existing data directory."
+        )
     missing = [f for f in EXPECTED_DATA_FILES if not (data_root / f).exists()]
     if missing:
         raise MissingDataError(
