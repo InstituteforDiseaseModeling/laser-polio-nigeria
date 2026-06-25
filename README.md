@@ -188,6 +188,12 @@ installing `nigeria-polio` or setting up Artifactory credentials. The only requi
 that the file names match what the loader expects (see `EXPECTED_DATA_FILES` in
 [`src/laser_polio_nigeria/manifest.py`](src/laser_polio_nigeria/manifest.py)).
 
+> **Trust note.** If the bundle includes a `manifest.py`, the loader executes it as
+> Python code at load time. Only use bundles from sources you trust, the same way you'd
+> only `pip install` packages from a trusted index. If you've received a data dir from an
+> untrusted source and want to use it anyway, delete its `manifest.py` first — the loader
+> will fall back to filename-based binding and won't execute any code from the bundle.
+
 Drop the files in any directory and point `LASER_POLIO_DATA` at it:
 
 ```bash

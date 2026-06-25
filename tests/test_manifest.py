@@ -304,3 +304,62 @@ def test_cli_writes_manifest(tmp_path, capsys):
     assert (tmp_path / "manifest.py").exists()
     captured = capsys.readouterr()
     assert "manifest.py" in captured.out
+
+
+def test_write_manifest_refuses_to_overwrite_existing_manifest(tmp_path):
+    """A user-maintained manifest may contain custom overrides; clobbering it
+    silently would risk data loss. write_manifest must refuse by default."""
+    _populate_data_files(tmp_path)
+    original = "# I am a hand-maintained manifest with custom logic\n"
+    (tmp_path / "manifest.py").write_text(original)
+
+    with pytest.raises(MissingDataError, match="already exists"):
+        write_manifest(tmp_path)
+
+    # The existing manifest must not have been touched.
+    assert (tmp_path / "manifest.py").read_text() == original
+
+
+def test_write_manifest_force_true_overwrites_existing(tmp_path):
+    """force=True lets the caller knowingly replace an existing manifest."""
+    _populate_data_files(tmp_path)
+    (tmp_path / "manifest.py").write_text("# old content\n")
+
+    target = write_manifest(tmp_path, force=True)
+
+    assert target == tmp_path / "manifest.py"
+    assert "old content" not in target.read_text()
+    assert "Auto-generated" in target.read_text()
+
+
+def test_cli_force_flag_overwrites(tmp_path, capsys):
+    """The CLI exposes the force protection via --force."""
+    _populate_data_files(tmp_path)
+    (tmp_path / "manifest.py").write_text("# old content\n")
+
+    # Without --force, the CLI surfaces the MissingDataError.
+    with pytest.raises(MissingDataError, match="already exists"):
+        _cli([str(tmp_path)])
+
+    # With --force, the manifest is replaced.
+    _cli([str(tmp_path), "--force"])
+    assert "old content" not in (tmp_path / "manifest.py").read_text()
+
+
+def test_load_manifest_wraps_exec_errors_in_missing_data_error(tmp_path, monkeypatch):
+    """A manifest.py with a SyntaxError shouldn't bubble up an opaque exception
+    from importlib — load_manifest must re-raise as MissingDataError with the
+    underlying cause chained for context."""
+    monkeypatch.setenv("LASER_POLIO_DATA", str(tmp_path))
+    _populate_data_files(tmp_path)
+    (tmp_path / "manifest.py").write_text("this is not valid python (((\n")
+
+    with pytest.raises(MissingDataError) as exc:
+        load_manifest()
+
+    msg = str(exc.value)
+    assert "Failed to execute" in msg
+    assert "manifest.py" in msg
+    # The original exception is chained so a debugger / __cause__ inspection
+    # still reaches it.
+    assert exc.value.__cause__ is not None
