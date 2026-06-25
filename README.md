@@ -55,16 +55,56 @@ resolves cleanly without needing the IDM extra-index-url.
 
 ## Data setup
 
-The simulation and calibration code reads data via a `manifest.py` file whose location is
-set by the `LASER_POLIO_DATA` environment variable. Two data packages are available:
+### Why a manifest?
 
-Create a `.env` file in the repo root (gitignored) with:
+lpn needs several datasets to run — shapefiles, age pyramids, immunity estimates, SIA
+schedules, and others. Rather than make every script remember file names and paths, lpn
+exposes them through a **manifest**: a small object that maps a friendly name to each
+file's path. Your code just says `manifest.age_pyramid` or `manifest.population`, and the
+loader takes care of resolving where the file actually lives on disk.
+
+The loader (`laser_polio_nigeria.manifest.load_manifest`) builds that manifest by
+inspecting whatever directory the `LASER_POLIO_DATA` environment variable points at. It
+can build a manifest from a generated `manifest.py` *or* directly from a directory of
+correctly-named files — whichever you have.
+
+### Required files
+
+Eight files are expected in the data directory. The authoritative list lives in
+`EXPECTED_DATA_FILES` in
+[`src/laser_polio_nigeria/manifest.py`](src/laser_polio_nigeria/manifest.py); the table
+below summarizes it for convenience.
+
+| Variable | Filename | Purpose |
+|---|---|---|
+| `manifest.adjacency` | `adm01_adjacency.npz` | ADM1 adjacency graph |
+| `manifest.age_pyramid` | `Nigeria_age_pyramid_2024.csv` | Nigeria age structure |
+| `manifest.node_lookup` | `node_lookup.json` | Node metadata |
+| `manifest.population` | `compiled_cbr_pop_ri_sia_underwt_africa.csv` | Combined demographic and vaccination dataset |
+| `manifest.shapefile` | `shp_africa_low_res.gpkg` | Simplified Africa administrative boundaries |
+| `manifest.sia_future` | `sia_scenario_1.csv` | Prospective SIA schedule |
+| `manifest.sia_historic` | `sia_historic_schedule.csv` | Historical SIA schedules |
+| `manifest.init_immunity` | `init_immunity_0.5coverage_january.h5` | Initial immunity at 0.5 coverage (default scenario) |
+
+### How to get the files
+
+Three options, depending on your access:
+
+| Option | When to use | Auth required |
+|---|---|---|
+| **[Public Zamfara data](#public-zamfara-data-open-access)** | Examples, tests, quick calibration | None |
+| **[Private Nigeria data](#private-nigeria-data-idm-access-required)** | National-scale simulations | IDM Artifactory account |
+| **[Bring your own files](#bring-your-own-files)** | Colleague's tarball, internal share, etc. | None |
+
+Whichever option you pick, point `LASER_POLIO_DATA` at the resulting directory. The
+simplest way is a `.env` file in the repo root (gitignored):
 
 ```
 LASER_POLIO_DATA=/absolute/path/to/repo/data_local/nigeria_polio_data
 ```
 
-Use an absolute path — `~` is not expanded. The package loads `.env` automatically on import, so no per-terminal `export` is needed.
+Use an absolute path — `~` is not expanded. The package loads `.env` automatically on
+import, so no per-terminal `export` is needed.
 
 ### Public Zamfara data (open access)
 
@@ -139,6 +179,40 @@ python -m nigeria_polio --target data_local/nigeria_polio_data
 
 # Then update LASER_POLIO_DATA in your .env to point here.
 ```
+
+### Bring your own files
+
+If you already have the data files from somewhere other than the `nigeria-polio` wheel —
+a colleague's tarball, an internal share, a USB drive — you can use them directly without
+installing `nigeria-polio` or setting up Artifactory credentials. The only requirement is
+that the file names match what the loader expects (see `EXPECTED_DATA_FILES` in
+[`src/laser_polio_nigeria/manifest.py`](src/laser_polio_nigeria/manifest.py)).
+
+> **Trust note.** If the bundle includes a `manifest.py`, the loader executes it as
+> Python code at load time. Only use bundles from sources you trust, the same way you'd
+> only `pip install` packages from a trusted index. If you've received a data dir from an
+> untrusted source and want to use it anyway, delete its `manifest.py` first — the loader
+> will fall back to filename-based binding and won't execute any code from the bundle.
+
+Drop the files in any directory and point `LASER_POLIO_DATA` at it:
+
+```bash
+# No manifest.py needed — the loader synthesizes the bindings from the filenames.
+LASER_POLIO_DATA=/absolute/path/to/data laser-polio-nigeria-run-sim
+```
+
+If you'd rather have a shareable `manifest.py` written into the directory (useful when
+packaging a tarball for someone else), generate one with:
+
+```bash
+python -m laser_polio_nigeria.manifest /absolute/path/to/data
+```
+
+That writes a portable manifest whose `DATA_ROOT` resolves relative to its own location,
+so the directory can be `tar`'d / `rsync`'d / moved anywhere without breaking.
+
+The command refuses to overwrite an existing `manifest.py` so you don't accidentally
+clobber custom user bindings; pass `--force` if you really do want to replace it.
 
 ## Quick start
 
