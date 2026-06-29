@@ -14,10 +14,20 @@ __pycache__/
 # Results
 /results
 
+# Docker builds and whls
+/dist
+*.whl
+
 # Local environment (machine-specific paths). Keep .env.example committed.
 .env
 !.env.example
 
+# Docker build credentials — never commit
+.netrc
+
 # Workspace settings (if using an IDE)
 laser.code-workspace
 launch.json
+*settings.json
+/.vscode/settings.json
+/.vscode

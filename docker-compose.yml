@@ -1,0 +1,46 @@
+# Dockerized local calibration with MySQL storage for AKS environment parity.
+# Driven by scripts/calibration/run_calib_local_docker.sh (sets env vars below).
+# Can also be run directly: docker compose up (uses defaults shown).
+#
+# Build the image first: bash build.sh
+
+services:
+
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: optuna_db
+    logging:
+      driver: "none"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      start_period: 20s
+
+  calib_worker:
+    image: laser-polio-nigeria:local
+    platform: linux/amd64
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      STORAGE_URL: "mysql://root@mysql:3306/optuna_db"
+    volumes:
+      - ./config:/app/config:ro
+      - ./results:/app/results
+    command:
+      - --study-name
+      - "${STUDY_NAME:-nigeria_calib}"
+      - --model-config
+      - "${MODEL_CONFIG:-nigeria_7y_2017_regions_r0_radk_mmf_ssn_nozi_pim.yaml}"
+      - --calib-config
+      - "${CALIB_CONFIG:-r0_radk_pim.yaml}"
+      - --config-root
+      - /app/config
+      - --n-trials
+      - "${N_TRIALS:-1}"
+      - --n-replicates
+      - "${N_REPLICATES:-1}"

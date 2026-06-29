@@ -13,15 +13,15 @@ ENV HEADLESS=1
 # -----------------------------
 # Build arguments
 # -----------------------------
-ARG CACHE_BREAKER=1
 ARG NIGERIA_VERSION=0.1.0
 
 # -----------------------------
 # Install laser-polio
 # -----------------------------
+ARG LP_VERSION
 RUN pip install --upgrade --pre \
     -i https://packages.idmod.org/api/pypi/pypi-production/simple \
-    -vvv laser-polio[viz]==0.2.46.dev0 \
+    "laser-polio[viz]==${LP_VERSION}" \
     --extra-index-url https://pypi.org/simple
 
 # -----------------------------
@@ -30,20 +30,22 @@ RUN pip install --upgrade --pre \
 COPY .netrc /root/.netrc
 RUN chmod 600 /root/.netrc
 
+ARG CACHE_BREAKER=1
 RUN pip install \
     -i https://packages.idmod.org/api/pypi/idm-pypi-staging/simple \
     nigeria-polio
 
-# Bootstrap data into /app/data (final location)
-RUN python3 -m nigeria_polio.bootstrap --target /app/data
-
-# Also copy data from package (in case bootstrap doesn't get everything)
+# Copy data from package, then run bootstrap last so it always wins on manifest.py.
+# (The wheel bundles a manifest.py with a developer-machine path baked in; bootstrap
+# regenerates it with the correct DATA_ROOT=/app/data for this container.)
 RUN python3 - <<EOF
 import nigeria_polio, shutil, os
 pkg_path = os.path.dirname(nigeria_polio.__file__)
 data_src = os.path.join(pkg_path, "data")
 shutil.copytree(data_src, "/app/data", dirs_exist_ok=True)
 EOF
+
+RUN python3 -m nigeria_polio.bootstrap --target /app/data
 
 # Remove credentials
 RUN rm -f /root/.netrc
@@ -52,12 +54,12 @@ RUN rm -f /root/.netrc
 ENV LASER_POLIO_DATA=/app/data
 
 # -----------------------------
-# Install calibration engine
+# Install calibration engine from local wheel
 # -----------------------------
-RUN pip install plotly
-RUN pip install --pre \
-    -i https://packages.idmod.org/api/pypi/idm-pypi-production/simple \
-    laser_polio_calibration
+ARG CALIB_VERSION=0.1.0
+COPY dist/laser_polio_calibration-${CALIB_VERSION}-py3-none-any.whl /tmp/
+RUN pip install --no-cache-dir /tmp/laser_polio_calibration-${CALIB_VERSION}-py3-none-any.whl && \
+    rm /tmp/laser_polio_calibration-${CALIB_VERSION}-py3-none-any.whl
 
 # -----------------------------
 # Install Nigeria country package (local wheel)

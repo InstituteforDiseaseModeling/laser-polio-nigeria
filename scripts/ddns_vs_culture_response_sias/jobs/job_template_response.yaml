@@ -1,0 +1,72 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{JOB_NAME}}
+  labels:
+    component: ddns-vs-culture
+    phase: run-response
+    rep: "{{REP}}"
+    response-time: "{{RESPONSE_TIME}}"
+    detection-sensitivity: "{{DS_LABEL}}"
+spec:
+  ttlSecondsAfterFinished: 3600
+  backoffLimit: 2
+  template:
+    metadata:
+      labels:
+        component: ddns-vs-culture
+        phase: run-response
+    spec:
+      restartPolicy: Never
+      tolerations:
+      - key: "nodepool"
+        operator: "Equal"
+        value: "64gb"
+        effect: "NoSchedule"
+      - key: "nodepool"
+        operator: "Equal"
+        value: "128gb"
+        effect: "NoSchedule"
+      imagePullSecrets:
+      - name: idmodregcred3
+      - name: registry4idm
+      containers:
+        - name: simulation
+          image: {{IMAGE}}
+          imagePullPolicy: Always
+          env:
+            - name: POLIO_ROOT
+              value: "/app"
+            - name: RUN_ID
+              value: "{{RUN_ID}}"
+          command:
+            - python3
+            - scripts/ddns_vs_culture_response_sias/core/run_from_snapshot.py
+            - --snapshot
+            - {{SNAPSHOT_PATH}}
+            - --config
+            - {{CONFIG_PATH}}
+            - --rep
+            - "{{REP}}"
+            - --response-time
+            - "{{RESPONSE_TIME}}"
+            - --detection-sensitivity
+            - "{{DETECTION_SENSITIVITY}}"
+            - --output-dir
+            - {{OUTPUT_DIR}}
+            - --run-id
+            - "{{RUN_ID}}"
+          resources:
+            requests:
+              memory: "32Gi"
+              cpu: "8"
+            limits:
+              memory: "32Gi"
+              cpu: "8"
+          volumeMounts:
+            - name: shared-storage
+              mountPath: /shared
+      volumes:
+        - name: shared-storage
+          persistentVolumeClaim:
+            claimName: {{PVC_NAME}}

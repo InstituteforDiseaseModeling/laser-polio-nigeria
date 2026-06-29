@@ -47,6 +47,7 @@ def build_nigeria_inputs( configs, verbose ):
     # Geography
     dot_names = lp.find_matching_dot_names( regions, manifest.population, verbose=verbose, admin_level=admin_level)
     node_lookup = lp.get_node_lookup(manifest.node_lookup, dot_names)
+    distance_matrix = pd.read_hdf(manifest.distance_matrix).loc[dot_names, dot_names].values
     shp = gpd.read_file(filename=manifest.shapefile, layer="adm2")
     shp = shp[shp["dot_name"].isin(dot_names)]
     # Sort the GeoDataFrame by the order of dot_names
@@ -397,6 +398,10 @@ def build_nigeria_inputs( configs, verbose ):
     # Inject age_pyramid_path so run_sim passes it through to pars (needed for plot_age_pyramid)
     configs.setdefault("age_pyramid_path", manifest.age_pyramid)
 
+    # Inject regions_yaml_path into summary_config so save_sim_results can find regions.yaml
+    if "summary_config" in configs and configs["summary_config"]:
+        configs["summary_config"]["regions_yaml_path"] = str(manifest.regions)
+
     # Validate all arrays match
     assert all(len(arr) == len(dot_names) for arr in [shp, node_lookup, init_prevs, pop, cbr, ri, ri_ipv, sia_prob, r0_scalars])
 
@@ -410,6 +415,7 @@ def build_nigeria_inputs( configs, verbose ):
         "r0_scalars": r0_scalars,
         "shp": shp,
         "node_lookup": node_lookup,
+        "distances": distance_matrix,
         "ri": ri,
         "ri_ipv": ri_ipv,
         "sia_schedule": sia_schedule,

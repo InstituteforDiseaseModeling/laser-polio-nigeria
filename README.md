@@ -306,6 +306,14 @@ STORAGE_URL=sqlite:///my_calib.db              # local SQLite file (created auto
 
 ### Run a calibration
 
+For a self-contained local run (SQLite, no extra setup), use the script:
+
+```bash
+python scripts/run_calib_local.py   # edit QUICK_TEST / config vars at the top
+```
+
+Or invoke the CLI directly:
+
 ```bash
 python -m laser_polio_nigeria.calibration.calibrate \
   --study-name my_study \
@@ -372,4 +380,50 @@ python -m laser_polio_nigeria.calibration.calibrate \
   --config-root config \
   --dry-run
 ```
+
+### Dockerized local calibration
+
+Run calibration inside the same Docker image used on AKS, with MySQL storage for exact environment parity.
+
+**1. Set up `.netrc` for IDM PyPI access** (one-time setup to build the image):
+
+```bash
+cp ~/.netrc .netrc   # gitignored — never commit this
+```
+
+If you don't have `~/.netrc`, create it with your IDM credentials:
+```
+machine packages.idmod.org
+login <your-idm-username>
+password <your-idm-password>
+```
+
+**2. Build the image:**
+
+Run `scripts/calibration/build_calib_docker.py` with the VS Code play button, or from the terminal:
+
+```bash
+python scripts/calibration/build_calib_docker.py
+```
+
+Builds wheels for `laser-polio-calibration` and `laser-polio-nigeria`, then builds the Docker image tagged as `laser-polio-nigeria:local`.
+
+**3. Run calibration:**
+
+Run `scripts/calibration/run_calib_local_docker.py` with the VS Code play button, or from the terminal:
+
+```bash
+python scripts/calibration/run_calib_local_docker.py
+```
+
+Edit `QUICK_TEST`, `N_TRIALS`, and config vars at the top of the script. It calls `docker compose up` which:
+
+- Starts a MySQL container (Optuna storage, matching AKS)
+- Starts the calibration worker once MySQL is healthy
+- Uses data baked into the image (from the `nigeria-polio` package — no local mount needed)
+- Mounts `config/` so config changes take effect without rebuilding the image
+- Writes results to `results/<study-name>/` on the host
+- Tears down both containers (and MySQL volume) on exit
+
+To run multiple parallel workers: `docker compose up --scale calib_worker=N`
 
