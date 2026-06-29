@@ -1,0 +1,56 @@
+# DDNS vs Culture - Response Config (5y forward: 2026-01-01 to 2030-12-31)
+#
+# Loaded from snapshot at end of 2025. Seed and detection parameters are
+# set per-run by run_from_snapshot.py (not from this file).
+#
+# n_days = 1826: covers 2026-01-01 to 2030-12-31 (leap year: 2028)
+
+results_path: "results/ddns_vs_culture_response_sias"
+
+# Geography
+regions: ["NIGERIA"]
+admin_level: 0
+
+# Timing
+start_year: 2026
+n_days: 1826  # 5 years: 2026-01-01 to 2030-12-31 (leap year: 2028)
+
+# Population
+pop_scale: 1.0
+init_region: "BIRINIWA"
+init_prev: 0
+
+# Transmission parameters — must match snapshot config
+# PLACEHOLDER VALUES: run extract_best_calib_params.py to update these
+r0: 12.596628416809017
+migration_method: "radiation"
+radiation_k_log10: -1.9923605157363817
+node_seeding_zero_inflation: 0.0
+max_migr_frac: 0.05
+seasonal_amplitude: 0.2346813621297781
+seasonal_peak_doy: 200
+
+# R0 spatial heterogeneity
+use_pim_scalars: true
+pim_re_center: -0.8426157363250124
+pim_re_scale: 0.740827361594329
+
+# Vaccination
+vx_prob_ri: 0.0
+
+# Response SIA settings (response_time and detection_sensitivity set per-run)
+sia_schedule_source: "none"
+response_sia: true
+response_sia_mode: "adjacency"
+response_sia_start_date: 2026-01-01
+response_sia_2nd_round_gap: 30
+response_sia_blackout_duration: 182
+response_sia_vaccine_type: "nOPV2"
+response_sia_vaccine_strain: 2
+response_sia_age_range: [0, 1825]
+
+# Simulation settings
+stop_if_no_cases: true
+save_plots: false
+save_data: false
+verbose: 0

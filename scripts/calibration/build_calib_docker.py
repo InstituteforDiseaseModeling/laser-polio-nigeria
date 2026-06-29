@@ -23,6 +23,7 @@ with open(REPO_ROOT / "pyproject.toml", "rb") as f:
 with open(CALIB_REPO / "pyproject.toml", "rb") as f:
     CALIB_VERSION = tomllib.load(f)["project"]["version"]
 
+import os
 import re
 
 # Read local laser-polio version
@@ -31,11 +32,17 @@ with open(REPO_ROOT / "../laser-polio/pyproject.toml", "rb") as f:
 
 # Query Artifactory for the latest available version
 _IDM_INDEX = "https://packages.idmod.org/api/pypi/pypi-production/simple"
-_result = subprocess.run(
-    [sys.executable, "-m", "pip", "index", "versions", "laser-polio", "--pre",
-     "--index-url", _IDM_INDEX],
-    capture_output=True, text=True,
-)
+_env = {**os.environ, "NETRC": str(REPO_ROOT / ".netrc")}
+try:
+    _result = subprocess.run(
+        [sys.executable, "-m", "pip", "index", "versions", "laser-polio", "--pre",
+         "--index-url", _IDM_INDEX, "--no-input"],
+        capture_output=True, text=True, timeout=30,
+        stdin=subprocess.DEVNULL, env=_env,
+    )
+except subprocess.TimeoutExpired:
+    print("WARNING: Artifactory query timed out — LP_VERSION set to 'unknown'")
+    _result = subprocess.CompletedProcess(args=[], returncode=1, stdout="", stderr="")
 _match = re.search(r"laser.polio \(([^)]+)\)", _result.stdout)
 LP_VERSION = _match.group(1) if _match else "unknown"
 

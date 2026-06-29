@@ -21,14 +21,14 @@ REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 
-JOB_NAME     = "lpsk-nigeria-08"   # Short unique k8s name; must be lowercase, no underscores
-STUDY_NAME   = "calib_nga_9y_2017_r0_radk_pim_annual_20260622"
+JOB_NAME     = "lpsk-nigeria-09"   # Short unique k8s name; must be lowercase, no underscores
+STUDY_NAME   = "calib_nga_9y_2017_r0_radk_pim_annual_TEST_20260629"
 MODEL_CONFIG = "nigeria_9y_2017_regions_r0_radk_mmf_ssn_nozi_pim_annual.yaml"
-CALIB_CONFIG = "r0_radk_pim.yaml"
+CALIB_CONFIG = "r0_radk_pim_v2.yaml"
 N_TRIALS     = 1     # trials per pod
 N_REPLICATES = 1     # model runs per trial
 PARALLELISM  = 50    # pods running simultaneously
-COMPLETIONS  = 15000  # total pods (= total trials when N_TRIALS=1)
+COMPLETIONS  = 50  # total pods (= total trials when N_TRIALS=1)
 NODE_POOL    = "64gb"   # "64gb" (200 GiB RAM total) or "128gb" (for best-trial analysis)
 MEMORY_GiB   = 50       # memory request per pod (use 50 for 64gb pool, 100 for 128gb)
 
